@@ -2,11 +2,12 @@
 import "./ProductCard.css"
 
 import BuyNowBtn from "../Buttons/buyNowBtn";
+import IProduct from "../../interfaces/IProduct";
 
-const ProductCard = () => {
+const ProductCard = ({ product }: { product: IProduct }) => {
   return (
     <div className="ProductCard">
-        <p className="cardTitle">ProductCard</p>
+        <p className="cardTitle">{product.title}</p>
         <p>Detta ska vara en bild</p>
         <div className="cardBottom">
           <p className="cardPrice">Pris</p>

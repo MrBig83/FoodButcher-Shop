@@ -9,12 +9,11 @@ async function addProduct(req, res, next) {
     res.status(201).json(product)
 }
 
-async function getAllProducts(req, res) {
-    // const products = await ProductModel.find();
-    await connectMongoDB()
+async function getProducts(req, res) {
+  console.log("getProducts");
+    // await connectMongoDB()
     const products = await ProductModel.find();
-    // const products = await ProductModel.find();
     res.status(200).json(products);
   }
 
-module.exports = { addProduct, getAllProducts };
+module.exports = { addProduct, getProducts };

@@ -18,5 +18,12 @@
     margin: 20px 0px;    
     display: flex;
     justify-content: space-between;
-
 }
+a:link {
+    text-decoration: none;
+    color: black;
+  }
+  a:visited {
+    text-decoration: none;
+    color: black;
+  }
