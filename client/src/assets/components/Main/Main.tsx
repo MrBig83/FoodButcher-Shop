@@ -9,7 +9,7 @@ const Main = () => {
       <div className="routes">
         <Routes>
           <Route path="/" element={<Products />} />
-          <Route path="/single" element={<SingleProduct />} />
+          <Route path="/:id" element={<SingleProduct />} />
           {/* <Route path="/shopingcart" element={<ShopingCart />} /> */}
         </Routes>
 
