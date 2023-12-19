@@ -1,5 +1,5 @@
 // import { Route, Routes } from "react-router";
-// import "./Main.css"
+import "./Products.css"
 
 import ProductCard from "../ProductCard/ProductCard";
 import IProduct from "../../interfaces/IProduct";
@@ -12,6 +12,8 @@ import { useContext } from "react";
 
 const Products = () => {
   const { productList } = useContext(ProductContext);
+  
+  
   // const [products, setProducts] = useState([]);
 
   // useEffect(() => {

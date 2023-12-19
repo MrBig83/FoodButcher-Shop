@@ -1,7 +1,8 @@
 
 const BuyNowBtn = () => {
     return (
-        <button>Knapp i comp</button>
+        // <button className="btnBuyNow">Köp</button>
+        <div className="btnBuyNow"><p>Köp</p></div>
     );
   };
   export default BuyNowBtn;
