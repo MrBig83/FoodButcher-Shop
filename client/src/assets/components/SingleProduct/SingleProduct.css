@@ -14,15 +14,23 @@
 }
 
 .productInfo {
+    width: 500px;
     margin-top: 20px;
+}
+.productInfo p {
+    margin-top: 10px;
 }
 
 
 .productBottom {
+    width: 500px;
+    margin-top: 40px;
+    display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 .productPrice {
-
+    font-weight: 800;
 }
 .backBtn {
     text-align: center;
