@@ -10,10 +10,15 @@ async function addProduct(req, res, next) {
 }
 
 async function getProducts(req, res) {
-  console.log("getProducts");
-    // await connectMongoDB()
     const products = await ProductModel.find();
     res.status(200).json(products);
   }
 
-module.exports = { addProduct, getProducts };
+async function getSingleProduct(req, res) {
+    const product = await ProductModel.findOne({
+      id: req.params.id
+    });
+    res.status(200).json(product);
+  }
+
+module.exports = { addProduct, getProducts, getSingleProduct };
