@@ -19,7 +19,7 @@ const Cart = () => {
 
   return (
     <div className="Products">
-        <h1>Cart</h1>
+        <h1>Din kundvagn:</h1>
         {productsInCart?.map((product: IProduct) => (
         <div className="ProductCardRender" key={product.id}>
       

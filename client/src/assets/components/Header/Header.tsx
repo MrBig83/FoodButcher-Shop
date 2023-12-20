@@ -20,7 +20,9 @@ const Header = () => {
             <div className="rightNav">
                 <p>Produkter</p>
                 <p>Nyheter</p>
-                <p>UserIcon</p>
+                <Link to={"/Login"}>
+                    <p>UserIcon</p>
+                </Link>
                 <Link to={"/cart"}>
                     <p>CartIcon</p>
                     <p className="cartNumber">{productsInCart.length}</p>
