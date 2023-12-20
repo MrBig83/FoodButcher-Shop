@@ -1,8 +1,6 @@
 const { ProductModel, Topic } = require("./product.model");
-const { connectMongoDB } = require("../../libs/mongodb")
 
 async function addProduct(req, res, next) {
-    await connectMongoDB()
     const product = await new ProductModel(req.body)
 
     product.save();

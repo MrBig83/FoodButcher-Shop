@@ -11,7 +11,7 @@ interface ProductContextProps {
 }
 
 export const ProductContext = createContext<ProductContextProps>({} as ProductContextProps);
-const ProductContextProvider = ({ children }: PropsWithChildren<Record<string, never>>) => {
+const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
 
   //States
   const [productList, setProductList] = useState<IProduct[] | null>(null)

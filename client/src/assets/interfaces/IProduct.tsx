@@ -8,5 +8,6 @@ export default interface IProduct {
     nutritions: string, 
     price: number,
     image: string,
-    instock: number
+    instock: number,
+    quantity: string
   }
