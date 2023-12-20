@@ -3,7 +3,7 @@ import "./SingleProduct.css"
 
 import BuyNowBtn from "../Buttons/buyNowBtn";
 import BackBtn from "../Buttons/backBtn";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ProductContext } from "../../../context/ProductContext"
 import { useContext} from "react";
 
@@ -25,12 +25,14 @@ const SingleProduct = () => {
     
   return (
     <>
+    <Link to={`/`}>
       <BackBtn />
+    </Link>
     <div className="SingleProduct">
       <p className="productTitle">{productList![specProduct!].title}</p>
       <img className="productImage" src={productList![specProduct!].image} alt="" />
       <div className="productInfo">
-        <p><strong>Beskrivning:</strong> {productList![specProduct!].description}</p>
+        <p>{productList![specProduct!].description}</p>
         <p><strong>Använding:</strong> {productList![specProduct!].usage}</p>
         <p><strong>Passar till:</strong> {productList![specProduct!].suits}</p>
         <p><strong>Innehåll:</strong> {productList![specProduct!].ingredients}</p>
