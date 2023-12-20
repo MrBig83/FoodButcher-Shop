@@ -18,7 +18,8 @@ const Header = () => {
             </Link>
             <h1>Header</h1>
             <div className="rightNav">
-                <p>Navlinks</p>
+                <p>Produkter</p>
+                <p>Nyheter</p>
                 <p>UserIcon</p>
                 <Link to={"/cart"}>
                     <p>CartIcon</p>
