@@ -5,7 +5,7 @@ require("express-async-errors");
 
 const { productRouter } = require("./resources/product/product.router");
 // const { orderRouter } = require("./resources/order/order.router");
-// const { userRouter } = require("./resources/user/user.router");
+const { userRouter } = require("./resources/user/user.router");
 // const { categoryRouter } = require("./resources/category/category.router");
 // const { errorRequestHandler } = require("./error");
 // const {
@@ -29,7 +29,7 @@ app.use(
 // Add routers
 app.use("/api", productRouter);
 // app.use("/api", orderRouter);
-// app.use("/api", userRouter);
+app.use("/api", userRouter);
 // app.use("/api", categoryRouter);
 // app.use("/api", ShippingMethodRouter);
 
