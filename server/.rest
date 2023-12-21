@@ -2,13 +2,13 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-    "id": "002",
-    "title": "Backwood burger rub",
-    "description": "Autentisk amerikansk kryddmix för hamburgare. Cheddarn tillsammans med chilin tar dina hamburgare till nästa nivå.",
+    "id": "001",
+    "title": "Zombie Bacon",
+    "description": "Bacon passar till allt, vilket denna unika kryddblandning är ett bevis på. Blandar bacon, chili och kakao i en unik men underbar mix.",
     "usage": "Strö rubben över köttet, linda in i folie. Låt stå minst 1 timme innan det är dags för grillen!",
     "suits":"Fläsk, Kyckling, Nöt",
-    "ingredients":"Ostkrydda (ostpulver, tomat, vasslepulver, jäsextrakt, mjölkpulver, potatisstärkelse, arom), Vitlök, Lök, SENAP, Paprika, Svartpeppar, Salt, Ancho chili",
-    "nutritions":"Energi 216 kcal (918kJ), Fett 3g, Kolhydrater 32g, varav socker 4g, protein 10g, Salt 9g.",
+    "ingredients":"Strö rubben över köttet, linda in i folie. Låt stå minst 1 timme innan det är dags för grillen!",
+    "nutritions":"Energi 224 kcal (938kJ), Fett 3g, Kolhydrater 39g, varav socker 16g, protein 8g, Salt 6g.",
     "price": 199,
     "image": "https://foodbutcher.com/____impro/1/onewebmedia/Zombie%20bacon.jpg",
     "instock": 5
@@ -22,3 +22,27 @@ GET http://localhost:3000/api/products/2
 
 ###
 
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "id": "u002",
+    "firstName": "Förnamn2",
+    "lastName": "Efternamn2",
+    "email": "email@email.com2",
+    "street": "Gatan2",
+    "postCode": "442 122",
+    "city": "Stad2",
+    "userName": "Användarnamn2",
+    "password": "Lösenord2" 
+
+}
+
+###
+GET http://localhost:3000/api/users
+
+###
+
+GET http://localhost:3000/api/users/u001
+
+###
