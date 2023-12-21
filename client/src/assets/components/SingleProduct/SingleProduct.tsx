@@ -18,7 +18,8 @@ const defaultProduct: IProduct = {
   nutritions: "", 
   price: 0,
   image: "",
-  instock: 0
+  instock: 0, 
+  quantity: ""
 };
 
 
@@ -54,7 +55,7 @@ const SingleProduct = () => {
       </div>
       <div className="productBottom">
         <p className="productPrice">{product!.price}:-</p>
-        <BuyNowBtn />
+        <BuyNowBtn product={product} />
       </div>
         
 
