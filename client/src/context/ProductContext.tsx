@@ -20,7 +20,7 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   //Functions
 
   const getProducts = async () => {              
-      const res = await fetch("http://localhost:3000/api/products");
+      const res = await fetch("/api/products");
       const products: IProduct[] = await res.json();
       setProductList(products)
   };
@@ -29,7 +29,7 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   }, []);
 
   const getSingleProduct = async (id: number) => {              
-      const res = await fetch(`http://localhost:3000/api/products/${id}`);
+      const res = await fetch(`/api/products/${id}`);
       const product: IProduct = await res.json();
       setSingleProduct(product)
   };
