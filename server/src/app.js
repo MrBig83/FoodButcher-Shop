@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
+// const expressSession = require("express-session");
+const dotenv = require("dotenv").config();
 require("express-async-errors");
 
 const { productRouter } = require("./resources/product/product.router");

@@ -16,33 +16,45 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/api/products
-
 ###
-GET http://localhost:3000/api/products/2
 
+GET http://localhost:3000/api/products/2
 ###
 
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "id": "u002",
-    "firstName": "Förnamn2",
-    "lastName": "Efternamn2",
-    "email": "email@email.com2",
-    "street": "Gatan2",
-    "postCode": "442 122",
-    "city": "Stad2",
-    "userName": "Användarnamn2",
-    "password": "Lösenord2" 
+    "firstName": "Förnamn",
+    "lastName": "Efternamn",
+    "email": "a@e.com",
+    "street": "Gatan",
+    "postCode": "442 12",
+    "city": "Stad",
+    "userName": "Användarnamn",
+    "password": "p", 
+    "isAdmin":false
 
 }
 
 ###
-GET http://localhost:3000/api/users
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "a@e.com", 
+    "password": "p"
+}
 
 ###
+POST http://localhost:3000/api/users/logout
+###
 
-GET http://localhost:3000/api/users/u001
+GET http://localhost:3000/api/users
+###
 
+GET http://localhost:3000/api/users/65857e22a19216627069a100
+###
+
+GET http://localhost:3000/api/users/authorize
 ###

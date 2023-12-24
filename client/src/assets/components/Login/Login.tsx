@@ -1,27 +1,42 @@
-// import { Route, Routes } from "react-router";
-import "./Login.css";
-
-// import { Link } from "react-router-dom";
-
-const Login = () => {
-
-    
- 
+import { useContext } from "react"
+// import "./PopupStyle.css"
+import { UserContext } from "../../../context/UserContext"
 
 
-    return (
-        <div className="Login">
+function Login() {
+  const { email, setEmail, password, setPassword, handleLogin, handleLogout } = useContext(UserContext)
+  // const { email, setEmail, password, setPassword, handleLogin, handleLogout, data, auth } = useContext(UserContext)
+
+ //Skapa loginfunktionen i context. Kolla hur det är gjort i andra projekt. loginUser finns i context, men felkod ges. 
+ //Hämta funktion ifrån annat projekt. webshop? 
+
+//  const handleCheckAuth = async () => {
+//   // await auth();
+//   if (!data._id) {
+//     await handleLogin();
+//   } else {
+//     await handleLogout();
+//   }
+// };
   
-            <h1>Login</h1>
-            <div className="loginForm">
-                <input className="inpName" type="text" />
-                <input className="inpPassword" type="text" />
-                <button>Logga in</button>
-                <button>Skapa konto</button>
-
-            </div>
+return (
+    <div className="loginPopup">
+      <p>Logga in:</p>
+      
+      
+      <div className="popupWindowContent">
+      {/* <input type="text" className="userEmail" placeholder="Enter card name" value={email} onChange={(e) => setEmail(e.target.value)} /> */}
+      <input onChange={(e) => setEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" value={email} />
+        <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Lösenord" value={password} />
+        {/* {data._id ? <button onClick={() => handleCheckAuth()}>Logga ut</button> : <button onClick={() => handleCheckAuth()}>Logga in</button>} */}
+        <button onClick={() => handleLogin()}>Logga in</button>
+        <button onClick={() => handleLogout()}>Logga ut</button>
+        
+        
+        <p>Eller skapa konto nedan:</p>
         </div>
-    );
-  };
-  export default Login;
-  
+    </div>
+  )
+}
+
+export default Login
