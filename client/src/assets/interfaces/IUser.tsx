@@ -1,5 +1,5 @@
 export default interface IUser {
-    id: string,
+    _id: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -7,5 +7,6 @@ export default interface IUser {
     postCode: string,
     city: string,
     userName: string,
-    password: string
+    password: string, 
+    isAdmin: boolean
   }

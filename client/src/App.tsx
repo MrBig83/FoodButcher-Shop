@@ -6,6 +6,7 @@ import Main from "./assets/components/Main/Main";
 import Footer from "./assets/components/Footer/Footer";
 import ProductContextProvider from './context/ProductContext';
 import CartContextProvider from './context/CartContext';
+import UserContextProvider from './context/UserContext';
 
 
 function App() {
@@ -13,11 +14,13 @@ function App() {
 
   return (
     <ProductContextProvider>
+      <UserContextProvider>
       <CartContextProvider>
         <Header />
         <Main />
         <Footer />
       </CartContextProvider>
+      </UserContextProvider>
     </ProductContextProvider>
   )
 }

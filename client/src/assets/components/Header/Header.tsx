@@ -4,9 +4,12 @@ import logo from '../../food_logga.png';
 import { CartContext } from "../../../context/CartContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
+
 
 const Header = () => {
-
+    
+    const { data } = useContext(UserContext)
     const { productsInCart } = useContext(CartContext);
  
 
@@ -18,10 +21,13 @@ const Header = () => {
             </Link>
             <h1>Header</h1>
             <div className="rightNav">
-                <p>Produkter</p>
+                <Link to={"/"}>
+                    <p>Produkter</p>
+                </Link>
                 <p>Nyheter</p>
                 <Link to={"/Login"}>
                     <p>UserIcon</p>
+            <p>{data._id ? "Välkommen "+data.firstName + "!" : "INTE inloggad"}</p>
                 </Link>
                 <Link to={"/cart"}>
                     <p>CartIcon</p>
