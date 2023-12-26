@@ -6,6 +6,7 @@ import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProduct from "../CreateProduct/CreateProduct";
+import UpdateProduct from "../UpdateProduct/UpdateProduct";
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/createaccount" element={<CreateAccount />} />
           <Route path="/createproduct" element={<CreateProduct />} />
+          <Route path="/updateproduct" element={<UpdateProduct />} />
         </Routes>
 
         {/* <div className="sectionLine"></div> */}

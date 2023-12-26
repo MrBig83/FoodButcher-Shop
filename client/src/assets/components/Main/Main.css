@@ -1,5 +1,7 @@
 .main {
-    height: max(100vh - 320px);
+    min-height: max(100vh - 210px);
+    padding-top: 150px;
     margin: 0px 50px;
+    margin-bottom: 10px;
     
 }
