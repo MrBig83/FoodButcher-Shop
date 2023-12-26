@@ -21,6 +21,9 @@ const Header = () => {
             </Link>
             <h1>Header</h1>
             <div className="rightNav">
+                <Link to={"/CreateProduct"}>
+                    <p>Skapa Produkt</p>
+                </Link>
                 <Link to={"/"}>
                     <p>Produkter</p>
                 </Link>

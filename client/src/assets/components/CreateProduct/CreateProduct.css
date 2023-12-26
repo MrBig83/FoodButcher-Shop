@@ -1,0 +1,17 @@
+.CreateProductPage {
+    width: 80vw;
+}
+.CreateProductForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.CreateProductForm input {
+    width: 60%;
+    margin-top: 10px;
+}
+.CreateProductForm button {
+    margin-top: 10px;
+}
