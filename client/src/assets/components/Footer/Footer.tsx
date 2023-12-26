@@ -21,10 +21,6 @@ const Footer = () => {
             <p>Text Footer4</p>
           </div>
           <div className="spacerLine"></div>
-          
-          
-
-        
       </div>
     );
   };
