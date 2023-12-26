@@ -82,6 +82,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     setData(data);
   };
 
+  // const handleCreateAccount
+
   // const auth = async (): Promise<void> => {
   //   const response = await fetch("/api/users/authorize");
   //   const data = await response.json();
