@@ -1,6 +1,7 @@
 import { useContext } from "react"
 // import "./PopupStyle.css"
 import { UserContext } from "../../../context/UserContext"
+import { Link } from "react-router-dom";
 
 
 function Login() {
@@ -31,6 +32,9 @@ return (
         
         
         <p>Eller skapa konto nedan:</p>
+        <Link to={"/createaccount"}>
+          Skapa konto
+        </Link>
         </div>
     </div>
   )

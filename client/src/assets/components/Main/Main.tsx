@@ -4,6 +4,7 @@ import SingleProduct from "../SingleProduct/SingleProduct";
 import "./Main.css"
 import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
+import CreateAccount from "../CreateAccount/CreateAccount";
 
 const Main = () => {
   return (
@@ -14,6 +15,7 @@ const Main = () => {
           <Route path="/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/createaccount" element={<CreateAccount />} />
         </Routes>
 
         {/* <div className="sectionLine"></div> */}
