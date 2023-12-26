@@ -1,5 +1,6 @@
 import React, {
   PropsWithChildren,
+  SetStateAction,
   createContext,
   useState,
   // useEffect,
@@ -18,10 +19,13 @@ import IUser from "../assets/interfaces/IUser";
 interface UserContextProps {
   email: string;
   password: string;
+  verPassword: string;
+  setVerPassword: React.Dispatch<SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   handleLogin: () => Promise<void>;
   handleLogout: () => Promise<void>;
+  handleCreateAccount: () => Promise<void>;
   // auth: () => Promise<void>;
   data: IUser;
 }
@@ -31,6 +35,9 @@ export const UserContext = createContext<UserContextProps>({} as UserContextProp
 const UserContextProvider = ({ children }: PropsWithChildren) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [verPassword, setVerPassword] = useState("");
+
+
   const [data, setData] = useState<IUser>({
     _id: "",
     firstName: "",
@@ -82,7 +89,28 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     setData(data);
   };
 
-  // const handleCreateAccount
+  const handleCreateAccount = async ():Promise<void> => {
+    console.log("email");
+    console.log(email);
+    console.log(password);
+    await fetch("/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        email: email, 
+        password: password,
+        firstName: "",
+        lastName: "",
+        street: "",
+        postCode: "",
+        city: "",
+        userName: "",
+        isAdmin:false
+       }), 
+  })
+};
 
   // const auth = async (): Promise<void> => {
   //   const response = await fetch("/api/users/authorize");
@@ -98,12 +126,15 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       value={{
         email,
         password,
+        verPassword, 
+        setVerPassword,
         setEmail,
         setPassword,
         handleLogin,
         handleLogout,
         // auth,
         data,
+        handleCreateAccount,
       }}
     >
       {children}

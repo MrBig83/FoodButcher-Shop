@@ -1,7 +1,7 @@
 const { Schema, model, models } = require("mongoose");
 
 const UserSchema = new Schema({
-    _id: String,
+    // _id: String,
     firstName: String,
     lastName: String,
     email: String, 
@@ -11,7 +11,7 @@ const UserSchema = new Schema({
     userName: String,
     password: String, 
     isAdmin: Boolean
-    // Tidigare ordrar?
+    // Tidigare ordrar??
 });
 
 
