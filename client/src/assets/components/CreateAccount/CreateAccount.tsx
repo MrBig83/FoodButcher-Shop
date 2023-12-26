@@ -5,13 +5,26 @@
 import { Link } from "react-router-dom";
 import BackBtn from "../Buttons/backBtn";
 
-// import { useContext } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
 
 
 
 
 const CreateAccount = () => {
-//   const { productList } = useContext(ProductContext);
+const { email, setEmail, password, setPassword, handleCreateAccount, setVerPassword, verPassword } = useContext(UserContext);
+
+function processInput() {  
+ if(password === verPassword) {  
+    handleCreateAccount()
+ } else {
+  console.log("Lösenorden stämmer inte överrens");
+  
+  //Lösenorden stämmer inte överens
+ }
+
+  
+}
   
 
   return (
@@ -20,12 +33,11 @@ const CreateAccount = () => {
       <BackBtn />
     </Link>       
         <div className="CreateAccountForm">
-            <input type="text" placeholder="E-mail"/>
-            <input type="text" placeholder="Önskat lösenord"/>
-            <input type="text" placeholder="Repetera lösenord"/>
-            <button>Skapa konto</button>
+            <input onChange={(e) => setEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" value={email}/>
+            <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Önskat lösenord" value={password}/>
+            <input onChange={(e) => setVerPassword(e.target.value)} className="verPassword" type="text" placeholder="Önskat lösenord" value={verPassword}/>
+            <button onClick={() => processInput()}>Skapa konto</button>
 
-      
         
 
         </div>
