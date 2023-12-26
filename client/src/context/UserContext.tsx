@@ -54,9 +54,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         body: JSON.stringify({ email: email, password: password }),
       });
 
-      const data = await res.json();
-      console.log(data);
-      
+      const data = await res.json();     
 
       setData(data);
     } catch (err) {
