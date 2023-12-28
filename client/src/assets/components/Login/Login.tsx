@@ -2,6 +2,7 @@ import { useContext } from "react"
 // import "./PopupStyle.css"
 import { UserContext } from "../../../context/UserContext"
 import { Link } from "react-router-dom";
+import BackBtn from "../Buttons/backBtn";
 
 
 function Login() {
@@ -19,6 +20,7 @@ function Login() {
   
 return (
     <div className="loginPopup">
+      <BackBtn />
       <p>Logga in:</p>
       
       

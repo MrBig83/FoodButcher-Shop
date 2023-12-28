@@ -2,7 +2,7 @@
 // import "./Products.css"
 
 
-import { Link } from "react-router-dom";
+
 import BackBtn from "../Buttons/backBtn";
 
 import { useContext } from "react";
@@ -29,9 +29,9 @@ function processInput() {
 
   return (
     <div className="CreateAccountPage"> 
-    <Link to={`/`}>
+    
       <BackBtn />
-    </Link>       
+    
         <div className="CreateAccountForm">
             <input onChange={(e) => setEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" value={email}/>
             <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Önskat lösenord" value={password}/>

@@ -19,7 +19,37 @@
     display: flex;
     justify-content: space-around;
 }
+.navlinks {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navlinks > .outLier {
+    position: absolute;
+    top: 60px;    
+}
+
 img {
-    width: 120px;
+    width: 120px;    
+}
+
+.cartNumber {
+    position: relative;
+    background: #ff0000b9;
+    color: rgb(23, 23, 23);
+    border-radius: 50%;
+    height: 1.2rem;
+    width: 1.2rem;
+    top: -30px;
+    right: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
 }
+
