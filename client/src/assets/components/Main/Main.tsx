@@ -7,6 +7,7 @@ import Login from "../Login/Login";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
+import News from "../News/News";
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
           <Route path="/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/news" element={<News />} />
           <Route path="/createaccount" element={<CreateAccount />} />
           <Route path="/createproduct" element={<CreateProduct />} />
           <Route path="/updateproduct" element={<UpdateProduct />} />
