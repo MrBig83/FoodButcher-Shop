@@ -2,12 +2,8 @@
 import BackBtn from "../Buttons/backBtn";
 import "./News.css"
 
-
 // import { Link } from "react-router-dom";
-
 // import { useContext } from "react";
-
-
 
 
 const News = () => {
