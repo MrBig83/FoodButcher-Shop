@@ -2,6 +2,7 @@ import React, {
   PropsWithChildren,
   SetStateAction,
   createContext,
+  // useEffect,
   useState,
   // useEffect,
 } from "react";
@@ -90,9 +91,6 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const handleCreateAccount = async ():Promise<void> => {
-    console.log("email");
-    console.log(email);
-    console.log(password);
     await fetch("/api/users", {
       method: "POST",
       headers: {
@@ -110,11 +108,18 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         isAdmin:false
        }), 
   })
+  setEmail("")
+  setPassword("")
+  setVerPassword("")
 };
 
   // const auth = async (): Promise<void> => {
+  //   console.log("Dags för auth");
+    
   //   const response = await fetch("/api/users/authorize");
   //   const data = await response.json();
+  //   console.log(data);
+    
   //   setData(data);
   // };
   // useEffect(() => {

@@ -58,23 +58,23 @@ async function loginUser(req, res) {
   res.status(200).json(user);
 }
 
-
 async function logout(req, res) {
   if (!req.session._id) {
       return res.status(400).json("Cannot logout when you are not logged in");
     }
-              //SJUKT för ovan fungerar fint i .rest, men inte via frontend.
+  
   console.log(req.session);
   req.session = null;
   res.status(204).json("User logged out");
   }
   
-//   async function authorize(req, res) {
-//     if (!req.session._id) {
-//       return res.status(401).json("You are not logged in");
-//     }
-//   res.status(200).json(req.session);
-// }
+  async function authorize(req, res) {
+    console.log("Detta är i Auth på backend"); 
+    if (!req.session) {
+      return res.status(401).json("You are not logged in");
+    }
+  res.status(200).json(req.session);
+}
 
 
-module.exports = { addUser, getUsers, getSingleUser, loginUser, logout };
+module.exports = { addUser, getUsers, getSingleUser, loginUser, logout, authorize };
