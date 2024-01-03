@@ -4,18 +4,11 @@ import React, {
   createContext,
   // useEffect,
   useState,
-  // useEffect,
 } from "react";
 
 import IUser from "../assets/interfaces/IUser";
+import IUserData from "../assets/interfaces/IUserData";
 
-// interface IUser {
-//   email: string;
-//   firstName: string;
-//   isAdmin: boolean;
-//   lastName: string;
-//   _id: string;
-// }
 
 interface UserContextProps {
   email: string;
@@ -27,8 +20,10 @@ interface UserContextProps {
   handleLogin: () => Promise<void>;
   handleLogout: () => Promise<void>;
   handleCreateAccount: () => Promise<void>;
+  updateUserCreds: (userObject: IUserData) => Promise<void>;
+  getUser: () => Promise<void>;
   // auth: () => Promise<void>;
-  data: IUser;
+  loggedInUser: IUser;
 }
 
 export const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -39,7 +34,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   const [verPassword, setVerPassword] = useState("");
 
 
-  const [data, setData] = useState<IUser>({
+  const [loggedInUser, setLoggedInUser] = useState<IUser>({
     _id: "",
     firstName: "",
     lastName: "",
@@ -62,20 +57,43 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         body: JSON.stringify({ email: email, password: password }),
       });
 
-      const data = await res.json();     
+      const loggedInUser = await res.json();     
 
-      setData(data);
+      setLoggedInUser(loggedInUser);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const getUser = async (): Promise<void> => {
+
+  }
+
+  const updateUserCreds = async (userObject:IUserData): Promise<void> => {
+    console.log(userObject);
+    
+    await fetch(`/api/users/update/${loggedInUser._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        firstName: userObject.firstName,
+        lastName: userObject.lastName,
+        street: userObject.street,
+        postCode: userObject.postCode,
+        city: userObject.city,
+        isAdmin:false
+       }), 
+  })
+  }
 
   const handleLogout = async (): Promise<void> => {
     await fetch("/api/users/logout", {
       method: "POST",
     });
         
-    const data: IUser = {
+    const emptyUserTemplate: IUser = {
       _id: "",
       firstName: "",
       lastName: "",
@@ -87,7 +105,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       password: "", 
       isAdmin: false
     };
-    setData(data);
+    setLoggedInUser(emptyUserTemplate);
   };
 
   const handleCreateAccount = async ():Promise<void> => {
@@ -117,10 +135,10 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   //   console.log("Dags för auth");
     
   //   const response = await fetch("/api/users/authorize");
-  //   const data = await response.json();
-  //   console.log(data);
+  //   const loggedInUser = await response.json();
+  //   console.log(loggedInUser);
     
-  //   setData(data);
+  //   setLoggedInUser(loggedInUser);
   // };
   // useEffect(() => {
   //   auth();
@@ -138,8 +156,10 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         handleLogin,
         handleLogout,
         // auth,
-        data,
+        loggedInUser,
         handleCreateAccount,
+        getUser,
+        updateUserCreds,
       }}
     >
       {children}

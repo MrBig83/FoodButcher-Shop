@@ -4,6 +4,7 @@ import SingleProduct from "../SingleProduct/SingleProduct";
 import "./Main.css"
 import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
+import UserPage from "../UserPage/UserPage"
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
@@ -19,6 +20,7 @@ const Main = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/news" element={<News />} />
+          <Route path="/UserPage" element={<UserPage />} />
           <Route path="/createaccount" element={<CreateAccount />} />
           <Route path="/createproduct" element={<CreateProduct />} />
           <Route path="/updateproduct" element={<UpdateProduct />} />

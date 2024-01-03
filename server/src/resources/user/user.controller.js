@@ -76,5 +76,15 @@ async function logout(req, res) {
   res.status(200).json(req.session);
 }
 
+async function updateUser(req, res) {
+  const user = await UserModel.findByIdAndUpdate(
+    req.params.id, 
+    req.body, 
+    {new: true },
+  );
+  
+  res.status(200).json(user);
+}
 
-module.exports = { addUser, getUsers, getSingleUser, loginUser, logout, authorize };
+
+module.exports = { addUser, getUsers, getSingleUser, loginUser, logout, authorize, updateUser };
