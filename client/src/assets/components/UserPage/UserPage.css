@@ -1,0 +1,9 @@
+.updateCredForm {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.updateCredForm input {
+    margin-bottom: 10px;
+}

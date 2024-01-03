@@ -7,6 +7,7 @@ const {
     getSingleUser,
     loginUser, 
     logout, 
+    updateUser,
     authorize
 } = require("./user.controller");
 // const { UserCreateValidationSchema } = require("./user.model");
@@ -20,6 +21,7 @@ const userRouter = express
 .post("/users", addUser)
 .post("/users/login", loginUser)
 .post("/users/logout", logout)
+.put("/users/update/:id", updateUser)
 
 
 module.exports = { userRouter }

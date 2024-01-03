@@ -32,8 +32,8 @@ const SingleProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await fetch(`/api/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
+      const productData = await response.json();
+      setProduct(productData);
     };
     fetchProduct();
   }, [product, id]);

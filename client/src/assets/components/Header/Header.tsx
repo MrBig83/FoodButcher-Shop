@@ -10,7 +10,7 @@ import { UserContext } from "../../../context/UserContext";
 
 const Header = () => {
     
-    const { data } = useContext(UserContext)
+    const { loggedInUser } = useContext(UserContext)
     const { productsInCart } = useContext(CartContext);
  
     return (
@@ -22,7 +22,7 @@ const Header = () => {
             <div className="rightNav">
 
                 <div className='navlinks'>
-                {data.isAdmin ? 
+                {loggedInUser.isAdmin ? 
                 <>
                     <FontAwesomeIcon icon={faPen} />
                 <Link to={"/CreateProduct"}>
@@ -39,10 +39,16 @@ const Header = () => {
                     <p>Nyheter</p>
                 </div>
                 <div className='navlinks'>
-                    <Link to={"/Login"}>
+                {loggedInUser._id ? 
+                    <Link to={"/UserPage"}>
                         <FontAwesomeIcon icon={faUser} />
                     </Link>
-                    <p>{data._id ? "Välkommen "+data.firstName + "!" : "Konto"}</p>
+                     : 
+                     <Link to={"/Login"}>
+                        <FontAwesomeIcon icon={faUser} />
+                    </Link>
+                    }
+                    <p>{loggedInUser._id ? "Välkommen "+loggedInUser.firstName + "!" : "Konto"}</p>
                 </div>
                 <div className='navlinks'>
                     <Link to={"/cart"}>

@@ -52,8 +52,16 @@ POST http://localhost:3000/api/users/logout
 
 GET http://localhost:3000/api/users
 ###
+PUT http://localhost:3000/api/users/update/658ffbfc8a257adcdafb8dfa
+Content-Type: application/json
 
-GET http://localhost:3000/api/users/65857e22a19216627069a100
+{
+    "lastName": "Testsson", 
+    "city": "Ankeborg"
+}
+###
+
+GET http://localhost:3000/api/users/658ffbfc8a257adcdafb8dfa
 ###
 
 GET http://localhost:3000/api/users/authorize
