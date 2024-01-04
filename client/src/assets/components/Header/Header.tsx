@@ -24,10 +24,10 @@ const Header = () => {
                 <div className='navlinks'>
                 {loggedInUser.isAdmin ? 
                 <>
-                    <FontAwesomeIcon icon={faPen} />
                 <Link to={"/CreateProduct"}>
-                    <p>Skapa Produkt</p>
+                    <FontAwesomeIcon icon={faPen} />
                 </Link>
+                    <p>Skapa Produkt</p>
                 </>
                 : ""}
                 </div>
