@@ -3,13 +3,13 @@ import "./SingleProduct.css"
 
 import BuyNowBtn from "../Buttons/buyNowBtn";
 import BackBtn from "../Buttons/backBtn";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import { ProductContext } from "../../../context/ProductContext"
 import { useEffect, useState} from "react";
 import IProduct from "../../interfaces/IProduct";
 
 const defaultProduct: IProduct = {
-  id: "", 
+  id: 0, 
   title: "",
   description: "",
   usage: "", 
@@ -40,9 +40,9 @@ const SingleProduct = () => {
       
   return (
     <>
-    <Link to={`/`}>
+    
       <BackBtn />
-    </Link>
+    
     <div className="SingleProduct">
       <p className="productTitle">{product!.title}</p>
       <img className="productImage" src={product!.image} alt="" />

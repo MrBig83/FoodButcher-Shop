@@ -17,8 +17,6 @@ let lager = ""
     lager = "Finns i lager"
   }
 
-
-
   return (
     <div className="ProductCard">
         <p className="cardTitle">{product.title}</p>
@@ -29,10 +27,7 @@ let lager = ""
           <p className="cardInstock">{lager}</p>
           <BuyNowBtn product={product}/>
         </div>
-        
-
       </div>
-    
   );
 };
 export default ProductCard;

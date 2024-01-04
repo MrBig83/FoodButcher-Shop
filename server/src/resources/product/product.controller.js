@@ -2,6 +2,7 @@ const { ProductModel, Topic } = require("./product.model");
 
 async function addProduct(req, res, next) {
     const product = await new ProductModel(req.body)
+    console.log(product);
 
     product.save();
     res.status(201).json(product)

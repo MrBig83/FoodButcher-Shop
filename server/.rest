@@ -2,7 +2,7 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-    "id": "001",
+    "id": 003,
     "title": "Zombie Bacon",
     "description": "Bacon passar till allt, vilket denna unika kryddblandning är ett bevis på. Blandar bacon, chili och kakao i en unik men underbar mix.",
     "usage": "Strö rubben över köttet, linda in i folie. Låt stå minst 1 timme innan det är dags för grillen!",
