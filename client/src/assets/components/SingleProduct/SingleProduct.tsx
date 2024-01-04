@@ -36,7 +36,8 @@ const SingleProduct = () => {
       setProduct(productData);
     };
     fetchProduct();
-  }, [product, id]);
+  }, []);
+  // }, [product, id]); // TODO: Ta bort - Detta orsakade en oändlig loop. (Sparas utifall att...)
       
   return (
     <>
