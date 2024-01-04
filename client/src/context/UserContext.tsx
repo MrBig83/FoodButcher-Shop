@@ -42,7 +42,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     street: "",
     postCode: "",
     city: "",
-    userName: "",
+    // userName: "",
     password: "", 
     isAdmin: false
   });
@@ -83,7 +83,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         street: userObject.street,
         postCode: userObject.postCode,
         city: userObject.city,
-        isAdmin:false
+        // isAdmin:false
        }), 
   })
   }
@@ -101,7 +101,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       street: "",
       postCode: "",
       city: "",
-      userName: "",
+      // userName: "",
       password: "", 
       isAdmin: false
     };
@@ -122,7 +122,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         street: "",
         postCode: "",
         city: "",
-        userName: "",
+        // userName: "",
         isAdmin:false
        }), 
   })

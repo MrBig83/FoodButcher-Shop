@@ -6,7 +6,7 @@ export default interface IUser {
     street: string,
     postCode: string,
     city: string,
-    userName: string,
+    // userName: string,
     password: string, 
     isAdmin: boolean
   }
