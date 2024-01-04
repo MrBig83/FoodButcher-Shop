@@ -1,90 +1,133 @@
-// import { Route, Routes } from "react-router";
-import "./CreateProduct.css"
+import React, { useContext } from 'react';
+// import { Link } from 'react-router-dom';
+import BackBtn from '../Buttons/backBtn';
+import IProduct from '../../interfaces/IProduct';
+import { ProductContext } from '../../../context/ProductContext';
 
+  const CreateProduct = () => {
 
-import { Link } from "react-router-dom";
-import BackBtn from "../Buttons/backBtn";
-import { useContext } from "react";
-import { ProductContext } from "../../../context/ProductContext";
-import IProduct from "../../interfaces/IProduct";
+    // const initialFormState = {
+    //   id: 0, 
+    //   title: "",
+    //   description: "",
+    //   usage: "", 
+    //   suits: "", 
+    //   ingredients: "", 
+    //   nutritions: "", 
+    //   price: 0,
+    //   image: "",
+    //   instock: 0,
+    //   quantity: ""
+    // };
 
-// import { useContext } from "react";
-
-
-
-
-const CreateProduct = () => {
-  const { productObject, setProductObject, createProduct, productList } = useContext(ProductContext);
+      const { productObject, setProductObject, createProduct, productList, initialFormState  } = useContext(ProductContext);
 
   const handleSaveNewProduct = async (productObject: IProduct) => {
     const newProductId = productList ? productList.length + 1 : 1;
     productObject.id = newProductId;
     setProductObject(productObject)
-    createProduct(productObject)    
+    createProduct(productObject) 
+    handleClearForm()   
   };
-
-  const clearForm = () => {
-    setProductObject({ ...productObject, 
-      id: 0, 
-      title: "",
-      description: "",
-      usage: "", 
-      suits: "", 
-      ingredients: "", 
-      nutritions: "", 
-      price: 0,
-      image: "",
-      instock: 0,
-      quantity: ""
-    });
-    console.log(productObject);
-    
-  }
-
   
-
-  return (
-    <>
-      <Link to={`/`}>
-      <BackBtn />
-    </Link>       
+    // const [productObject, setProductObject] = useState(initialFormState);
+  
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value, type } = e.target;
+      setProductObject({
+        ...productObject,
+        [name]: type === 'number' ? parseFloat(value) : value,
+      });
+    };
+  
+    const handleClearForm = () => {
+      setProductObject(initialFormState);
+    };
+  
+    return (
+      <>
+          <BackBtn />
       <div className="CreateProductPage"> 
         <div className="CreateProductForm">
-            <input onChange={(e) => productObject!.title = e.target.value} className="title" type="text" placeholder="Titel" /> 
-            <input onChange={(e) => productObject!.description = e.target.value} className="description" type="text" placeholder="Beskrivning" /> 
-            <input onChange={(e) => productObject!.usage = e.target.value} className="usage" type="text" placeholder="Användning" /> 
-            <input onChange={(e) => productObject!.suits = e.target.value} className="suits" type="text" placeholder="Passar till" /> 
-            <input onChange={(e) => productObject!.ingredients = e.target.value} className="ingredients" type="text" placeholder="Ingredienser" /> 
-            <input onChange={(e) => productObject!.nutritions = e.target.value} className="nutritions" type="text" placeholder="Näringsinnehåll" /> 
-            <input
-              onChange={(e) => {
-                const value = parseFloat(e.target.value); 
-                productObject!.price = isNaN(value) ? 0 : value;
-              }}
-              className="price"
-              placeholder="Pris"
-              type="number"
-            />
-            <input onChange={(e) => productObject!.image = e.target.value} className="image" type="text" placeholder="Bild URL" /> 
-            <input
-              onChange={(e) => {
-                const valueInStock = parseFloat(e.target.value);
-                productObject!.price = isNaN(valueInStock) ? 0 : valueInStock;
-              }}
-              className="instock"
-              placeholder="Antal i lager"
-              type="number"
-            />
-            
-
-            <button onClick={() => handleSaveNewProduct(productObject!)}>Skapa produkt</button>
-            <button onClick={() => clearForm()}>Rensa</button>
-            
-        </div>
-    </div>
-    </>
-
-    
-  );
-};
+      
+        <input
+          onChange={handleInputChange}
+          value={productObject?.title}
+          name="title"
+          className="title"
+          type="text"
+          placeholder="Titel"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.description}
+          name="description"
+          className="description"
+          type="text"
+          placeholder="Beskrivning"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.usage}
+          name="usage"
+          className="usage"
+          type="text"
+          placeholder="Använding"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.suits}
+          name="suits"
+          className="suits"
+          type="text"
+          placeholder="Passar till"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.ingredients}
+          name="ingredients"
+          className="ingredients"
+          type="text"
+          placeholder="Ingredienser"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.nutritions}
+          name="nutritions"
+          className="nutritions"
+          type="text"
+          placeholder="Näringsinnehåll"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.price}
+          name="price"
+          className="price"
+          type="number"
+          placeholder="Pris"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.image}
+          name="image"
+          className="image"
+          type="text"
+          placeholder="Bild URL"
+        />
+        <input
+          onChange={handleInputChange}
+          value={productObject?.instock}
+          name="instock"
+          className="instock"
+          type="number"
+          placeholder="Antal i lager"
+        />
+        <button onClick={() => handleSaveNewProduct(productObject)}>Skapa produkt</button>
+        <button onClick={handleClearForm}>Clear Form</button>
+      </div>
+      </div>
+      </>
+    );
+  };
+  
 export default CreateProduct;

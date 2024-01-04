@@ -4,24 +4,34 @@ import IProduct from "../assets/interfaces/IProduct";
 interface ProductContextProps {
     productList: IProduct[] | null;
     singleProduct: IProduct | null;
-    productObject: IProduct | null;
+    productObject: IProduct;
     getProducts: () => Promise<void>;
     getSingleProduct: (id: number) => Promise<void>;
     setProductList: Dispatch<SetStateAction<IProduct[] | null>>;
     setSingleProduct: Dispatch<SetStateAction<IProduct | null>>;
-    setProductObject: Dispatch<SetStateAction<IProduct | null>>;
     createProduct: (productObject: IProduct) => Promise<void>;
+    // setProductObject: Dispatch<SetStateAction<IProduct | null>>;
+    initialFormState: IProduct;
+    setProductObject: Dispatch<SetStateAction<{
+      id: number, 
+      title: string,
+      description: string,
+      usage: string, 
+      suits: string, 
+      ingredients: string, 
+      nutritions: string, 
+      price: number,
+      image: string,
+      instock: number,
+      quantity: string
+    }>>;
 }
 
 export const ProductContext = createContext<ProductContextProps>({} as ProductContextProps);
 const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
-
-  //States
-  const [productList, setProductList] = useState<IProduct[] | null>(null)
-  const [singleProduct, setSingleProduct] = useState<IProduct | null>(null)
-  // const [productObject, setProductObject] = useState<IProduct | null>(null)
-  const [productObject, setProductObject] = useState<IProduct | null>({
-    id: 0,
+  //Initial states
+  const initialFormState = {
+    id: 0, 
     title: "",
     description: "",
     usage: "", 
@@ -32,7 +42,26 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
     image: "",
     instock: 0,
     quantity: ""
-  });
+  };
+
+  //States
+  const [productList, setProductList] = useState<IProduct[] | null>(null)
+  const [singleProduct, setSingleProduct] = useState<IProduct | null>(null)
+  
+  const [productObject, setProductObject] = useState(initialFormState)
+  // const [productObject, setProductObject] = useState<IProduct | null>({
+  //   id: 0,
+  //   title: "",
+  //   description: "",
+  //   usage: "", 
+  //   suits: "", 
+  //   ingredients: "", 
+  //   nutritions: "", 
+  //   price: 0,
+  //   image: "",
+  //   instock: 0,
+  //   quantity: ""
+  // });
   
   //Functions
 
@@ -92,6 +121,7 @@ return (
         setSingleProduct,
         setProductObject,
         createProduct,
+        initialFormState
       }}
     >
       {children}
