@@ -20,6 +20,7 @@ function validate(joiSchema) {
     if (!validation.error) return next();
     res.status(400).json(validation.error.message);
   };
+  
 };
 
 function exists(Model) {

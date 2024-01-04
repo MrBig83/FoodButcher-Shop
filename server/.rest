@@ -31,7 +31,6 @@ Content-Type: application/json
     "street": "Gatan",
     "postCode": "442 12",
     "city": "Stad",
-    "userName": "Användarnamn",
     "password": "p", 
     "isAdmin":false
 
