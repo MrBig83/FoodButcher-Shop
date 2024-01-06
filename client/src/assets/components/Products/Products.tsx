@@ -24,6 +24,7 @@ const Products = () => {
             <ProductCard product={product} />
           </Link>
         </div>
+          
       ))}
       
         
