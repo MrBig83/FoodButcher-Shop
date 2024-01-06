@@ -2,6 +2,7 @@ import React, {
   PropsWithChildren,
   SetStateAction,
   createContext,
+  useEffect,
   // useEffect,
   useState,
 } from "react";
@@ -131,18 +132,18 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   setVerPassword("")
 };
 
-  // const auth = async (): Promise<void> => {
-  //   console.log("Dags för auth");
+  const auth = async (): Promise<void> => {
+    console.log("Dags för auth");
     
-  //   const response = await fetch("/api/users/authorize");
-  //   const loggedInUser = await response.json();
-  //   console.log(loggedInUser);
+    const response = await fetch("/api/users/authorize");
+    const loggedInUser = await response.json();
+    console.log(loggedInUser);
     
-  //   setLoggedInUser(loggedInUser);
-  // };
-  // useEffect(() => {
-  //   auth();
-  // }, []);
+    setLoggedInUser(loggedInUser);
+  };
+  useEffect(() => {
+    auth();
+  }, []);
 
   return (
     <UserContext.Provider
