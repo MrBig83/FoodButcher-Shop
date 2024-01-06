@@ -9,6 +9,6 @@ export default interface IProduct {
     price: number,
     image: string,
     instock: number,
-    quantity: string, 
+    quantity: number, 
     deleted: boolean
   }
