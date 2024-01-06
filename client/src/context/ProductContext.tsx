@@ -23,7 +23,8 @@ interface ProductContextProps {
       price: number,
       image: string,
       instock: number,
-      quantity: string
+      quantity: string, 
+      deleted: boolean
     }>>;
 }
 
@@ -41,7 +42,8 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
     price: 0,
     image: "",
     instock: 0,
-    quantity: ""
+    quantity: "", 
+    deleted: false
   };
 
   //States
@@ -83,7 +85,7 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   const createProduct = async (productObject: IProduct) => {
     console.log(productObject);
     
-    await fetch("/api/products", {
+    const response = await fetch("/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,15 +101,15 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         nutritions: productObject.nutritions,
         price: productObject.price,
         image: productObject.image,
-        instock: productObject.instock
+        instock: productObject.instock, 
+        deleted: false
       }), 
     })
+    const res =  await response.json();
+    console.log(res);
+    
+    getProducts();
   };
-
-    // const res = await fetch("");
-    // const newProduct: IProduct = await res.json();
-    // setNAMNPÅSTATE(newProduct) //===============================================================================================
-  // }
 
 return (
     <ProductContext.Provider

@@ -9,7 +9,7 @@ async function addProduct(req, res, next) {
 }
 
 async function getProducts(req, res) {
-    const products = await ProductModel.find();
+    const products = await ProductModel.find({deleted: false});
     res.status(200).json(products);
   }
 

@@ -34,9 +34,9 @@ const UserCreateValidationSchema = Joi.object({
   });
   
 const UserUpdateValidationSchema = Joi.object({
-    firstName: Joi.string().strict().pattern(new RegExp('^[A-Za-z]+$')).allow('').optional(),
-    lastName: Joi.string().strict().pattern(new RegExp('^[A-Za-z]+$')).allow('').optional(),
-    street: Joi.string().pattern(new RegExp('^[A-Za-z0-9\\s]+$')).allow('').optional(), 
+    firstName: Joi.string().strict().pattern(new RegExp('^[A-Za-zåäöÅÄÖ]+$')).allow('').optional(),
+    lastName: Joi.string().strict().pattern(new RegExp('^[A-Za-zåäöÅÄÖ]+$')).allow('').optional(),
+    street: Joi.string().pattern(new RegExp('^[A-Za-z0-9\\såäöÅÄÖ]+$')).allow('').optional(), 
     postCode: Joi.number().strict().integer().allow('').optional(),
     city: Joi.string().strict().pattern(new RegExp('^[A-Za-z]+$')).allow('').optional(),
   });
