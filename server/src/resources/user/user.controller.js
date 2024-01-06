@@ -70,7 +70,7 @@ async function logout(req, res) {
   
   async function authorize(req, res) {
     console.log("Detta är i Auth på backend"); 
-    if (!req.session) {
+    if (!req.session._id) {
       return res.status(401).json("You are not logged in");
     }
   res.status(200).json(req.session);

@@ -17,8 +17,8 @@ const { validate } = require("../middlewares");
 const userRouter = express
 .Router()
 .get("/users", getUsers)
-.get("/users/:id", getSingleUser)
 .get("/users/authorize", authorize)
+.get("/users/:id", getSingleUser)
 .post("/users", validate(UserCreateValidationSchema), addUser)
 .post("/users/login", loginUser)
 .post("/users/logout", logout)
