@@ -4,8 +4,9 @@ import BackBtn from '../Buttons/backBtn';
 import IProduct from '../../interfaces/IProduct';
 import { ProductContext } from '../../../context/ProductContext';
 
-  const CreateProduct = () => {
 
+  const CreateProduct = () => {
+    
     // const initialFormState = {
     //   id: 0, 
     //   title: "",
@@ -29,6 +30,10 @@ import { ProductContext } from '../../../context/ProductContext';
     createProduct(productObject) 
     handleClearForm()   
   };
+
+  const history = useHistory();
+
+
   
     // const [productObject, setProductObject] = useState(initialFormState);
   

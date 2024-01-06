@@ -9,8 +9,11 @@ import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import News from "../News/News";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
 
 const Main = () => {
+  const { loggedInUser } = useContext(UserContext)
   return (
     <div className="main">
       <div className="routes">
@@ -22,7 +25,7 @@ const Main = () => {
           <Route path="/news" element={<News />} />
           <Route path="/UserPage" element={<UserPage />} />
           <Route path="/createaccount" element={<CreateAccount />} />
-          <Route path="/createproduct" element={<CreateProduct />} />
+          <Route path="/createproduct" element={loggedInUser.isAdmin === true ? <CreateProduct /> : <Login />} />
           <Route path="/updateproduct" element={<UpdateProduct />} />
         </Routes>
 
