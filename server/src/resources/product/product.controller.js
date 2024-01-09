@@ -34,7 +34,15 @@ async function updateProduct(req, res) {
   );
   res.status(200).json(product);
 }
+async function deleteProduct(req, res) {
+  const product = await ProductModel.findByIdAndDelete(
+    req.params.id
+  );
+  
+  console.log(product);
+  res.status(200).json("Produkt med ID: " + req.params.id + " är nu raderad");
+}
 
-module.exports = { addProduct, getProducts, adminGetProducts, getSingleProduct, updateProduct };
+module.exports = { addProduct, getProducts, adminGetProducts, getSingleProduct, updateProduct, deleteProduct };
 
 

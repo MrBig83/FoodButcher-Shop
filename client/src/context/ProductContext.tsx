@@ -15,10 +15,10 @@ interface ProductContextProps {
     setSingleProduct: Dispatch<SetStateAction<IProduct | null>>;
     createProduct: (productObject: IProduct) => Promise<void>;
     updateProduct: (productObject: IProduct) => Promise<void>;
-    // setProductObject: Dispatch<SetStateAction<IProduct | null>>;
     initialFormState: IProduct;
     setProductObject: Dispatch<SetStateAction<IProduct>>
     setUpdateObject: Dispatch<SetStateAction<IProduct>>
+    deleteProduct: (updateProduct: IProduct) => Promise<void>;
     // setProductObject: Dispatch<SetStateAction<{
     //   id: number, 
     //   title: string,
@@ -158,6 +158,16 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
     
     getProducts();
   }
+  const deleteProduct = async (updateProduct: IProduct) => {
+    const response = await fetch(`/api/products/${updateProduct._id}`, 
+    {
+      method: "DELETE"
+    })
+    const res = await response.json()
+    console.log(res);
+    getProducts();
+    
+  }
 
 return (
     <ProductContext.Provider
@@ -177,7 +187,8 @@ return (
         updateProduct,
         initialFormState, 
         updateObject, 
-        setUpdateObject
+        setUpdateObject, 
+        deleteProduct
       }}
     >
       {children}

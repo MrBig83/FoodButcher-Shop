@@ -8,11 +8,15 @@ import "./AdminSingleProduct.css"
 const AdminSingleProduct = () => {
     const { id } = useParams();
 
-    const { updateObject, setUpdateObject, updateProduct } = useContext(ProductContext);
+    const { updateObject, setUpdateObject, updateProduct, deleteProduct } = useContext(ProductContext);
 
     const handleUpdateProduct = async (updateObject: IProduct) => {
         setUpdateObject(updateObject)
         await updateProduct(updateObject)
+      };
+    const handleDeleteProduct = async (updateObject: IProduct) => {
+        
+        await deleteProduct(updateObject)
       };
 
       const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,14 +36,10 @@ const AdminSingleProduct = () => {
   
 
   useEffect(() => {
-       
-    const fetchProduct = async () => {
+    const fetchProduct = async () => { // Varför har jag en fetch här, istället för i context ?????????????????????????????????????????????????????????????????????????????????????????????????????????
         const response = await fetch(`/api/products/${id}`);
         const productData = await response.json();
-        console.log(productData);
-        
         setUpdateObject(productData);
-        // setProduct(productData);
     };
     fetchProduct();
 }, []);
@@ -143,6 +143,7 @@ const AdminSingleProduct = () => {
 </div>
         
         <button onClick={() => handleUpdateProduct(updateObject)}>Uppdatera produkt</button>
+        <button onClick={() => handleDeleteProduct(updateObject)} className='btnWarning'>Radera produkt</button>
 
       </div>
       </>

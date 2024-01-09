@@ -42,3 +42,8 @@ textarea {
 label {
     margin-left: 10px;
 }
+.btnWarning {
+    margin: 20px;
+    padding: 10px;
+    background-color: lightcoral;
+}
