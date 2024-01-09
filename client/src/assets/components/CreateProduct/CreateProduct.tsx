@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // import { Link } from 'react-router-dom';
-import BackBtn from '../Buttons/backBtn';
+// import BackBtn from '../Buttons/backBtn';
 import IProduct from '../../interfaces/IProduct';
 import { ProductContext } from '../../../context/ProductContext';
 
@@ -21,17 +21,18 @@ import { ProductContext } from '../../../context/ProductContext';
     //   quantity: ""
     // };
 
-      const { productObject, setProductObject, createProduct, productList, initialFormState  } = useContext(ProductContext);
+      const { productObject, setProductObject, createProduct, productList, initialFormState, getProducts  } = useContext(ProductContext);
 
   const handleSaveNewProduct = async (productObject: IProduct) => {
     const newProductId = productList ? productList.length + 1 : 1;
     productObject.id = newProductId;
     setProductObject(productObject)
     createProduct(productObject) 
-    handleClearForm()   
+    handleClearForm()  
+    getProducts(); 
   };
 
-  const history = useHistory();
+  // const history = useHistory();
 
 
   
@@ -51,9 +52,10 @@ import { ProductContext } from '../../../context/ProductContext';
   
     return (
       <>
-          <BackBtn />
+          {/* <BackBtn /> */}
       <div className="CreateProductPage"> 
         <div className="CreateProductForm">
+          <h1>Lägg till produkt</h1>
       
         <input
           onChange={handleInputChange}

@@ -2,8 +2,32 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-    "id": 003,
+    "id": 3,
     "title": "Zombie Bacon",
+    "description": "Bacon passar till allt, vilket denna unika kryddblandning är ett bevis på. Blandar bacon, chili och kakao i en unik men underbar mix.",
+    "usage": "Strö rubben över köttet, linda in i folie. Låt stå minst 1 timme innan det är dags för grillen!",
+    "suits":"Fläsk, Kyckling, Nöt",
+    "ingredients":"Strö rubben över köttet, linda in i folie. Låt stå minst 1 timme innan det är dags för grillen!",
+    "nutritions":"Energi 224 kcal (938kJ), Fett 3g, Kolhydrater 39g, varav socker 16g, protein 8g, Salt 6g.",
+    "price": 199,
+    "image": "https://foodbutcher.com/____impro/1/onewebmedia/Zombie%20bacon.jpg",
+    "instock": 5,
+    "deleted": false
+}
+###
+
+GET http://localhost:3000/api/products
+###
+
+GET http://localhost:3000/api/products/2
+###
+
+PUT http://localhost:3000/api/products/659d3dd3b961c8fe6fb3b8bb
+Content-Type: application/json
+
+{
+    "id": 3,
+    "title": "Zombie Baconnnnnnnnnnnnn",
     "description": "Bacon passar till allt, vilket denna unika kryddblandning är ett bevis på. Blandar bacon, chili och kakao i en unik men underbar mix.",
     "usage": "Strö rubben över köttet, linda in i folie. Låt stå minst 1 timme innan det är dags för grillen!",
     "suits":"Fläsk, Kyckling, Nöt",
@@ -13,12 +37,6 @@ Content-Type: application/json
     "image": "https://foodbutcher.com/____impro/1/onewebmedia/Zombie%20bacon.jpg",
     "instock": 5
 }
-###
-
-GET http://localhost:3000/api/products
-###
-
-GET http://localhost:3000/api/products/2
 ###
 
 POST http://localhost:3000/api/users
@@ -46,11 +64,13 @@ Content-Type: application/json
 }
 
 ###
+
 POST http://localhost:3000/api/users/logout
 ###
 
 GET http://localhost:3000/api/users
 ###
+
 PUT http://localhost:3000/api/users/update/658ffbfc8a257adcdafb8dfa
 Content-Type: application/json
 
