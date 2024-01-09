@@ -6,7 +6,12 @@ const BuyNowBtn = ({ product }: { product: IProduct }) => {
     const { addProduct } = useContext(CartContext);
 
     const buyNow = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();        
+        event.preventDefault();  
+        
+        //Kontrollera om produkten redan finns i kundkorgen
+        //Om ja: 
+        //Addera 1 
+        //Om nej: 
         addProduct(product);
     }
 

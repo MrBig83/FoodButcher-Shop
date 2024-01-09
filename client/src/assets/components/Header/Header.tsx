@@ -11,7 +11,7 @@ import { UserContext } from "../../../context/UserContext";
 const Header = () => {
     
     const { loggedInUser } = useContext(UserContext)
-    const { productsInCart } = useContext(CartContext);
+    const { productsInCart, numberInCart } = useContext(CartContext);
  
     return (
         <div className="header">
@@ -53,7 +53,9 @@ const Header = () => {
                 <div className='navlinks'>
                     <Link to={"/cart"}>
                     <FontAwesomeIcon icon={faCartShopping} />
-                        <p className="cartNumber">{productsInCart.length}</p>
+                        {numberInCart > 0 ? 
+                        <p className="cartNumber">{numberInCart}</p>
+                        : "" }
                     </Link>
                     <p className='outLier'>Kungvagn</p>
                     
