@@ -5,7 +5,8 @@ const {
     getSingleProduct,
     addProduct, 
     adminGetProducts,
-    updateProduct
+    updateProduct, 
+    deleteProduct
 } = require("./product.controller");
 
 const { adminOnly, auth, exists, validate } = require('../middlewares');
@@ -15,7 +16,9 @@ const productRouter = Router()
 .get("/products", getProducts)
 .get("/products/admin", auth, adminOnly, adminGetProducts)
 .get("/products/:id", getSingleProduct)
-.post("/products", auth, adminOnly, validate(ProductCreateValidationSchema), addProduct)
+.post("/products", addProduct)
+// .post("/products", auth, adminOnly, validate(ProductCreateValidationSchema), addProduct)
 .put("/products/:id", updateProduct)
+.delete("/products/:id", auth, adminOnly, deleteProduct)
 
 module.exports = { productRouter }

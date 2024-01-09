@@ -85,3 +85,6 @@ GET http://localhost:3000/api/users/658ffbfc8a257adcdafb8dfa
 
 GET http://localhost:3000/api/users/authorize
 ###
+
+DELETE http://localhost:3000/api/products/659d4778ff92330a7f6c3686
+###

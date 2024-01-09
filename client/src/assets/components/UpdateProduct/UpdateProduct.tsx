@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import IProduct from "../../interfaces/IProduct";
 import { ProductContext } from "../../../context/ProductContext"
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import AdminProductCard from "../AdminProductCard/AdminProductCard";
 
