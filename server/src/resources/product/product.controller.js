@@ -11,6 +11,12 @@ async function addProduct(req, res, next) {
 async function getProducts(req, res) {
     const products = await ProductModel.find({deleted: false});
     res.status(200).json(products);
+    console.log(products);
+  }
+async function adminGetProducts(req, res) {
+    const products = await ProductModel.find();
+    res.status(200).json(products);
+    console.log(products);
   }
 
 async function getSingleProduct(req, res) {
@@ -20,4 +26,15 @@ async function getSingleProduct(req, res) {
     res.status(200).json(product);
   }
 
-module.exports = { addProduct, getProducts, getSingleProduct };
+async function updateProduct(req, res) {
+  const product = await ProductModel.findByIdAndUpdate(
+    req.params.id, 
+    req.body, 
+    {new: true },
+  );
+  res.status(200).json(product);
+}
+
+module.exports = { addProduct, getProducts, adminGetProducts, getSingleProduct, updateProduct };
+
+

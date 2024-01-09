@@ -18,13 +18,16 @@ const Products = () => {
     <div className="Products">
         <h1>Products</h1>
         
-        {productList?.map((product: IProduct) => (
+        {productList?.map((product: IProduct) => (     
         <div className="ProductCardRender" key={product.id}>
           <Link to={`/${product.id}`}>
             <ProductCard product={product} />
           </Link>
         </div>
           
+
+
+
       ))}
       
         

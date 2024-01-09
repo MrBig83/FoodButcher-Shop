@@ -11,7 +11,7 @@ import { UserContext } from "../../../context/UserContext";
 const Header = () => {
     
     const { loggedInUser } = useContext(UserContext)
-    const { productsInCart, numberInCart } = useContext(CartContext);
+    const { numberInCart } = useContext(CartContext);
  
     return (
         <div className="header">
@@ -24,7 +24,7 @@ const Header = () => {
                 <div className='navlinks'>
                 {loggedInUser.isAdmin ? 
                 <>
-                <Link to={"/CreateProduct"}>
+                <Link to={"/Admin"}>
                     <FontAwesomeIcon icon={faPen} />
                 </Link>
                     <p>Skapa Produkt</p>

@@ -19,7 +19,8 @@ const defaultProduct: IProduct = {
   price: 0,
   image: "",
   instock: 0, 
-  quantity: ""
+  quantity: 0, 
+  deleted: false
 };
 
 

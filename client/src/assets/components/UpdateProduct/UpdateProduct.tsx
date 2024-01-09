@@ -3,7 +3,12 @@ import "./UpdateProduct.css"
 
 
 import { Link } from "react-router-dom";
-import BackBtn from "../Buttons/backBtn";
+
+import IProduct from "../../interfaces/IProduct";
+import { ProductContext } from "../../../context/ProductContext"
+import { useContext, useEffect } from "react";
+
+import AdminProductCard from "../AdminProductCard/AdminProductCard";
 
 // import { useContext } from "react";
 
@@ -11,30 +16,35 @@ import BackBtn from "../Buttons/backBtn";
 
 
 const UpdateProduct = () => {
-//   const { productList } = useContext(ProductContext);
+  const { adminProductList  } = useContext(ProductContext);
+
+
   
+//Hantera detta som ett stor produktkort istället. 
+//Singlepage med editerbara fält? 
+//Välja produkt via "vanliga" produktkort. 
+//så... kopiera produktsidorna
 
   return (
-    <>
-      <Link to={`/`}>
-      <BackBtn />
-    </Link>       
-        <div className="CreateProductPage"> 
-        <div className="CreateProductForm">
-            <input type="text" placeholder="Titel"/>
-            <input type="text" placeholder="Beskrivning"/>
-            <input type="text" placeholder="Användning"/>
-            <input type="text" placeholder="Passar till"/>
-            <input type="text" placeholder="Ingredienser"/>
-            <input type="text" placeholder="Näringsinnehåll"/>
-            <input type="number" placeholder="Pris"/>
-            <input type="text" placeholder="Bld URL"/>
-            <input type="number" placeholder="Antal i lager"/>
-            <button>Skapa produkt</button>
-
+  <>
+        <div className="Products">
+        {/* <h1>Products</h1> */}
+        
+        {adminProductList?.map((product: IProduct) => (
+        <div className="ProductCardRender" key={product.id}>
+          <Link to={`/Admin/${product.id}`}>
+            <AdminProductCard product={product} />
+          </Link>
         </div>
-    </div>
-    </>
+          
+      ))}
+      
+        
+
+      </div>
+    
+
+  </>
 
     
   );
