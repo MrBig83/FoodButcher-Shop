@@ -1,5 +1,6 @@
 import { createContext, useState, PropsWithChildren, Dispatch, SetStateAction, useEffect } from "react";
 import IProduct from "../assets/interfaces/IProduct";
+import ICartItem from "../assets/interfaces/ICartItem";
 // import IProduct from "../assets/interfaces/IProduct";
 
 interface CartContextProps {
@@ -9,80 +10,128 @@ interface CartContextProps {
     setNumberInCart: Dispatch<SetStateAction<number>>;
     setTotalPrice: Dispatch<SetStateAction<number>>;
     addProduct: (product: IProduct) => void;
-    decreaseProductCount: (product: IProduct) => void;
-    increaseProductCount: (product: IProduct) => void;
-    removeProduct: (product: IProduct) => void;
-    productsInCart: IProduct[];
-    setProductsInCart: Dispatch<SetStateAction<IProduct[]>>;
+    decreaseProductCount: (product: ICartItem) => void;
+    increaseProductCount: (product: ICartItem) => void;
+    removeProduct: (product: ICartItem) => void;
+    productsInCart: ICartItem[];
+    checkItem: (item: ICartItem) => boolean;
+    // setProductsInCart: Dispatch<SetStateAction<IProduct[]>>;
     
 }
 
 export const CartContext = createContext<CartContextProps>({} as CartContextProps);
 const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
 
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("FBS-cart") || "[]");
+
   //States
 
   const [numberInCart, setNumberInCart] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [productsInCart, setProductsInCart] = useState<IProduct[]>([])
+  const [productsInCart, setProductsInCart] = useState<ICartItem[]>([]) //cartFromLocalStorage
 
   
   //Functions
-  const addProduct = (product: IProduct) => {     
-    setProductsInCart([...productsInCart, product]);    
-    setNumberInCart(productsInCart.length)
+  useEffect(()=> {
+    setProductsInCart(cartFromLocalStorage)
+  }, [])
+
+  useEffect(()=> {
+    updateLS(productsInCart) 
+    countProductsInCart()
+  }, [productsInCart])
+
+
+  const addProduct = (product: IProduct) => {
+    const item: ICartItem = {
+      product: product,
+      quantity: 1,
+    };
+    addItem(item);
+  };
+  
+  const checkItem = (item: ICartItem) => {
+    const itemExistsInCart = productsInCart.some(cartItem => cartItem.product.id === item.product.id);
+    return itemExistsInCart;
   };
 
-  const decreaseProductCount = (product: IProduct) => {
-    const index = productsInCart.indexOf(product)   
-    productsInCart.splice(index, 1)
-    countProductsInCart()
-    
+  const addItem = (item: ICartItem) => {
+    if(checkItem(item)){
+      console.log("Addera 1"); // TODO : Ta bort
+      productsInCart.map((itemInCart) => {
+        if(itemInCart.product.id === item.product.id) {
+          itemInCart.quantity = itemInCart.quantity +1;
+          countProductsInCart()
+          updateLS(productsInCart) 
+        }
+      })
+    } else {
+      console.log("Lägg till produkt"); // TODO : Ta bort
+      setProductsInCart([...productsInCart, item])
+      countProductsInCart()
+      updateLS(productsInCart) 
+    }
+  console.log(productsInCart); // TODO : Ta bort
+}
+
+const updateLS = (productsInCart: ICartItem[]) => {
+  console.log("Uppdatera LS"); //TODO : Ta bort  
+  localStorage.setItem("FBS-cart", JSON.stringify(productsInCart));
+}
+
+  const decreaseProductCount = (item: ICartItem) => {
+    if(checkItem(item)){
+      console.log("Subtrahera 1"); // TODO : Ta bort
+      productsInCart.map((itemInCart) => {
+        if(itemInCart.product.id === item.product.id) {
+          if(itemInCart.quantity > 1) {
+            itemInCart.quantity = itemInCart.quantity -1;
+            countProductsInCart()
+            updateLS(productsInCart) 
+          } else {
+            console.log("Ta bort produkten");
+            removeProduct(item)
+            // countProductsInCart()
+          }
+        }      
+      })
+    } 
+  }
+  
+
+  const increaseProductCount = (item: ICartItem) => {
+    addItem(item)
   }
 
-  const increaseProductCount = (product: IProduct) => {
-    setProductsInCart([...productsInCart, product]);   
-    countProductsInCart()
-    
-  }
-
-  const removeProduct = (productToRemove: IProduct) => {
+  const removeProduct = (item: ICartItem) => {
     const result = productsInCart.filter(product => {
-      return product.id !== productToRemove.id;
+      return product.product.id !== item.product.id;
     })
-
     setProductsInCart(result);  
     countProductsInCart()
     
   }
 
   const countProductsInCart = () => {
-    setNumberInCart(productsInCart.length)
+    let totalAmmount = 0;
+    productsInCart.map((itemInCart) => {
+      totalAmmount = totalAmmount + itemInCart.quantity
+    })
+    setNumberInCart(totalAmmount)
+    console.log(totalAmmount);
+    
     calculatePriceTotal()
   }
 
   const calculatePriceTotal = () => {
     let sum = 0;
-    for(let i = 0; i < productsInCart.length; i++) {
-      sum = sum + productsInCart[i].price;
-      
-    }
-    
+  
+    productsInCart.map((itemInCart) => {
+      sum = sum + (itemInCart.product.price * itemInCart.quantity)
+    })
     setTotalPrice(sum)
-    
-  }
-
-
-
-  useEffect(() => {
-    countProductsInCart()
-    
-  }, [productsInCart])
-
-  // useEffect(() => {
-  //   console.log("Pris");
-    
-  // }, [totalPrice])
+  
+}
 
 return (
     <CartContext.Provider
@@ -96,7 +145,8 @@ return (
         increaseProductCount, 
         removeProduct, 
         productsInCart, 
-        setProductsInCart
+        checkItem,
+        // setProductsInCart
         
       }}
     >
