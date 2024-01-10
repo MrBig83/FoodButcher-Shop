@@ -88,3 +88,82 @@ GET http://localhost:3000/api/users/authorize
 
 DELETE http://localhost:3000/api/products/659d4778ff92330a7f6c3686
 ###
+
+GET http://localhost:3000/api/orders/merchant
+###
+
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+    "customer": {
+        "city": "Staden",
+        "countryCode": "SE",
+        "identityNumber": null,
+        "email": null,
+        "firstName": "Kalle",
+        "lastName": null,
+        "phone": null,
+        "postalCode": null,
+        "street": null,
+        "type": "person"
+    },
+    "merchant": {
+        "checkoutUri": "https://www.examplestore.com/checkout.php",
+        "confirmationUri": "https://www.examplestore.com/confirmation.php",
+        "notificationUri": "https://www.examplestore.com/notification.php",
+        "termsUri": "https://www.examplestore.com/terms.php"
+    },
+    "order": {
+        "currency": "sek",
+        "items": [
+            {
+                "name": "Test product",
+                "unitPrice": 899,
+                "quantity": 2,
+                "taxRate": 0.25
+            }
+        ]
+    }
+}
+###
+
+GET http://localhost:3000/api/orders/6ba3462e-98e6-4810-a876-b0f300a41dbc
+###
+
+PUT http://localhost:3000/api/orders/6ba3462e-98e6-4810-a876-b0f300a41dbc
+Content-Type: application/json
+
+{
+    
+   "status":"created",
+   "id":"6ba3462e-98e6-4810-a876-b0f300a41dbc",
+    "merchant": {
+        "checkoutUri": "https://www.examplestore.com/checkout.php",
+        "confirmationUri": "https://www.examplestore.com/confirmation.php",
+        "notificationUri": "https://www.examplestore.com/notification.php",
+        "termsUri": "https://www.examplestore.com/terms.php"
+    },
+    "order": {
+        "currency": "sek",
+        "items": [
+            {
+                "name": "Test product",
+                "unitPrice": 899,
+                "quantity": 4,
+                "taxRate": 0.25
+            }
+        ]
+    }, 
+    "history": {
+        "readyToPay": null,
+        "readyToShip": "YES",
+        "shipped": "NO",
+        "paidToAccount": null,
+        "canceled": null,
+        "expired": null,
+        "denied": null
+    },
+
+}
+###

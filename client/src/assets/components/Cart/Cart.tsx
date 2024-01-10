@@ -17,7 +17,7 @@ import ICartItem from "../../interfaces/ICartItem";
 
 const Cart = () => {
   // const { productsInCart, totalPrice } = useContext(CartContext);
-  const { productsInCart, decreaseProductCount, increaseProductCount, removeProduct, totalPrice, numberInCart } = useContext(CartContext);
+  const { productsInCart, decreaseProductCount, increaseProductCount, removeProduct, totalPrice, numberInCart, proceedToCheckout } = useContext(CartContext);
   // const { productsInCart, setNumberInCart, numberInCart } = useContext(CartContext);
   
   const uniqueProducts = Array.from(new Set(productsInCart)) //För att ta bort alla dubletter 
@@ -32,6 +32,8 @@ const Cart = () => {
 // const handleReduce = (product: IProduct) => {
 //   decreaseProductCount(product)
 // }
+console.log(uniqueProducts);
+
 
   return (
     <div className="Products">
@@ -45,9 +47,12 @@ const Cart = () => {
               product={product.product} 
             />
             <p>Antal: {product.quantity}</p>
-            <button onClick={() => decreaseProductCount(product)}>Minska</button>
-            <button onClick={() => increaseProductCount(product)}>Öka</button>
-            <button onClick={() => removeProduct(product)}>Ta bort</button>
+            <div>
+              <button onClick={() => decreaseProductCount(product)}>Minska</button>
+              <button onClick={() => increaseProductCount(product)}>Öka</button>
+              <button onClick={() => removeProduct(product)}>Ta bort</button>
+            </div>
+            <button onClick={() => proceedToCheckout(uniqueProducts)}>Gå vidare</button>
          
         </div>
       ))}
