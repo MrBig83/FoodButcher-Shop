@@ -23,7 +23,7 @@ interface UserContextProps {
   handleCreateAccount: () => Promise<void>;
   updateUserCreds: (userObject: IUserData) => Promise<void>;
   getUser: () => Promise<void>;
-  // auth: () => Promise<void>;
+  auth: () => Promise<void>;
   loggedInUser: IUser;
 }
 
@@ -67,7 +67,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const getUser = async (): Promise<void> => {
-
+    // TODO : Använd eller ta bort. 
   }
 
   const updateUserCreds = async (userObject:IUserData): Promise<void> => {
@@ -132,13 +132,11 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   setVerPassword("")
 };
 
-  const auth = async (): Promise<void> => {
-    console.log("Dags för auth");
+  const auth = async (): Promise<void> => {    
+    console.log("Auth");
     
     const response = await fetch("/api/users/authorize");
     const loggedInUser = await response.json();
-    console.log(loggedInUser);
-    
     setLoggedInUser(loggedInUser);
   };
   useEffect(() => {
@@ -156,7 +154,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         setPassword,
         handleLogin,
         handleLogout,
-        // auth,
+        auth,
         loggedInUser,
         handleCreateAccount,
         getUser,

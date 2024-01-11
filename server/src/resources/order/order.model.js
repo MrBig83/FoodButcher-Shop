@@ -1,17 +1,36 @@
 const { Schema, model, models } = require("mongoose");
 // const Joi = require("joi");
 
-const OrderSchema = new Schema({
-
-    // firstName:{ type: String, required: false },
-    // lastName: { type: String, required: false },
-    // email: { type: String, required: true },
-    // street: { type: String, required: false }, 
-    // postCode: { type: String, required: false },
-    // city: { type: String, required: false }, 
-    // password: { type: String, required: true }, 
-    // isAdmin: { type: Boolean, required: true, default: false }
-});
+const AddressSchema = new Schema(
+    {
+      street: { type: String, required: true },
+      zipcode: { type: String, required: true },
+      city: { type: String, required: true },
+      country: { type: String, required: true },
+    },
+    { _id: false }
+  );
+  
+  const OrderItemSchema = new Schema(
+    {
+      product: { type: Schema.Types.ObjectId, ref: "product", required: true },
+      quantity: { type: Number, required: true },
+      price: { type: Number, default: 0 },
+    },
+    { _id: false }
+  );
+  
+  const OrderSchema = new Schema(
+    {
+      customer: { type: Schema.Types.ObjectId, ref: "user", required: true },
+      orderItems: { type: [OrderItemSchema], required: true },
+      deliveryAddress: { type: AddressSchema, required: true },
+      shipped: { type: Boolean, required: false, default: false },
+    },
+    {
+      timestamps: true,
+    }
+  );
 
 const OrderModel = model("Order", OrderSchema);
 

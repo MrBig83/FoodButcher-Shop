@@ -1,4 +1,4 @@
-// const { OrderModel } = require("./order.model");
+const { OrderModel } = require("./order.model");
 // const bcrypt = require("bcrypt");
 
 // const {
@@ -97,11 +97,22 @@ async function updateOrder(req, res) {
     }
 }
 
-
+// ================== SAVE ORDER to MongoDB ==================
+async function saveToMongo(req, res) {
+    console.log("Nu sparar vi till MongoDB");
+    const order = new OrderModel({
+        ...req.body,
+        customer: req.session._id,
+        // orderNumber: Math.floor(Math.random() * 1000000),
+      });
   
+      await order.save();
+      res.status(201).json(order);
+}
+
 
 
 
 
 // ================== EXPORTS ==================
-module.exports = { getMerchant, postOrder, getOrder, updateOrder, getPaidOrders };
+module.exports = { getMerchant, postOrder, getOrder, updateOrder, getPaidOrders, saveToMongo };

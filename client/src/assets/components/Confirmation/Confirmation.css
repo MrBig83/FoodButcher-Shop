@@ -1,0 +1,21 @@
+.checkoutUL {
+    width: 500px;
+    border-top: 1px solid black;
+}
+
+.checkoutList {
+    /* border: 1px solid black; */
+    
+    margin-top: 5px;
+    width: 500px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.checkoutTotal {
+    border-top: 1px solid black;
+    width: 500px;
+    text-align: right;
+}

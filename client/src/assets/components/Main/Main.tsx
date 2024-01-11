@@ -13,6 +13,7 @@ import Admin from "../Admin/Admin";
 import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 import AdminSingleProduct from "../Admin/AdminSingleProduct/AdminSingleProduct";
+import Confirmation from "../Confirmation/Confirmation";
 
 const Main = () => {
   const { loggedInUser } = useContext(UserContext)
@@ -21,11 +22,12 @@ const Main = () => {
       <div className="routes">
         <Routes>
           <Route path="/" element={<Products />} />
-          <Route path="/:id" element={<SingleProduct />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/news" element={<News />} />
           <Route path="/UserPage" element={<UserPage />} />
+          <Route path="/Confirmation" element={<Confirmation />} />
           <Route path="/Admin" element={loggedInUser.isAdmin === true ? <Admin /> : <Login />} />
           <Route path="/Admin/:id" element={loggedInUser.isAdmin === true ? <AdminSingleProduct /> : <Login />} />
           <Route path="/createaccount" element={<CreateAccount />} />

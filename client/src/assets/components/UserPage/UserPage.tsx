@@ -25,7 +25,7 @@ const UserPage = () => {
     getUser()
   }, [])
 
-  console.log(loggedInUser);
+  // console.log(loggedInUser);
   
   const userObject: IUserData = {
     firstName: loggedInUser.firstName,

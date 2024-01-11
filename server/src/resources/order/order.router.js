@@ -9,7 +9,8 @@ const {
     getOrder,
     getPaidOrders,
     postOrder, 
-    updateOrder
+    updateOrder, 
+    saveToMongo
 
 } = require("./order.controller");
 // const { UserCreateValidationSchema } = require("./user.model");
@@ -18,7 +19,8 @@ const {
 const orderRouter = express
 .Router()
 .get("/orders/merchant", getMerchant)
-.post("/orders", postOrder)
+.post("/orders/", postOrder)
+.post("/orders/mongo", saveToMongo)
 .get("/orders/paid", getPaidOrders)
 .get("/orders/:id", getOrder)
 .put("/orders/:id", updateOrder)

@@ -20,7 +20,7 @@ const Products = () => {
         
         {productList?.map((product: IProduct) => (     
         <div className="ProductCardRender" key={product.id}>
-          <Link to={`/${product.id}`}>
+          <Link to={`/product/${product.id}`}>
             <ProductCard product={product} />
           </Link>
         </div>
