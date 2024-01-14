@@ -32,7 +32,8 @@
 .productPrice {
     font-weight: 800;
 }
-.backBtn {
+/* .backBtn { */
+Button {
     text-align: center;
     width: 80px;
     height: 24px;
@@ -42,7 +43,7 @@
     background-color:rgb(154, 154, 247);
 }
 
-.backBtn:hover {
+.Button:hover {
     text-align: center;
     transition: 100ms;
     scale: 1.06;

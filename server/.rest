@@ -136,7 +136,7 @@ Content-Type: application/json
 
 {
     
-   "status":"created",
+    "status":"created",
    "id":"6ba3462e-98e6-4810-a876-b0f300a41dbc",
     "merchant": {
         "checkoutUri": "https://www.examplestore.com/checkout.php",
@@ -157,8 +157,8 @@ Content-Type: application/json
     }, 
     "history": {
         "readyToPay": null,
-        "readyToShip": "YES",
-        "shipped": "NO",
+        "readyToShip": true,
+        "shipped": null,
         "paidToAccount": null,
         "canceled": null,
         "expired": null,

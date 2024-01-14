@@ -51,12 +51,15 @@ const Header = () => {
                     <p>{loggedInUser._id ? "Välkommen "+loggedInUser.firstName + "!" : "Konto"}</p>
                 </div>
                 <div className='navlinks'>
+                {numberInCart > 0 ? 
                     <Link to={"/cart"}>
                     <FontAwesomeIcon icon={faCartShopping} />
-                        {numberInCart > 0 ? 
+                        
                         <p className="cartNumber">{numberInCart}</p>
-                        : "" }
                     </Link>
+                        :  
+                        <FontAwesomeIcon icon={faCartShopping} />
+                        }
                     <p className='outLier'>Kungvagn</p>
                     
                 </div>

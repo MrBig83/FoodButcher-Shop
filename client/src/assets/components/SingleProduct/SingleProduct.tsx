@@ -9,6 +9,7 @@ import { useEffect, useState} from "react";
 import IProduct from "../../interfaces/IProduct";
 
 const defaultProduct: IProduct = {
+  _id: "",
   id: 0, 
   title: "",
   description: "",
@@ -57,7 +58,7 @@ const SingleProduct = () => {
       </div>
       <div className="productBottom">
         <p className="productPrice">{product!.price}:-</p>
-        <button>Uppdatera</button>
+        
         <BuyNowBtn product={product} />
       </div>
         
