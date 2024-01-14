@@ -33,9 +33,13 @@ const UserPage = () => {
     postCode: loggedInUser.postCode,
     city: loggedInUser.city,
   }
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
+  const [isOrdersVisible, setIsOrdersVisible] = useState(false);
+  const toggleOrderVisibility = () => {
+    setIsOrdersVisible(!isOrdersVisible);
+  };
+  const [isUserVisible, setIsUserVisible] = useState(false);
+  const toggleUserVisibility = () => {
+    setIsUserVisible(!isUserVisible);
   };
 
   
@@ -44,8 +48,9 @@ const UserPage = () => {
     <div className="UserPage">
         <h1>UserPage</h1>
           <button onClick={() => handleLogout()}>Logga ut</button>
+          <button onClick={toggleUserVisibility}>Updatera adress</button>
+        <div id="updateCredForm" className={`content ${isUserVisible ? 'active' : ''}`}>
           <p>Uppdatera kontoinformation för <strong>{loggedInUser.email}</strong></p>
-        <div className="updateCredForm">
           <input type="text" placeholder="Förnamn" defaultValue={userObject.firstName} onChange={(e) => userObject.firstName = e.target.value} />
           <input type="text" placeholder="Efternamn" defaultValue={userObject.lastName} onChange={(e) => userObject.lastName = e.target.value} />
           <input type="text" placeholder="Gatuadress" defaultValue={userObject.street} onChange={(e) => userObject.street = e.target.value} />
@@ -63,8 +68,8 @@ const UserPage = () => {
                 <p>{currentOrder?.customer.postalCode}</p>
                 <p>{currentOrder?.customer.city}</p> */}
             {/* </div> */}
-                <button onClick={toggleVisibility}>Visa orderhistorik</button>
-                <div className={`content ${isVisible ? 'active' : ''}`}>
+                <button onClick={toggleOrderVisibility}>Visa orderhistorik</button>
+                <div className={`content ${isOrdersVisible ? 'active' : ''}`}>
                 <p>Varor:</p>
                 <table className="orderTable">
                     <thead>
