@@ -2,7 +2,7 @@
 import "./UserPage.css"
 
 import { UserContext } from "../../../context/UserContext"
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 // import IUser from "../../interfaces/IUser";
 import IUserData from "../../interfaces/IUserData";
@@ -11,7 +11,7 @@ import IUserData from "../../interfaces/IUserData";
 
 
 const UserPage = () => {
-  const { handleLogout, loggedInUser, getUser, updateUserCreds } = useContext(UserContext);
+  const { handleLogout, loggedInUser, updateUserCreds } = useContext(UserContext);
   
   
   
@@ -20,13 +20,7 @@ const UserPage = () => {
     
     
   };
-  
-  useEffect(() => {
-    getUser()
-  }, [])
-
-  // console.log(loggedInUser);
-  
+    
   const userObject: IUserData = {
     firstName: loggedInUser.firstName,
     lastName: loggedInUser.lastName,
@@ -40,6 +34,7 @@ const UserPage = () => {
   return (
     <div className="UserPage">
         <h1>UserPage</h1>
+          <button onClick={() => handleLogout()}>Logga ut</button>
           <p>Uppdatera kontoinformation för <strong>{loggedInUser.email}</strong></p>
         <div className="updateCredForm">
           <input type="text" placeholder="Förnamn" defaultValue={userObject.firstName} onChange={(e) => userObject.firstName = e.target.value} />
@@ -51,10 +46,10 @@ const UserPage = () => {
           <button onClick={() => handleSaveCreds(userObject)}>Spara</button>
         </div>
 
-        <p>Se Orderhistorik</p>
+        <p>Din Orderhistorik</p>
+
 
         <Link to={"/"}>          
-          <button onClick={() => handleLogout()}>Logga ut</button>
         </Link>
           
         

@@ -47,7 +47,7 @@ async function postOrder(req, res) {
 
 // ================== GET ORDER ==================
 async function getOrder(req, res) {
-    console.log("Orders");
+    console.log("Order");
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
@@ -100,14 +100,40 @@ async function updateOrder(req, res) {
 // ================== SAVE ORDER to MongoDB ==================
 async function saveToMongo(req, res) {
     console.log("Nu sparar vi till MongoDB");
+    console.log(req.body);
     const order = new OrderModel({
         ...req.body,
-        customer: req.session._id,
+        // customer: req.session._id,
         // orderNumber: Math.floor(Math.random() * 1000000),
       });
   
       await order.save();
       res.status(201).json(order);
+}
+// ================== GET USER ORDERS ==================
+async function getUserOrders(req, res) {
+    console.log("UserOrders");
+   
+    const orders = await OrderModel.find({
+        customer: req.params.id
+    });
+    res.status(200).json(orders);
+    //     res.status(200).json(products);
+    //     console.log(products);
+    //   }
+
+    // const product = await ProductModel.findOne({
+    //     id: req.params.id
+    //   });
+
+    // try {
+    //     const response = await fetch(`https://test-api.payson.se/2.0/Checkouts/${req.params.id}`, requestOptions)
+    //     const result = await response.json()
+    //     res.status(200).json(result)
+    // } catch(error) {
+    //     console.log('error', error);
+    //     res.status(500).json({ success: false, error: error.message })
+    // }
 }
 
 
@@ -115,4 +141,4 @@ async function saveToMongo(req, res) {
 
 
 // ================== EXPORTS ==================
-module.exports = { getMerchant, postOrder, getOrder, updateOrder, getPaidOrders, saveToMongo };
+module.exports = { getMerchant, postOrder, getOrder, updateOrder, getPaidOrders, saveToMongo, getUserOrders };

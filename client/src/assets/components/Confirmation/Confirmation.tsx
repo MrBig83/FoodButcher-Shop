@@ -1,44 +1,83 @@
-import { useContext, useEffect } from 'react'
-import BackBtn from '../Buttons/backBtn'
-// import { CartContext } from "../../../context/CartContext";
-import { OrderContext } from "../../../context/OrderContext";
-
-import { IOrderItems } from '../../interfaces/IOrderObject';
 import "./Confirmation.css"
+import React, { useContext, useEffect } from 'react'
+import { OrderContext } from "../../../context/OrderContext";
+import BackBtn from "../Buttons/backBtn";
+// import { useNavigate } from "react-router-dom";
+// import { UserContext } from "../../../context/UserContext";
+
 
 function Confirmation() {
-
-    const { fetchOrderConfirm, checkoutObject } = useContext(OrderContext)
+    console.log("Confirmation-sidan visas");
     
-        // console.log(responseSnippet); //Tom. Variabler nollställs när sidan laddas om. 
-        // console.log(productsInCart); //får innehåll ifrån LS. Töm LS och sen productsInCart. Kan funka. 
-        const checkoutID:string = localStorage.getItem("FBS-checkout") || ""     
+    const { getCurrentOrder, currentOrder } = useContext(OrderContext);
+    // const { loggedInUser } = useContext(UserContext);
 
-useEffect(()=> {
-  fetchOrderConfirm(checkoutID)
-}, [])
+    
+    useEffect(()=> {        
+        getCurrentOrder()
+        return () => {
+        };
+    }, [])
+    
 
-const listProducts = checkoutObject.items.map((product: IOrderItems) => (
-  <div className="ProductCardRender" >
+    // const navigate = useNavigate()
+    // if(!currentOrderId) {
+    //     navigate("/")
+    // }
+    // console.log(currentOrderId);
+    
+    // const navigate = useNavigate()
+    // if(currentOrderId){
+    //     navigate("/Confirmation") 
+    // } else {
+    //     navigate
+    // }
 
-      <li className='checkoutList' key={product.itemId}>
-        <p>{product.name}</p>
-        <p>{product.quantity}</p>
-        <p>{product.unitPrice}:-</p>
-        <p>{product.totalPriceIncludingTax}:-</p>
-      </li>
-      
-  </div>
-))
 
   return (
-    <>
-    <BackBtn />
-    <div>Orderbekräftelse: </div>
-
-    <ul className='checkoutUL'>{listProducts}</ul>
-    <p className='checkoutTotal'>Totalt (inkl skatt): {checkoutObject.totalPriceIncludingTax}:- </p>
-    </>
+    <div>
+        <BackBtn />
+        <div className="confirmationInfo">
+            
+            <p>Orderbekräftelse:</p>
+            <div className="deliveryAddressBox">
+                <p>Leveransadress:</p>
+                <p>{currentOrder?.customer.firstName} {currentOrder?.customer.lastName}</p>
+                <p>{currentOrder?.customer.street}</p>
+                <p>{currentOrder?.customer.postalCode}</p>
+                <p>{currentOrder?.customer.city}</p>
+            </div>
+            <div>
+                <p>Varor:</p>
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Produkt: </th>
+                        <th>Antal: </th>
+                        <th>Pris per st.:</th>
+                        <th>Totalt: </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentOrder?.order.items.map((currentItem) => (
+                        <tr key={currentItem.itemId}>
+                            <td>{currentItem.name}</td>
+                            <td>{currentItem.quantity}</td>
+                            <td>{currentItem.unitPrice}:-</td>
+                            <td>{currentItem.totalPriceIncludingTax}:-</td>
+                        </tr>
+                        ))}
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td className="txtTotalt">Totalt:</td>
+                        <td className="txtSum">{currentOrder?.order.totalPriceIncludingTax}:-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
   )
 }
 

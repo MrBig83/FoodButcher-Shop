@@ -16,7 +16,9 @@ import AdminSingleProduct from "../Admin/AdminSingleProduct/AdminSingleProduct";
 import Confirmation from "../Confirmation/Confirmation";
 
 const Main = () => {
+  
   const { loggedInUser } = useContext(UserContext)
+    
   return (
     <div className="main">
       <div className="routes">
@@ -34,8 +36,6 @@ const Main = () => {
           <Route path="/createproduct" element={loggedInUser.isAdmin === true ? <CreateProduct /> : <Login />} />
           <Route path="/updateproduct" element={<UpdateProduct />} />
         </Routes>
-
-        {/* <div className="sectionLine"></div> */}
 
       </div>
     </div>

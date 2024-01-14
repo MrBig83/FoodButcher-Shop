@@ -19,3 +19,21 @@
     width: 500px;
     text-align: right;
 }
+
+.totalPrice {
+    border: 1px solid black;
+    width: 25vw;
+    text-align: right;
+}
+table {
+
+    width: 25vw;
+    border: 1px solid black;
+}
+th, td {
+    text-align: center;
+}
+.txtTotalt, .txtSum {
+    border-top: 1px solid black;
+    font-weight: bold;
+}

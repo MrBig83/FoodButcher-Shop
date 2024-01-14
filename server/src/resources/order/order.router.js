@@ -10,6 +10,7 @@ const {
     getPaidOrders,
     postOrder, 
     updateOrder, 
+    getUserOrders, 
     saveToMongo
 
 } = require("./order.controller");
@@ -23,6 +24,7 @@ const orderRouter = express
 .post("/orders/mongo", saveToMongo)
 .get("/orders/paid", getPaidOrders)
 .get("/orders/:id", getOrder)
+.get("/orders/user/:id", getUserOrders)
 .put("/orders/:id", updateOrder)
 
 

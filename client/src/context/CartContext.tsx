@@ -20,7 +20,7 @@ interface CartContextProps {
     checkItem: (item: ICartItem) => boolean;
     responseSnippet: string;
     setResponseSnippet: Dispatch<SetStateAction<string>>
-    // setProductsInCart: Dispatch<SetStateAction<IProduct[]>>;
+    setProductsInCart: Dispatch<SetStateAction<ICartItem[]>>;
     
 }
 
@@ -132,6 +132,7 @@ const updateLS = (productsInCart: ICartItem[]) => {
 }
 
 const proceedToCheckout = async (uniqueProducts: ICartItem[]) => {
+console.log("Detta loopas väl inte?");
 
 interface IPostArray  {
   name: string;
@@ -185,6 +186,7 @@ const response = await fetch("/api/orders", {
       "street":loggedInUser.street,
       "type":"person"
    },
+   "description": loggedInUser._id
 
   }), 
 })
@@ -194,6 +196,7 @@ localStorage.setItem("FBS-checkout", res.id)
 console.log(res.id);
 
 // setResponseSnippet(res.snippet)
+
 redirectToPaysonCheckout(res.snippet)
 
 
@@ -234,7 +237,7 @@ return (
         proceedToCheckout,
         responseSnippet, 
         setResponseSnippet,
-        // setProductsInCart
+        setProductsInCart
         
       }}
     >

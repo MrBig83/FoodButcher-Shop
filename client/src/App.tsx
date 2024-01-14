@@ -11,18 +11,20 @@ import OrderContextProvider from './context/OrderContext';
 
 
 function App() {
-  // const [count, setCount] = useState(0)
+  // States
+
+  
 
   return (
     <ProductContextProvider>
       <UserContextProvider>
-      <OrderContextProvider>
       <CartContextProvider>
+      <OrderContextProvider>
         <Header />
         <Main />
         <Footer />
-      </CartContextProvider>
       </OrderContextProvider>
+      </CartContextProvider>
       </UserContextProvider>
     </ProductContextProvider>
   )
