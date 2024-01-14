@@ -9,6 +9,7 @@ import React, {
 import IUser from "../assets/interfaces/IUser";
 import IUserData from "../assets/interfaces/IUserData";
 import { IOrder } from "../assets/interfaces/IOrderObject";
+import { useNavigate  } from "react-router-dom";
 
 
 interface UserContextProps {
@@ -52,6 +53,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     isAdmin: false
   });
 
+  const navigate = useNavigate();
+
   const handleLogin = async (): Promise<void> => {
     try {
       const res = await fetch("/api/users/login", {
@@ -65,6 +68,11 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       const loggedInUser = await res.json();     
 
       setLoggedInUser(loggedInUser);
+      auth();
+      if(loggedInUser.email) {
+        navigate('/');
+
+      }
     } catch (err) {
       console.log(err);
     }
@@ -111,6 +119,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       isAdmin: false
     };
     setLoggedInUser(emptyUserTemplate);
+    setUserOrders([]) 
+    navigate('/login');
   };
 
   const handleCreateAccount = async ():Promise<void> => {
