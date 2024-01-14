@@ -48,18 +48,10 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const convertOrderToMongo = (currentPaysonOrder: IOrder) => {
-    console.log(currentPaysonOrder);
-    
-    
-    //Använd samma modell. (den ifrån chatGPT) Få den att funka, sen lägger jag till de få ytterligare fält som behövs
-    //Lättare att göra så än att bygga om hela objektet och modellen. 
-
     sendToMongo(currentPaysonOrder)
   }
 
   const sendToMongo = async (currentPaysonOrder: IOrder) => {
-    
-    
     await fetch("/api/orders/mongo", {
       method: "POST",
       headers: {
@@ -142,6 +134,7 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         getCurrentOrder,
         currentOrder,
         setCurrentOrder,
+        
       }}
     >
       {children}

@@ -8,6 +8,7 @@ import React, {
 
 import IUser from "../assets/interfaces/IUser";
 import IUserData from "../assets/interfaces/IUserData";
+import { IOrder } from "../assets/interfaces/IOrderObject";
 
 
 interface UserContextProps {
@@ -24,6 +25,9 @@ interface UserContextProps {
   getUser: () => Promise<void>;
   auth: () => Promise<void>;
   loggedInUser: IUser;
+  userOrders: IOrder[] | null;
+  getUserOrders: (userId:string) => Promise<void>
+
 }
 
 export const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -32,7 +36,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verPassword, setVerPassword] = useState("");
-
+  const [userOrders, setUserOrders] = useState<IOrder[] | null>(null);
+  
 
   const [loggedInUser, setLoggedInUser] = useState<IUser>({
     _id: "",
@@ -131,6 +136,25 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   setVerPassword("")
 };
 
+const getUserOrders = async (userId:string) => { 
+  const response = await fetch(`api/orders/user/${userId}`);
+  const userOrders: IOrder[] = await response.json();
+  console.log(userOrders); 
+  setUserOrders(userOrders)
+};
+useEffect(() => {
+  // Code to run on mount
+  
+  
+  getUserOrders(loggedInUser._id)
+
+  // Return a cleanup function to be executed on unmount
+  // return () => {
+  //   console.log('Component will unmount');
+  //   // Code to run on unmount
+  // };
+}, []);
+
   const auth = async (): Promise<void> => {    
     console.log("Auth");
     
@@ -158,6 +182,9 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         handleCreateAccount,
         getUser,
         updateUserCreds,
+        getUserOrders, 
+        userOrders
+
       }}
     >
       {children}

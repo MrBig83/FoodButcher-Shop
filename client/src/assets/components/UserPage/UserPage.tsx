@@ -2,7 +2,8 @@
 import "./UserPage.css"
 
 import { UserContext } from "../../../context/UserContext"
-import { useContext } from "react";
+// import { OrderContext } from "../../../context/OrderContext"
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 // import IUser from "../../interfaces/IUser";
 import IUserData from "../../interfaces/IUserData";
@@ -11,13 +12,17 @@ import IUserData from "../../interfaces/IUserData";
 
 
 const UserPage = () => {
-  const { handleLogout, loggedInUser, updateUserCreds } = useContext(UserContext);
+  const { handleLogout, loggedInUser, updateUserCreds, userOrders } = useContext(UserContext);
+  // const {  } = useContext(OrderContext);
+  // const userId = loggedInUser._id;
+
+  console.log(userOrders); 
+  
   
   
   
   const handleSaveCreds = async (userObject: IUserData) => {
     await updateUserCreds(userObject)
-    
     
   };
     
@@ -28,7 +33,11 @@ const UserPage = () => {
     postCode: loggedInUser.postCode,
     city: loggedInUser.city,
   }
-  
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   
 
   return (
@@ -47,6 +56,58 @@ const UserPage = () => {
         </div>
 
         <p>Din Orderhistorik</p>
+        {/* <div className="deliveryAddressBox"> */}
+                {/* <p>Leveransadress:</p>
+                <p>{currentOrder?.customer.firstName} {currentOrder?.customer.lastName}</p>
+                <p>{currentOrder?.customer.street}</p>
+                <p>{currentOrder?.customer.postalCode}</p>
+                <p>{currentOrder?.customer.city}</p> */}
+            {/* </div> */}
+                <button onClick={toggleVisibility}>Visa orderhistorik</button>
+                <div className={`content ${isVisible ? 'active' : ''}`}>
+                <p>Varor:</p>
+                <table className="orderTable">
+                    <thead>
+                        <tr>
+                        <th>Datum: </th>
+                        <th>Ordernummer: </th>
+                        <th>Status: </th>
+                        <th>Produkt: </th>
+                        <th>Antal: </th>
+                        <th>Pris per st.:</th>
+                        <th>Totalt: </th>
+                        </tr>
+                    </thead>
+
+                    {userOrders?.map((userOrder) => (
+                      <tbody>
+                        <td>{new Date(userOrder.history.created).toLocaleString()}</td>
+                        <td>{userOrder.purchaseId}</td>
+                        <td>{userOrder.status} </td>
+                        {userOrder.order.items?.map((userOrderItem) => (
+                          <tr key={userOrderItem.itemId}>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{userOrderItem.name}</td>
+                            <td>{userOrderItem.quantity}</td>
+                            <td>{userOrderItem.unitPrice}:-</td>
+                            <td>{userOrderItem.totalPriceIncludingTax}:-</td>
+                        </tr>
+                        ))}
+                        <tr className="lastRow">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td className="txtTotalt">Totalt:</td>
+                        <td className="txtSum">{userOrder?.order.totalPriceIncludingTax}:-</td>
+                        </tr>
+                    </tbody>
+                    ))}
+                </table>
+            </div>
 
 
         <Link to={"/"}>          

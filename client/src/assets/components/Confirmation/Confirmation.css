@@ -25,12 +25,12 @@
     width: 25vw;
     text-align: right;
 }
-table {
+.confirmationTable {
 
     width: 25vw;
     border: 1px solid black;
 }
-th, td {
+.confirmationTable th, td {
     text-align: center;
 }
 .txtTotalt, .txtSum {

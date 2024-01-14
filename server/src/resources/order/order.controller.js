@@ -115,7 +115,7 @@ async function getUserOrders(req, res) {
     console.log("UserOrders");
    
     const orders = await OrderModel.find({
-        customer: req.params.id
+        description: req.params.id
     });
     res.status(200).json(orders);
     //     res.status(200).json(products);

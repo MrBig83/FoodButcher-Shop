@@ -49,7 +49,7 @@ function Confirmation() {
             </div>
             <div>
                 <p>Varor:</p>
-                <table>
+                <table className="confirmationTable">
                     <thead>
                         <tr>
                         <th>Produkt: </th>
