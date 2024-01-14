@@ -77,16 +77,12 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   
   //Functions
 
-  const adminGetProducts = async () => {     
-      console.log("Hämta alla produkter");
-               
+  const adminGetProducts = async () => {                    
       const res = await fetch("/api/products/admin");
       const products: IProduct[] = await res.json();      
       setAdminProductList(products)
   };
-  const getProducts = async () => {     
-      console.log("Hämta alla produkter");
-               
+  const getProducts = async () => {                    
       const res = await fetch("/api/products");
       const products: IProduct[] = await res.json();      
       setProductList(products)
@@ -101,9 +97,7 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
       setSingleProduct(product)
   };
 
-  const createProduct = async (productObject: IProduct) => {
-    console.log(productObject);
-    
+  const createProduct = async (productObject: IProduct) => {    
     const response = await fetch("/api/products", {
       method: "POST",
       headers: {

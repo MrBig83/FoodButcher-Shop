@@ -7,3 +7,35 @@
 .updateCredForm input {
     margin-bottom: 10px;
 }
+
+.orderTable {
+    width: 50vw;
+    border: 1px solid rgb(150, 150, 150);
+}
+th {
+    border-bottom: 1px solid rgb(150, 150, 150);
+
+}
+
+td, th {
+    padding: 5px;
+}
+
+tbody {
+    border-bottom: 1px solid rgb(150, 150, 150);
+}
+table {border-collapse: collapse;}
+
+
+.content {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s ease;
+  }
+  
+  .content.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  

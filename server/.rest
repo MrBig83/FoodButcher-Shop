@@ -88,3 +88,189 @@ GET http://localhost:3000/api/users/authorize
 
 DELETE http://localhost:3000/api/products/659d4778ff92330a7f6c3686
 ###
+
+GET http://localhost:3000/api/orders/merchant
+###
+
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+    "customer": {
+        "city": "Staden",
+        "countryCode": "SE",
+        "identityNumber": null,
+        "email": null,
+        "firstName": "Kalle",
+        "lastName": null,
+        "phone": null,
+        "postalCode": null,
+        "street": null,
+        "type": "person"
+    },
+    "merchant": {
+        "checkoutUri": "https://www.examplestore.com/checkout.php",
+        "confirmationUri": "https://www.examplestore.com/confirmation.php",
+        "notificationUri": "https://www.examplestore.com/notification.php",
+        "termsUri": "https://www.examplestore.com/terms.php"
+    },
+    "order": {
+        "currency": "sek",
+        "items": [
+            {
+                "name": "Test product",
+                "unitPrice": 899,
+                "quantity": 2,
+                "taxRate": 0.25
+            }
+        ]
+    }
+}
+###
+
+GET http://localhost:3000/api/orders/6ba3462e-98e6-4810-a876-b0f300a41dbc
+###
+
+PUT http://localhost:3000/api/orders/6ba3462e-98e6-4810-a876-b0f300a41dbc
+Content-Type: application/json
+
+{
+    
+   "status":"created",
+   "id":"6ba3462e-98e6-4810-a876-b0f300a41dbc",
+    "merchant": {
+        "checkoutUri": "https://www.examplestore.com/checkout.php",
+        "confirmationUri": "https://www.examplestore.com/confirmation.php",
+        "notificationUri": "https://www.examplestore.com/notification.php",
+        "termsUri": "https://www.examplestore.com/terms.php"
+    },
+    "order": {
+        "currency": "sek",
+        "items": [
+            {
+                "name": "Test product",
+                "unitPrice": 899,
+                "quantity": 4,
+                "taxRate": 0.25
+            }
+        ]
+    }, 
+    "history": {
+        "readyToPay": null,
+        "readyToShip": "YES",
+        "shipped": "NO",
+        "paidToAccount": null,
+        "canceled": null,
+        "expired": null,
+        "denied": null
+    },
+
+}
+###
+
+POST http://localhost:3000/api/orders/mongo
+Content-Type: application/json
+
+{
+    "status": "readyToShip",
+    "id": "c5a229d6-a878-48f6-872f-b0f400bb4e96",
+    "expirationTime": "2024-01-11T15:21:57",
+    "description": null,
+    "snippet": "<div id='paysonContainer'  url='https://test-www.payson.se/embedded/checkout?id=c5a229d6-a878-48f6-872f-b0f400bb4e96'></div><script type='text/javascript' src='https://test-www.payson.se/embedded/Content/payson.js?v2'></script>",
+    "customer": {
+        "city": "Ankeborg",
+        "countryCode": "SE",
+        "identityNumber": null,
+        "email": "a@e.com",
+        "firstName": "Adam",
+        "lastName": "Testsson",
+        "phone": null,
+        "postalCode": "44211",
+        "street": "Låtsasgatan 5",
+        "type": "person"
+    },
+    "order": {
+        "currency": "sek",
+        "totalFeeExcludingTax": 28.36,
+        "totalFeeIncludingTax": 35.45,
+        "totalPriceExcludingTax": 796,
+        "totalPriceIncludingTax": 995,
+        "totalTaxAmount": 199,
+        "totalCreditedAmount": 0,
+        "items": [
+            {
+                "itemId": "c41af783-9a63-4ed8-befe-b0f400bb4e96",
+                "discountRate": 0,
+                "ean": null,
+                "imageUri": null,
+                "name": "Zombie Bacon",
+                "quantity": 3,
+                "reference": null,
+                "taxRate": 0.25,
+                "totalPriceExcludingTax": 477.6,
+                "totalPriceIncludingTax": 597,
+                "totalTaxAmount": 119.4,
+                "creditedAmount": 0,
+                "type": "physical",
+                "unitPrice": 199,
+                "uri": null
+            },
+            {
+                "itemId": "8a378e60-c41e-4689-a6b2-b0f400bb4e96",
+                "discountRate": 0,
+                "ean": null,
+                "imageUri": null,
+                "name": "Backwood burger rubbb",
+                "quantity": 2,
+                "reference": null,
+                "taxRate": 0.25,
+                "totalPriceExcludingTax": 318.4,
+                "totalPriceIncludingTax": 398,
+                "totalTaxAmount": 79.6,
+                "creditedAmount": 0,
+                "type": "physical",
+                "unitPrice": 199,
+                "uri": null
+            }
+        ]
+    },
+    "merchant": {
+        "checkoutUri": "https://www.examplestore.com/checkout.php",
+        "confirmationUri": "http://localhost:5173/confirmation",
+        "partnerId": null,
+        "notificationUri": "https://www.examplestore.com/notification.php",
+        "validationUri": null,
+        "termsUri": "https://www.examplestore.com/terms.php",
+        "integrationInfo": null,
+        "reference": null
+    },
+    "gui": {
+        "colorScheme": "white",
+        "locale": "en",
+        "requestPhone": false,
+        "phoneOptional": false,
+        "verification": "none",
+        "countries": null
+    },
+    "history": {
+        "created": "2024-01-11T12:21:57.817",
+        "readyToPay": "2024-01-11T12:22:01.447",
+        "readyToShip": "2024-01-11T12:22:06.98",
+        "shipped": null,
+        "paidToAccount": null,
+        "canceled": null,
+        "expired": null,
+        "denied": null
+    },
+    "purchaseId": 3863432,
+    "links": [
+        {
+            "href": "https://test-api.payson.se/2.0/Checkouts/c5a229d6-a878-48f6-872f-b0f400bb4e96",
+            "rel": "self"
+        }
+    ]
+}
+###
+
+GET http://localhost:3000/api/orders/user/659580dc1f4686860f31a26b
+###

@@ -11,7 +11,7 @@ import { UserContext } from "../../../context/UserContext";
 const Header = () => {
     
     const { loggedInUser } = useContext(UserContext)
-    const { numberInCart } = useContext(CartContext);
+    const { numberInCart } = useContext(CartContext);    
  
     return (
         <div className="header">

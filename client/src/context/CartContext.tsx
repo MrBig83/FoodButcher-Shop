@@ -1,7 +1,9 @@
-import { createContext, useState, PropsWithChildren, Dispatch, SetStateAction, useEffect } from "react";
+import { createContext, useState, PropsWithChildren, Dispatch, SetStateAction, useEffect, useContext } from "react";
 import IProduct from "../assets/interfaces/IProduct";
 import ICartItem from "../assets/interfaces/ICartItem";
-// import IProduct from "../assets/interfaces/IProduct";
+import { UserContext } from "../context/UserContext";
+
+
 
 interface CartContextProps {
 
@@ -12,10 +14,13 @@ interface CartContextProps {
     addProduct: (product: IProduct) => void;
     decreaseProductCount: (product: ICartItem) => void;
     increaseProductCount: (product: ICartItem) => void;
+    proceedToCheckout: (uniqueProducts: ICartItem[]) => void;
     removeProduct: (product: ICartItem) => void;
     productsInCart: ICartItem[];
     checkItem: (item: ICartItem) => boolean;
-    // setProductsInCart: Dispatch<SetStateAction<IProduct[]>>;
+    responseSnippet: string;
+    setResponseSnippet: Dispatch<SetStateAction<string>>
+    setProductsInCart: Dispatch<SetStateAction<ICartItem[]>>;
     
 }
 
@@ -23,12 +28,14 @@ export const CartContext = createContext<CartContextProps>({} as CartContextProp
 const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("FBS-cart") || "[]");
+  const { loggedInUser } = useContext(UserContext);
 
   //States
 
   const [numberInCart, setNumberInCart] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [productsInCart, setProductsInCart] = useState<ICartItem[]>([]) //cartFromLocalStorage
+  const [responseSnippet, setResponseSnippet] = useState("")
 
   
   //Functions
@@ -57,7 +64,6 @@ const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
 
   const addItem = (item: ICartItem) => {
     if(checkItem(item)){
-      console.log("Addera 1"); // TODO : Ta bort
       productsInCart.map((itemInCart) => {
         if(itemInCart.product.id === item.product.id) {
           itemInCart.quantity = itemInCart.quantity +1;
@@ -66,22 +72,18 @@ const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         }
       })
     } else {
-      console.log("Lägg till produkt"); // TODO : Ta bort
       setProductsInCart([...productsInCart, item])
       countProductsInCart()
       updateLS(productsInCart) 
     }
-  console.log(productsInCart); // TODO : Ta bort
 }
 
-const updateLS = (productsInCart: ICartItem[]) => {
-  console.log("Uppdatera LS"); //TODO : Ta bort  
+const updateLS = (productsInCart: ICartItem[]) => { 
   localStorage.setItem("FBS-cart", JSON.stringify(productsInCart));
 }
 
   const decreaseProductCount = (item: ICartItem) => {
     if(checkItem(item)){
-      console.log("Subtrahera 1"); // TODO : Ta bort
       productsInCart.map((itemInCart) => {
         if(itemInCart.product.id === item.product.id) {
           if(itemInCart.quantity > 1) {
@@ -117,21 +119,107 @@ const updateLS = (productsInCart: ICartItem[]) => {
     productsInCart.map((itemInCart) => {
       totalAmmount = totalAmmount + itemInCart.quantity
     })
-    setNumberInCart(totalAmmount)
-    console.log(totalAmmount);
-    
+    setNumberInCart(totalAmmount)    
     calculatePriceTotal()
   }
 
   const calculatePriceTotal = () => {
     let sum = 0;
-  
     productsInCart.map((itemInCart) => {
       sum = sum + (itemInCart.product.price * itemInCart.quantity)
     })
     setTotalPrice(sum)
-  
 }
+
+const proceedToCheckout = async (uniqueProducts: ICartItem[]) => {
+console.log("Detta loopas väl inte?");
+
+interface IPostArray  {
+  name: string;
+  unitPrice: number,
+  quantity: number,
+  taxRate: number, 
+  reference: string
+}
+const postArray: IPostArray[] = [];
+
+function addObject(itemInCart: ICartItem) {
+  const newObj: IPostArray = {
+      name: itemInCart.product.title,
+      unitPrice: itemInCart.product.price, 
+      quantity: itemInCart.quantity, 
+      taxRate: 0.25, 
+      reference: itemInCart.product._id
+  };
+  postArray.push(newObj);
+}
+
+uniqueProducts.map((itemInCart) => {
+  addObject(itemInCart);
+})
+
+const response = await fetch("/api/orders", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ 
+    "merchant":{
+      "checkoutUri":"https://www.examplestore.com/checkout.php",
+      "confirmationUri":"http://localhost:5173/confirmation",
+      "notificationUri":"https://www.examplestore.com/notification.php",
+      "termsUri":"https://www.examplestore.com/terms.php"
+    },
+    "order":{
+      "currency":"sek",
+      "items": postArray
+    },
+    "customer":{
+      "city":loggedInUser.city,
+      "countryCode":null,
+      "identityNumber":null,
+      "email":loggedInUser.email,
+      "firstName":loggedInUser.firstName,
+      "lastName":loggedInUser.lastName,
+      "phone":null,
+      "postalCode":loggedInUser.postCode,
+      "street":loggedInUser.street,
+      "type":"person"
+   },
+   "description": loggedInUser._id
+
+  }), 
+})
+const res =  await response.json();
+console.log(res.snippet);
+localStorage.setItem("FBS-checkout", res.id)
+console.log(res.id);
+
+// setResponseSnippet(res.snippet)
+
+redirectToPaysonCheckout(res.snippet)
+
+
+}
+
+
+
+const redirectToPaysonCheckout = (adjustedSnippet:string) => {
+
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = adjustedSnippet
+  const paysonContainer = tempDiv.querySelector<HTMLDivElement>('#paysonContainer');
+  const url: string = paysonContainer?.getAttribute('url') ?? 'default-url'; 
+  setResponseSnippet(url)
+  // window.location.href = url;
+}
+
+// const redirectToPaysonCheckout = () => {
+  
+//     console.log(paysonCheckoutURL);
+    
+//     window.location.href = paysonCheckoutURL;
+//   };
 
 return (
     <CartContext.Provider
@@ -146,7 +234,10 @@ return (
         removeProduct, 
         productsInCart, 
         checkItem,
-        // setProductsInCart
+        proceedToCheckout,
+        responseSnippet, 
+        setResponseSnippet,
+        setProductsInCart
         
       }}
     >

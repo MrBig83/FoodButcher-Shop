@@ -2,7 +2,8 @@
 import "./UserPage.css"
 
 import { UserContext } from "../../../context/UserContext"
-import { useContext, useEffect } from "react";
+// import { OrderContext } from "../../../context/OrderContext"
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 // import IUser from "../../interfaces/IUser";
 import IUserData from "../../interfaces/IUserData";
@@ -11,22 +12,20 @@ import IUserData from "../../interfaces/IUserData";
 
 
 const UserPage = () => {
-  const { handleLogout, loggedInUser, getUser, updateUserCreds } = useContext(UserContext);
+  const { handleLogout, loggedInUser, updateUserCreds, userOrders } = useContext(UserContext);
+  // const {  } = useContext(OrderContext);
+  // const userId = loggedInUser._id;
+
+  console.log(userOrders); 
+  
   
   
   
   const handleSaveCreds = async (userObject: IUserData) => {
     await updateUserCreds(userObject)
     
-    
   };
-  
-  useEffect(() => {
-    getUser()
-  }, [])
-
-  console.log(loggedInUser);
-  
+    
   const userObject: IUserData = {
     firstName: loggedInUser.firstName,
     lastName: loggedInUser.lastName,
@@ -34,12 +33,17 @@ const UserPage = () => {
     postCode: loggedInUser.postCode,
     city: loggedInUser.city,
   }
-  
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   
 
   return (
     <div className="UserPage">
         <h1>UserPage</h1>
+          <button onClick={() => handleLogout()}>Logga ut</button>
           <p>Uppdatera kontoinformation för <strong>{loggedInUser.email}</strong></p>
         <div className="updateCredForm">
           <input type="text" placeholder="Förnamn" defaultValue={userObject.firstName} onChange={(e) => userObject.firstName = e.target.value} />
@@ -51,10 +55,64 @@ const UserPage = () => {
           <button onClick={() => handleSaveCreds(userObject)}>Spara</button>
         </div>
 
-        <p>Se Orderhistorik</p>
+        <p>Din Orderhistorik</p>
+        {/* <div className="deliveryAddressBox"> */}
+                {/* <p>Leveransadress:</p>
+                <p>{currentOrder?.customer.firstName} {currentOrder?.customer.lastName}</p>
+                <p>{currentOrder?.customer.street}</p>
+                <p>{currentOrder?.customer.postalCode}</p>
+                <p>{currentOrder?.customer.city}</p> */}
+            {/* </div> */}
+                <button onClick={toggleVisibility}>Visa orderhistorik</button>
+                <div className={`content ${isVisible ? 'active' : ''}`}>
+                <p>Varor:</p>
+                <table className="orderTable">
+                    <thead>
+                        <tr>
+                        <th>Datum: </th>
+                        <th>Ordernummer: </th>
+                        <th>Status: </th>
+                        <th>Produkt: </th>
+                        <th>Antal: </th>
+                        <th>Pris per st.:</th>
+                        <th>Totalt: </th>
+                        </tr>
+                    </thead>
+
+                    {userOrders?.map((userOrder) => (
+                      <tbody key={userOrder.purchaseId}>
+                        <tr>
+                          <td>{new Date(userOrder.history.created).toLocaleString()}</td>
+                          <td>{userOrder.purchaseId}</td>
+                          <td>{userOrder.status} </td>
+                        </tr>
+                        {userOrder.order.items?.map((userOrderItem) => (
+                          <tr key={userOrderItem.itemId}>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{userOrderItem.name}</td>
+                            <td>{userOrderItem.quantity}</td>
+                            <td>{userOrderItem.unitPrice}:-</td>
+                            <td>{userOrderItem.totalPriceIncludingTax}:-</td>
+                        </tr>
+                        ))}
+                        <tr className="lastRow">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td className="txtTotalt">Totalt:</td>
+                        <td className="txtSum">{userOrder?.order.totalPriceIncludingTax}:-</td>
+                        </tr>
+                    </tbody>
+                    ))}
+                </table>
+            </div>
+
 
         <Link to={"/"}>          
-          <button onClick={() => handleLogout()}>Logga ut</button>
         </Link>
           
         

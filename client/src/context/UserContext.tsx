@@ -3,12 +3,12 @@ import React, {
   SetStateAction,
   createContext,
   useEffect,
-  // useEffect,
   useState,
 } from "react";
 
 import IUser from "../assets/interfaces/IUser";
 import IUserData from "../assets/interfaces/IUserData";
+import { IOrder } from "../assets/interfaces/IOrderObject";
 
 
 interface UserContextProps {
@@ -23,8 +23,11 @@ interface UserContextProps {
   handleCreateAccount: () => Promise<void>;
   updateUserCreds: (userObject: IUserData) => Promise<void>;
   getUser: () => Promise<void>;
-  // auth: () => Promise<void>;
+  auth: () => Promise<void>;
   loggedInUser: IUser;
+  userOrders: IOrder[] | null;
+  getUserOrders: (userId:string) => Promise<void>
+
 }
 
 export const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -33,7 +36,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verPassword, setVerPassword] = useState("");
-
+  const [userOrders, setUserOrders] = useState<IOrder[] | null>(null);
+  
 
   const [loggedInUser, setLoggedInUser] = useState<IUser>({
     _id: "",
@@ -67,7 +71,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const getUser = async (): Promise<void> => {
-
+    // TODO : Använd eller ta bort. 
   }
 
   const updateUserCreds = async (userObject:IUserData): Promise<void> => {
@@ -131,19 +135,41 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   setPassword("")
   setVerPassword("")
 };
+const auth = async (): Promise<void> => {    
+  console.log("Auth");
+  
+  const response = await fetch("/api/users/authorize");
+  const loggedInUser = await response.json();
+  console.log(loggedInUser);
+  
+  setLoggedInUser(loggedInUser);
+  getUserOrders(loggedInUser._id)
+};
+useEffect(() => {
+  auth();
+}, []);
 
-  const auth = async (): Promise<void> => {
-    console.log("Dags för auth");
-    
-    const response = await fetch("/api/users/authorize");
-    const loggedInUser = await response.json();
-    console.log(loggedInUser);
-    
-    setLoggedInUser(loggedInUser);
-  };
-  useEffect(() => {
-    auth();
-  }, []);
+const getUserOrders = async (userId:string) => { 
+  const response = await fetch(`api/orders/user/${userId}`);
+  const userOrders: IOrder[] = await response.json();
+  console.log(userOrders); 
+  setUserOrders(userOrders)
+};
+
+// useEffect(() => {
+//   console.log(loggedInUser);
+//   getUserOrders(loggedInUser._id)
+
+//   return () => {
+//     // Cleanup code here, e.g., cancelling a network request or clearing a subscription
+//     console.log('Component is unmounted. Cleanup performed.');
+//   };
+
+// }, [loggedInUser]);
+
+
+
+
 
   return (
     <UserContext.Provider
@@ -156,11 +182,14 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         setPassword,
         handleLogin,
         handleLogout,
-        // auth,
+        auth,
         loggedInUser,
         handleCreateAccount,
         getUser,
         updateUserCreds,
+        getUserOrders, 
+        userOrders
+
       }}
     >
       {children}

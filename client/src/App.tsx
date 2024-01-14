@@ -7,18 +7,23 @@ import Footer from "./assets/components/Footer/Footer";
 import ProductContextProvider from './context/ProductContext';
 import CartContextProvider from './context/CartContext';
 import UserContextProvider from './context/UserContext';
+import OrderContextProvider from './context/OrderContext';
 
 
 function App() {
-  // const [count, setCount] = useState(0)
+  // States
+
+  
 
   return (
     <ProductContextProvider>
       <UserContextProvider>
       <CartContextProvider>
+      <OrderContextProvider>
         <Header />
         <Main />
         <Footer />
+      </OrderContextProvider>
       </CartContextProvider>
       </UserContextProvider>
     </ProductContextProvider>

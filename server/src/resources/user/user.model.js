@@ -2,14 +2,6 @@ const { Schema, model, models } = require("mongoose");
 const Joi = require("joi");
 
 const UserSchema = new Schema({
-    // firstName: String,
-    // lastName: String,
-    // email: String, 
-    // street: String, 
-    // postCode: String, 
-    // city: String, 
-    // password: String, 
-    // isAdmin: Boolean
     firstName:{ type: String, required: false },
     lastName: { type: String, required: false },
     email: { type: String, required: true },
