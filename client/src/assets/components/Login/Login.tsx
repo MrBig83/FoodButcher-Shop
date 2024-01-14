@@ -7,13 +7,15 @@ import BackBtn from "../Buttons/backBtn";
 
 function Login() {
   
-  const { email, setEmail, password, setPassword, handleLogin, handleLogout, loggedInUser } = useContext(UserContext)
+  const { email, setEmail, password, setPassword, handleLogin, handleLogout, loggedInUser, auth } = useContext(UserContext)
   // const { email, setEmail, password, setPassword, handleLogin, handleLogout, loggedInUser, auth } = useContext(UserContext)
 
  const handleCheckAuth = async () => {
-  // await auth();
+  await auth();
   if (!loggedInUser._id) {
     await handleLogin();
+    setEmail("")
+    setPassword("")
   } else {
     await handleLogout();
   }
@@ -28,7 +30,7 @@ return (
       <div className="popupWindowContent">
       {/* <input type="text" className="userEmail" placeholder="Enter card name" value={email} onChange={(e) => setEmail(e.target.value)} /> */}
       <input onChange={(e) => setEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" value={email} />
-        <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Lösenord" value={password} />
+        <input onChange={(e) => setPassword(e.target.value)} className="password" type="password" placeholder="Lösenord" value={password} />
         {loggedInUser._id ? <button onClick={() => handleCheckAuth()}>Logga ut</button> : <button onClick={() => handleCheckAuth()}>Logga in</button>}
         {/* <button onClick={() => handleLogin()}>Logga in</button>
         <button onClick={() => handleLogout()}>Logga ut</button> */}
