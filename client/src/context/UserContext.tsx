@@ -135,6 +135,19 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   setPassword("")
   setVerPassword("")
 };
+const auth = async (): Promise<void> => {    
+  console.log("Auth");
+  
+  const response = await fetch("/api/users/authorize");
+  const loggedInUser = await response.json();
+  console.log(loggedInUser);
+  
+  setLoggedInUser(loggedInUser);
+  getUserOrders(loggedInUser._id)
+};
+useEffect(() => {
+  auth();
+}, []);
 
 const getUserOrders = async (userId:string) => { 
   const response = await fetch(`api/orders/user/${userId}`);
@@ -142,29 +155,21 @@ const getUserOrders = async (userId:string) => {
   console.log(userOrders); 
   setUserOrders(userOrders)
 };
-useEffect(() => {
-  // Code to run on mount
-  
-  
-  getUserOrders(loggedInUser._id)
 
-  // Return a cleanup function to be executed on unmount
-  // return () => {
-  //   console.log('Component will unmount');
-  //   // Code to run on unmount
-  // };
-}, []);
+// useEffect(() => {
+//   console.log(loggedInUser);
+//   getUserOrders(loggedInUser._id)
 
-  const auth = async (): Promise<void> => {    
-    console.log("Auth");
-    
-    const response = await fetch("/api/users/authorize");
-    const loggedInUser = await response.json();
-    setLoggedInUser(loggedInUser);
-  };
-  useEffect(() => {
-    auth();
-  }, []);
+//   return () => {
+//     // Cleanup code here, e.g., cancelling a network request or clearing a subscription
+//     console.log('Component is unmounted. Cleanup performed.');
+//   };
+
+// }, [loggedInUser]);
+
+
+
+
 
   return (
     <UserContext.Provider

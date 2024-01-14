@@ -80,10 +80,12 @@ const UserPage = () => {
                     </thead>
 
                     {userOrders?.map((userOrder) => (
-                      <tbody>
-                        <td>{new Date(userOrder.history.created).toLocaleString()}</td>
-                        <td>{userOrder.purchaseId}</td>
-                        <td>{userOrder.status} </td>
+                      <tbody key={userOrder.purchaseId}>
+                        <tr>
+                          <td>{new Date(userOrder.history.created).toLocaleString()}</td>
+                          <td>{userOrder.purchaseId}</td>
+                          <td>{userOrder.status} </td>
+                        </tr>
                         {userOrder.order.items?.map((userOrderItem) => (
                           <tr key={userOrderItem.itemId}>
                             <td></td>
