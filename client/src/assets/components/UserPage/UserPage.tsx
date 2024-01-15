@@ -46,12 +46,12 @@ const UserPage = () => {
 
   return (
     <div className="UserPage">
-        <h1>UserPage</h1>
+        <h1>Ditt konto {userObject.firstName ? userObject.firstName : loggedInUser.email }</h1>
           <button onClick={() => handleLogout()}>Logga ut</button>
           <button onClick={toggleUserVisibility}>Updatera adress</button>
-        <button onClick={toggleOrderVisibility}>Visa orderhistorik</button>
+          <button onClick={toggleOrderVisibility}>Visa orderhistorik</button>
         <div id="updateCredForm" className={`content ${isUserVisible ? 'active' : ''}`}>
-          <p>Uppdatera kontoinformation för <strong>{loggedInUser.email}</strong></p>
+          <p>Uppdatera kontoinformation</p>
           <input type="text" placeholder="Förnamn" defaultValue={userObject.firstName} onChange={(e) => userObject.firstName = e.target.value} />
           <input type="text" placeholder="Efternamn" defaultValue={userObject.lastName} onChange={(e) => userObject.lastName = e.target.value} />
           <input type="text" placeholder="Gatuadress" defaultValue={userObject.street} onChange={(e) => userObject.street = e.target.value} />
@@ -62,7 +62,7 @@ const UserPage = () => {
         </div>
 
                 <div className={`content ${isOrdersVisible ? 'active' : ''}`}>
-                <p>Varor:</p>
+                <p>Tidigare ordrar:</p>
                 <table className="orderTable">
                     <thead>
                         <tr>

@@ -1,11 +1,12 @@
 import "./Cart.css"
 import CartProductCard from "../CartProductCard/CartProductCard"
-
+import  {faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import BackBtn from "../Buttons/backBtn";
 import ICartItem from "../../interfaces/ICartItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const Cart = () => {
@@ -28,29 +29,40 @@ const Cart = () => {
   return (
     <div className="Products">
       <BackBtn />
-        <h1>Din kundvagn:</h1>
+      <div className="cartTop">
+      <h1>Din kundvagn:</h1>  
+      <div className="cartSum">
+        {numberInCart ? <button onClick={() => proceedToCheckout(uniqueProducts)}>Fortsätt</button> : "" }
+        <p>Antal varor: {numberInCart}</p>
+        <p>Summa: {totalPrice}:-</p>
+      </div>
+      </div>
+
+      <div className="productCardsList">
         {uniqueProducts?.map((product: ICartItem) => (
-        <div className="ProductCardRender" key={product.product.id} >
-      
+          <div className="ProductCardRender" key={product.product.id} >
+        
             <CartProductCard 
               key={product.product.id}
               product={product.product} 
             />
             <div className="productCartButtons">
             <p>Antal: {product.quantity}</p>
-              <button onClick={() => decreaseProductCount(product)}>Minska</button>
-              <button onClick={() => increaseProductCount(product)}>Öka</button>
-              <button onClick={() => removeProduct(product)}>Ta bort</button>
+              <button onClick={() => decreaseProductCount(product)}>-</button>
+              <button onClick={() => increaseProductCount(product)}>+</button>
+              <button className="spezial" onClick={() => removeProduct(product)}><FontAwesomeIcon icon={faTrashCan} /></button>
             </div>
-         
-        </div>
-      ))}
-      <div>
-      {numberInCart ? <button onClick={() => proceedToCheckout(uniqueProducts)}>Gå vidare</button> : "" }
-      {/* <Checkout /> */}
-        <p>Totalt antal produkter i kundkorgen: {numberInCart}</p>
-        <p>Total summa: {totalPrice}</p>
-        </div>
+          
+          </div>
+        ))}
+      </div>
+    
+    {/* <div className="cartSum">
+      {numberInCart ? <button onClick={() => proceedToCheckout(uniqueProducts)}>Fortsätt</button> : "" }
+      <p>Produkter i kundkorgen: {numberInCart}</p>
+      <p>Total summa: {totalPrice}:-</p>
+    </div> */}
+    
 
         {responseSnippet ? 
           <div className="iFrameContainer">

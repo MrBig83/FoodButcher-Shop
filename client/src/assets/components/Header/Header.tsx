@@ -18,7 +18,7 @@ const Header = () => {
             <Link to={`/`}>
                 <img src={logo} alt="Logo" />
             </Link>
-            <h1>Header</h1>
+            <h1></h1>
             <div className="rightNav">
 
                 <div className='navlinks'>
@@ -48,7 +48,7 @@ const Header = () => {
                         <FontAwesomeIcon icon={faUser} />
                     </Link>
                     }
-                    <p>{loggedInUser._id ? "Välkommen "+loggedInUser.firstName + "!" : "Konto"}</p>
+                    <p className='greetUser'>{loggedInUser._id ? "Välkommen "+loggedInUser.firstName + "!" : "Konto"}</p>
                 </div>
                 <div className='navlinks'>
                 {numberInCart > 0 ? 
