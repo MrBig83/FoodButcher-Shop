@@ -11,7 +11,6 @@ import IUserData from "../assets/interfaces/IUserData";
 import { IOrder } from "../assets/interfaces/IOrderObject";
 import { useNavigate  } from "react-router-dom";
 
-
 interface UserContextProps {
   email: string;
   password: string;
@@ -34,6 +33,7 @@ interface UserContextProps {
 export const UserContext = createContext<UserContextProps>({} as UserContextProps);
 
 const UserContextProvider = ({ children }: PropsWithChildren) => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verPassword, setVerPassword] = useState("");
@@ -66,12 +66,11 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       });
 
       const loggedInUser = await res.json();     
-
+      
       setLoggedInUser(loggedInUser);
       auth();
       if(loggedInUser.email) {
         navigate('/');
-
       }
     } catch (err) {
       console.log(err);
@@ -145,13 +144,9 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   setPassword("")
   setVerPassword("")
 };
-const auth = async (): Promise<void> => {    
-  console.log("Auth");
-  
+const auth = async (): Promise<void> => {     
   const response = await fetch("/api/users/authorize");
-  const loggedInUser = await response.json();
-  console.log(loggedInUser);
-  
+  const loggedInUser = await response.json();  
   setLoggedInUser(loggedInUser);
   getUserOrders(loggedInUser._id)
 };
@@ -160,9 +155,11 @@ useEffect(() => {
 }, []);
 
 const getUserOrders = async (userId:string) => { 
-  const response = await fetch(`api/orders/user/${userId}`);
-  const userOrders: IOrder[] = await response.json();
-  setUserOrders(userOrders)
+  if(userId){
+    const response = await fetch(`api/orders/user/${userId}`);
+    const userOrders: IOrder[] = await response.json();
+    setUserOrders(userOrders)
+  }
 };
 
 // useEffect(() => {

@@ -1,13 +1,14 @@
 
 
 .footer {
-    /* position: fixed; */
+    position: fixed;
     background-color: rgb(30, 30, 30);
     height: 200px;
     width: 100%;
     display: flex;
     justify-content: space-around;
     color: rgb(220, 220, 220);
+    bottom: 0px;
 }
 .footerDivs {
     margin: 20px 0px;

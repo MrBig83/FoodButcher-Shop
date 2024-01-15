@@ -27,14 +27,16 @@ const Cart = () => {
   
 
   return (
+    
     <div className="Products">
       <BackBtn />
       <div className="cartTop">
-      <h1>Din kundvagn:</h1>  
+      {numberInCart ? <h1>Din kundvagn:</h1> : <h1>Din kundvagn är tom</h1> }
       <div className="cartSum">
-        {numberInCart ? <button onClick={() => proceedToCheckout(uniqueProducts)}>Fortsätt</button> : "" }
+        {numberInCart ? <><button onClick={() => proceedToCheckout(uniqueProducts)}>Fortsätt</button>
         <p>Antal varor: {numberInCart}</p>
         <p>Summa: {totalPrice}:-</p>
+        </> : "" }
       </div>
       </div>
 
@@ -74,7 +76,7 @@ const Cart = () => {
         : ""}
 
       </div>
-    
+      
   );
 };
 export default Cart;

@@ -91,24 +91,7 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
               items: currentPaysonOrder.order.items
 
           },
-          // merchant: {
-          //     checkoutUri: currentPaysonOrder.merchant.checkoutUri,
-          //     confirmationUri: currentPaysonOrder.merchant.confirmationUri,
-          //     partnerId: currentPaysonOrder.merchant.partnerId,
-          //     notificationUri: currentPaysonOrder.merchant.notificationUri,
-          //     validationUri: currentPaysonOrder.merchant.validationUri,
-          //     termsUri: currentPaysonOrder.merchant.termsUri,
-          //     integrationInfo: currentPaysonOrder.merchant.integrationInfo,
-          //     reference: currentPaysonOrder.merchant.reference
-          // },
-          // gui: {
-          //     colorScheme: currentPaysonOrder.gui.colorScheme,
-          //     locale: currentPaysonOrder.gui.locale,
-          //     requestPhone: currentPaysonOrder.gui.requestPhone,
-          //     phoneOptional: currentPaysonOrder.gui.phoneOptional,
-          //     verification: currentPaysonOrder.gui.verification,
-          //     countries: currentPaysonOrder.gui.countries
-          // },
+
           history: {
               created: currentPaysonOrder.history.created,
               readyToPay: currentPaysonOrder.history.readyToPay,

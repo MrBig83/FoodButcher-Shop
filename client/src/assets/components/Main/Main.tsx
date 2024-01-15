@@ -12,16 +12,21 @@ import News from "../News/News";
 import Admin from "../Admin/Admin";
 import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
+import { ErrorContext } from "../../../context/ErrorContext";
 import AdminSingleProduct from "../Admin/AdminSingleProduct/AdminSingleProduct";
 import Confirmation from "../Confirmation/Confirmation";
 
 const Main = () => {
   
   const { loggedInUser } = useContext(UserContext)
+  const { errorMsg } = useContext(ErrorContext)
     
   return (
     <div className="main">
       <div className="routes">
+        <div className="errorDialog">
+          <p>{errorMsg}</p>
+        </div>
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/product/:id" element={<SingleProduct />} />

@@ -4,7 +4,7 @@
 
 .accountForm {
     
-    width: 20%;
+    
     
     display: flex;
     flex-direction: column;
@@ -23,4 +23,10 @@
 
 .loginCreateAccount {
     margin-top: 30px;
+}
+.error-message {
+    margin-top: 10px;
+    border: 1px solid red ;
+    background-color: lightcoral;
+    
 }
