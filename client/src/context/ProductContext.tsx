@@ -79,7 +79,6 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ 
-        _id: "",
         id: productObject.id,
         title: productObject.title,
         description: productObject.description,
