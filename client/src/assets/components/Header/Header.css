@@ -36,6 +36,9 @@
 img {
     width: 120px;    
 }
+.greetUser {
+    text-align: center;
+}
 
 .cartNumber {
     position: relative;

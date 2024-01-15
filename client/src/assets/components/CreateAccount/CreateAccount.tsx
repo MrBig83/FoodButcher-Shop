@@ -1,5 +1,5 @@
 // import { Route, Routes } from "react-router";
-// import "./Products.css"
+import "../Login/Login.css"
 
 
 
@@ -19,8 +19,6 @@ function processInput() {
     handleCreateAccount()
  } else {
   console.log("Lösenorden stämmer inte överrens");
-  
-  //Lösenorden stämmer inte överens
  }
 
   
@@ -28,11 +26,11 @@ function processInput() {
   
 
   return (
-    <div className="CreateAccountPage"> 
+    <div className="accountPage"> 
     
       <BackBtn />
     
-        <div className="CreateAccountForm">
+        <div className="accountForm">
             <input onChange={(e) => setEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" value={email}/>
             <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Önskat lösenord" value={password}/>
             <input onChange={(e) => setVerPassword(e.target.value)} className="verPassword" type="text" placeholder="Önskat lösenord" value={verPassword}/>

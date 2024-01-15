@@ -3,5 +3,7 @@
     padding-top: 150px;
     margin: 0px 50px;
     margin-bottom: 10px;
-    
+    background-color: rgba(211, 211, 211, 0.2);
+    display: flex;
+    justify-content: center;    
 }

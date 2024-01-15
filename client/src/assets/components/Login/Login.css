@@ -1,20 +1,26 @@
-.header {
-    padding: 0px 50px;
-    height: 120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-    margin-bottom: 20px;
-    
+.accountPage {
+
 }
 
-.rightNav {
-    width: 25%;
-    display: flex;
-    justify-content: space-around;
-}
-img {
-    width: 120px;
+.accountForm {
     
+    width: 20%;
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 25px;
+    
+
+}
+.accountForm input {
+    margin-top: 10px;
+}
+
+.accountForm button {
+    margin-top: 10px;
+}
+
+.loginCreateAccount {
+    margin-top: 30px;
 }
