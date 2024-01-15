@@ -1,4 +1,5 @@
 const { OrderModel } = require("./order.model");
+const { ProductModel } = require("../product/product.model");
 // const bcrypt = require("bcrypt");
 
 // const {
@@ -35,7 +36,6 @@ async function postOrder(req, res) {
         redirect: 'follow'
     };
     try {
-
         const response = await fetch("https://test-api.payson.se/2.0/Checkouts", requestOptions)
         const result = await response.json()
         res.status(201).json(result)
@@ -100,15 +100,39 @@ async function updateOrder(req, res) {
 // ================== SAVE ORDER to MongoDB ==================
 async function saveToMongo(req, res) {
     console.log("Nu sparar vi till MongoDB");
-    console.log(req.body);
-    const order = new OrderModel({
-        ...req.body,
-        // customer: req.session._id,
-        // orderNumber: Math.floor(Math.random() * 1000000),
-      });
+    // console.log(req.body.order.items);
+    try {
+        //Minska lagersaldot på beställda produkter
+                for (const orderItem of req.body.order.items) {
+                  let product = await ProductModel.findById(orderItem.reference);
+                    
+                  if (product) {
+                    product.instock -= orderItem.quantity;
+                    console.log("Updated stock: " + product.instock);
+                    // orderItem.price = product.price * orderItem.quantity;
+                    await product.save();
+                  }
+                }
+    
+        const order = new OrderModel({
+          ...req.body,
+        //   customer: req.session._id,
+        //   orderNumber: Math.floor(Math.random() * 1000000),
+        });
+    
+        await order.save();
+        res.status(201).json(order);
+                  } catch (err) {
+                    console.log(err);
+                  }
+    
+
+    // const order = new OrderModel({
+    //     ...req.body,
+    //   });
   
-      await order.save();
-      res.status(201).json(order);
+    //   await order.save();
+    //   res.status(201).json(order);
 }
 // ================== GET USER ORDERS ==================
 async function getUserOrders(req, res) {
@@ -118,22 +142,6 @@ async function getUserOrders(req, res) {
         description: req.params.id
     });
     res.status(200).json(orders);
-    //     res.status(200).json(products);
-    //     console.log(products);
-    //   }
-
-    // const product = await ProductModel.findOne({
-    //     id: req.params.id
-    //   });
-
-    // try {
-    //     const response = await fetch(`https://test-api.payson.se/2.0/Checkouts/${req.params.id}`, requestOptions)
-    //     const result = await response.json()
-    //     res.status(200).json(result)
-    // } catch(error) {
-    //     console.log('error', error);
-    //     res.status(500).json({ success: false, error: error.message })
-    // }
 }
 
 

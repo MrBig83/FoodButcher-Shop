@@ -49,6 +49,7 @@ const UserPage = () => {
         <h1>UserPage</h1>
           <button onClick={() => handleLogout()}>Logga ut</button>
           <button onClick={toggleUserVisibility}>Updatera adress</button>
+        <button onClick={toggleOrderVisibility}>Visa orderhistorik</button>
         <div id="updateCredForm" className={`content ${isUserVisible ? 'active' : ''}`}>
           <p>Uppdatera kontoinformation för <strong>{loggedInUser.email}</strong></p>
           <input type="text" placeholder="Förnamn" defaultValue={userObject.firstName} onChange={(e) => userObject.firstName = e.target.value} />
@@ -60,15 +61,6 @@ const UserPage = () => {
           <button onClick={() => handleSaveCreds(userObject)}>Spara</button>
         </div>
 
-        <p>Din Orderhistorik</p>
-        {/* <div className="deliveryAddressBox"> */}
-                {/* <p>Leveransadress:</p>
-                <p>{currentOrder?.customer.firstName} {currentOrder?.customer.lastName}</p>
-                <p>{currentOrder?.customer.street}</p>
-                <p>{currentOrder?.customer.postalCode}</p>
-                <p>{currentOrder?.customer.city}</p> */}
-            {/* </div> */}
-                <button onClick={toggleOrderVisibility}>Visa orderhistorik</button>
                 <div className={`content ${isOrdersVisible ? 'active' : ''}`}>
                 <p>Varor:</p>
                 <table className="orderTable">

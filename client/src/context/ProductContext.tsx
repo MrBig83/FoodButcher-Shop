@@ -19,20 +19,7 @@ interface ProductContextProps {
     setProductObject: Dispatch<SetStateAction<IProduct>>
     setUpdateObject: Dispatch<SetStateAction<IProduct>>
     deleteProduct: (updateProduct: IProduct) => Promise<void>;
-    // setProductObject: Dispatch<SetStateAction<{
-    //   id: number, 
-    //   title: string,
-    //   description: string,
-    //   usage: string, 
-    //   suits: string, 
-    //   ingredients: string, 
-    //   nutritions: string, 
-    //   price: number,
-    //   image: string,
-    //   instock: number,
-    //   quantity: string, 
-    //   deleted: boolean
-    // }>>;
+
 }
 
 export const ProductContext = createContext<ProductContextProps>({} as ProductContextProps);
@@ -61,19 +48,7 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   
   const [productObject, setProductObject] = useState(initialFormState)
   const [updateObject, setUpdateObject] = useState(initialFormState)
-  // const [productObject, setProductObject] = useState<IProduct | null>({
-  //   id: 0,
-  //   title: "",
-  //   description: "",
-  //   usage: "", 
-  //   suits: "", 
-  //   ingredients: "", 
-  //   nutritions: "", 
-  //   price: 0,
-  //   image: "",
-  //   instock: 0,
-  //   quantity: ""
-  // });
+
   
   //Functions
 
@@ -160,8 +135,9 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
     const res = await response.json()
     console.log(res);
     getProducts();
-    
   }
+
+
 
 return (
     <ProductContext.Provider

@@ -162,7 +162,6 @@ useEffect(() => {
 const getUserOrders = async (userId:string) => { 
   const response = await fetch(`api/orders/user/${userId}`);
   const userOrders: IOrder[] = await response.json();
-  console.log(userOrders); 
   setUserOrders(userOrders)
 };
 
