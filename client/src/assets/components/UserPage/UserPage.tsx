@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 // import IUser from "../../interfaces/IUser";
 import IUserData from "../../interfaces/IUserData";
+import BackBtn from "../Buttons/backBtn";
 
 
 
@@ -47,6 +48,7 @@ const UserPage = () => {
   return (
     <div className="UserPage">
         <h1>Ditt konto {userObject.firstName ? userObject.firstName : loggedInUser.email }</h1>
+          <BackBtn />
           <button onClick={() => handleLogout()}>Logga ut</button>
           <button onClick={toggleUserVisibility}>Updatera adress</button>
           <button onClick={toggleOrderVisibility}>Visa orderhistorik</button>

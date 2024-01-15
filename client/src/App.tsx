@@ -8,6 +8,7 @@ import ProductContextProvider from './context/ProductContext';
 import CartContextProvider from './context/CartContext';
 import UserContextProvider from './context/UserContext';
 import OrderContextProvider from './context/OrderContext';
+import ErrorContextProvider from './context/ErrorContext';
 
 
 function App() {
@@ -20,9 +21,11 @@ function App() {
       <UserContextProvider>
       <CartContextProvider>
       <OrderContextProvider>
+      <ErrorContextProvider>
         <Header />
         <Main />
         <Footer />
+      </ErrorContextProvider>
       </OrderContextProvider>
       </CartContextProvider>
       </UserContextProvider>
