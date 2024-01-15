@@ -2,6 +2,8 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { IOrder } from "../assets/interfaces/IOrderObject";
 import { CartContext } from "../context/CartContext";
+import { ProductContext } from "../context/ProductContext";
+
 // import { UserContext } from "../context/UserContext";
 // import IUser from "../assets/interfaces/IUser";
 
@@ -18,6 +20,8 @@ export const OrderContext = createContext<OrderContextProps>({} as OrderContextP
 
 const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   const { setNumberInCart, setProductsInCart } = useContext(CartContext);
+  const { getProducts } = useContext(ProductContext);
+  
   // const { loggedInUser } = useContext(UserContext);
   // console.log("CartContext value:", useContext(CartContext));
 
@@ -120,11 +124,8 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
       }
       ), 
   })
+  getProducts()
   }
-
-
-  
-
 
   return (
     <OrderContext.Provider
