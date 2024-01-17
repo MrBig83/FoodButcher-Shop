@@ -1,12 +1,7 @@
-// Import the necessary dependencies
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { IOrder } from "../assets/interfaces/IOrderObject";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
-
-// import { UserContext } from "../context/UserContext";
-// import IUser from "../assets/interfaces/IUser";
-
 
 interface OrderContextProps {
   currentOrderId: string;
@@ -21,11 +16,6 @@ export const OrderContext = createContext<OrderContextProps>({} as OrderContextP
 const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   const { setNumberInCart, setProductsInCart } = useContext(CartContext);
   const { getProducts } = useContext(ProductContext);
-  
-  // const { loggedInUser } = useContext(UserContext);
-  // console.log("CartContext value:", useContext(CartContext));
-
-  
   
   // States
   const [currentOrderId, setCurrentOrderId] = useState("");
@@ -62,7 +52,6 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        
           status: currentPaysonOrder.status,
           id: currentPaysonOrder.id,
           expirationTime: currentPaysonOrder.expirationTime,

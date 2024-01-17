@@ -24,13 +24,10 @@ const defaultProduct: IProduct = {
   deleted: false
 };
 
-
 const SingleProduct = () => {
   const [product, setProduct] = useState<IProduct>(defaultProduct);
   const { id } = useParams();
-  // const { productList, singleProduct } = useContext(ProductContext);
   
-
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await fetch(`/api/products/${id}`);
@@ -39,31 +36,26 @@ const SingleProduct = () => {
     };
     fetchProduct();
   }, []);
-  // }, [product, id]); // TODO: Ta bort - Detta orsakade en oändlig loop. (Sparas utifall att...)
       
   return (
-    <>
-    
+    <>  
       <BackBtn />
-    
-    <div className="SingleProduct">
-      <p className="productTitle">{product!.title}</p>
-      <img className="productImage" src={product!.image} alt="" />
-      <div className="productInfo">
-        <p>{product!.description}</p>
-        <p><strong>Använding:</strong> {product!.usage}</p>
-        <p><strong>Passar till:</strong> {product!.suits}</p>
-        <p><strong>Innehåll:</strong> {product!.ingredients}</p>
-        <p><strong>Näringsinnehåll per 100g:</strong> {product!.nutritions}</p>
+      <div className="SingleProduct">
+        <p className="productTitle">{product!.title}</p>
+        <img className="productImage" src={product!.image} alt="" />
+        <div className="productInfo">
+          <p>{product!.description}</p>
+          <p><strong>Använding:</strong> {product!.usage}</p>
+          <p><strong>Passar till:</strong> {product!.suits}</p>
+          <p><strong>Innehåll:</strong> {product!.ingredients}</p>
+          <p><strong>Näringsinnehåll per 100g:</strong> {product!.nutritions}</p>
+        </div>
+        <div className="productBottom">
+          <p className="productPrice">{product!.price}:-</p>
+          
+          <BuyNowBtn product={product} />
+        </div>
       </div>
-      <div className="productBottom">
-        <p className="productPrice">{product!.price}:-</p>
-        
-        <BuyNowBtn product={product} />
-      </div>
-        
-
-    </div>
     </>
   );
 };

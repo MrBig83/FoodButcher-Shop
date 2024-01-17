@@ -8,7 +8,6 @@ import BackBtn from "../Buttons/backBtn";
 import ICartItem from "../../interfaces/ICartItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const Cart = () => {
   const { productsInCart, decreaseProductCount, 
       increaseProductCount, removeProduct, 
@@ -17,17 +16,14 @@ const Cart = () => {
       setResponseSnippet 
     } = useContext(CartContext);
   
-  const uniqueProducts = Array.from(new Set(productsInCart)) //För att ta bort alla dubletter 
+  const uniqueProducts = Array.from(new Set(productsInCart)) 
 
-  console.log(responseSnippet);
   function closeFrame() {
     setResponseSnippet("")
     localStorage.setItem("FBS-checkout", "")
   }
   
-
-  return (
-    
+  return (  
     <div className="Products">
       <BackBtn />
       <div className="cartTop">
@@ -39,7 +35,6 @@ const Cart = () => {
         </> : "" }
       </div>
       </div>
-
       <div className="productCardsList">
         {uniqueProducts?.map((product: ICartItem) => (
           <div className="ProductCardRender" key={product.product.id} >
@@ -57,14 +52,7 @@ const Cart = () => {
           
           </div>
         ))}
-      </div>
-    
-    {/* <div className="cartSum">
-      {numberInCart ? <button onClick={() => proceedToCheckout(uniqueProducts)}>Fortsätt</button> : "" }
-      <p>Produkter i kundkorgen: {numberInCart}</p>
-      <p>Total summa: {totalPrice}:-</p>
-    </div> */}
-    
+      </div>  
 
         {responseSnippet ? 
           <div className="iFrameContainer">
@@ -74,9 +62,7 @@ const Cart = () => {
             <iframe className="iFrame" src={responseSnippet} title="Third Party Site" width="80%" height="750px" /> 
           </div> 
         : ""}
-
       </div>
-      
   );
 };
 export default Cart;

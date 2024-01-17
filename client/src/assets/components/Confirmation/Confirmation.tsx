@@ -1,50 +1,17 @@
 import "./Confirmation.css"
 import { useContext, useEffect } from 'react'
 import { OrderContext } from "../../../context/OrderContext";
-// import { ProductContext } from "../../../context/ProductContext";
 import BackBtn from "../Buttons/backBtn";
-// import IProduct from "../../interfaces/IProduct";
-// import { IOrder } from "../../interfaces/IOrderObject";
-// import UpdateProduct from "../UpdateProduct/UpdateProduct";
-// import { useNavigate } from "react-router-dom";
-// import { UserContext } from "../../../context/UserContext";
 
-
-function Confirmation() {
-    console.log("Confirmation-sidan visas");
-    
+function Confirmation() {  
     const { getCurrentOrder, currentOrder } = useContext(OrderContext);
-    // const { updateProduct, productList } = useContext(ProductContext);
-    // const { loggedInUser } = useContext(UserContext);
-
-    
- 
     
     useEffect(()=> {        
         getCurrentOrder()
-        console.log("Test i confirmation");
-        // reduceInStock(productList, currentOrder)
         
         return () => {
         };
     }, [])
-
-
-    // const reduceInStock = (productList:IProduct[], currentOrder:IOrder) => {
-    //     console.log("TEST");
-        
-    //     console.log(productList);
-    //     console.log(currentOrder.order.items);
-        
-        
-        
-    //     //Hämta saldo ifrån productlist
-    //     //Reducera saldo uifrån order
-    //     //Kör Updateproduct med den uppdaterade produkten. 
-    //     //Gör om för nästa produkt i ordern. 
-    //   }
-    
-
 
   return (
     <div>

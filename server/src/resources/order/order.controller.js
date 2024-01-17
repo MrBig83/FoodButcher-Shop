@@ -47,7 +47,6 @@ async function postOrder(req, res) {
 
 // ================== GET ORDER ==================
 async function getOrder(req, res) {
-    console.log("Order");
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
@@ -64,7 +63,6 @@ async function getOrder(req, res) {
 }
 // ================== GET PAID ORDERs ==================
 async function getPaidOrders(req, res) {
-    console.log("Hitta");
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
@@ -99,45 +97,27 @@ async function updateOrder(req, res) {
 
 // ================== SAVE ORDER to MongoDB ==================
 async function saveToMongo(req, res) {
-    console.log("Nu sparar vi till MongoDB");
-    // console.log(req.body.order.items);
     try {
-        //Minska lagersaldot på beställda produkter
-                for (const orderItem of req.body.order.items) {
-                  let product = await ProductModel.findById(orderItem.reference);
-                    
-                  if (product) {
-                    product.instock -= orderItem.quantity;
-                    console.log("Updated stock: " + product.instock);
-                    // orderItem.price = product.price * orderItem.quantity;
-                    await product.save();
-                  }
-                }
-    
+        for (const orderItem of req.body.order.items) {
+            let product = await ProductModel.findById(orderItem.reference);
+            if (product) {
+            product.instock -= orderItem.quantity;
+            await product.save();
+            }
+        }
         const order = new OrderModel({
           ...req.body,
-        //   customer: req.session._id,
-        //   orderNumber: Math.floor(Math.random() * 1000000),
         });
     
         await order.save();
         res.status(201).json(order);
-                  } catch (err) {
-                    console.log(err);
-                  }
+    } catch (err) {
+    console.log(err);
+    }
     
-
-    // const order = new OrderModel({
-    //     ...req.body,
-    //   });
-  
-    //   await order.save();
-    //   res.status(201).json(order);
 }
 // ================== GET USER ORDERS ==================
-async function getUserOrders(req, res) {
-    console.log("UserOrders");
-   
+async function getUserOrders(req, res) {   
     const orders = await OrderModel.find({
         description: req.params.id
     });

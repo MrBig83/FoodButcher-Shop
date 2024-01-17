@@ -53,8 +53,14 @@ async function loginUser(req, res) {
     if (req.session._id) {
       return res.status(200).json(user);
     }
-
+  // reeq.session.settings = "Hejsan"
   req.session = user;  
+  // req.session.user = user;  
+  console.log("Första");
+  console.log(req.session);
+  
+  // console.log(reeq.session.settings);
+  
   res.status(200).json(user);
 }
 
@@ -62,15 +68,14 @@ async function logout(req, res) {
   if (!req.session._id) {
       return res.status(400).json("Cannot logout when you are not logged in");
     }
-  
-  console.log(req.session);
   req.session = null;
   res.status(204).json("User logged out");
   }
   
   async function authorize(req, res) {
+    console.log(req.session);
     if (!req.session._id) {
-      return res.status(401).json("You are not logged in");
+      return res.status(200).json("Guest present");
     }
   res.status(200).json(req.session);
 }

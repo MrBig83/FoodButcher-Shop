@@ -26,7 +26,8 @@ interface UserContextProps {
   auth: () => Promise<void>;
   loggedInUser: IUser;
   userOrders: IOrder[] | null;
-  getUserOrders: (userId:string) => Promise<void>
+  getUserOrders: (userId:string) => Promise<void>;
+
 
 }
 
@@ -74,6 +75,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       }
     } catch (err) {
       console.log(err);
+      // TODO : Ersätt med en popup som visar felmeddelandet istället
+
     }
   };
 
@@ -82,7 +85,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   }
 
   const updateUserCreds = async (userObject:IUserData): Promise<void> => {
-    console.log(userObject);
+    // TODO : Popup som bekräftar uppdaterad information
     
     await fetch(`/api/users/update/${loggedInUser._id}`, {
       method: "PUT",
@@ -95,9 +98,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         street: userObject.street,
         postCode: userObject.postCode,
         city: userObject.city,
-        // isAdmin:false
        }), 
-  })
+    })
   }
 
   const handleLogout = async (): Promise<void> => {
@@ -147,12 +149,21 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
 const auth = async (): Promise<void> => {     
   const response = await fetch("/api/users/authorize");
   const loggedInUser = await response.json();  
+  console.log(loggedInUser);
+  
   setLoggedInUser(loggedInUser);
   getUserOrders(loggedInUser._id)
 };
+// TODO : Ta bort denna och kontrollera cookies istället. 
 useEffect(() => {
+  // cookieConsent()
   auth();
 }, []);
+
+useEffect(() => {
+  // cookieConsent()
+  // auth();
+}, [loggedInUser]);
 
 const getUserOrders = async (userId:string) => { 
   if(userId){
@@ -162,19 +173,35 @@ const getUserOrders = async (userId:string) => {
   }
 };
 
-// useEffect(() => {
-//   console.log(loggedInUser);
-//   getUserOrders(loggedInUser._id)
 
-//   return () => {
-//     // Cleanup code here, e.g., cancelling a network request or clearing a subscription
-//     console.log('Component is unmounted. Cleanup performed.');
+
+// const cookieConsent = () => {
+//     const checkCookie = (cookieName: string): boolean => {
+//       const cookies = document.cookie.split(';');
+//       for (const cookie of cookies) {
+//         const [name, value] = cookie.trim().split('=');
+//         // if (name === cookieName && value === "true") {
+//         if (name === cookieName ) {
+//           console.log(value);
+          
+//           // Cookie found
+//           return true;
+//         }
+//       }
+//       // Cookie not found 
+//       return false;
+//     };
+
+//     const isCookieSaved = checkCookie('TFBSettings');
+
+//     if (!isCookieSaved) {
+//       console.log('Cookie does not exist.');
+//       setShowCookie(true)
+//     } else {
+//       console.log('Cookie exist.');
+//       setShowCookie(false)
+//     }
 //   };
-
-// }, [loggedInUser]);
-
-
-
 
 
   return (
@@ -194,8 +221,7 @@ const getUserOrders = async (userId:string) => {
         getUser,
         updateUserCreds,
         getUserOrders, 
-        userOrders
-
+        userOrders, 
       }}
     >
       {children}

@@ -2,8 +2,6 @@ const { ProductModel, Topic } = require("./product.model");
 
 async function addProduct(req, res, next) {
     const product = await new ProductModel(req.body)
-    console.log(product);
-
     product.save();
     res.status(201).json(product)
 }
@@ -11,12 +9,11 @@ async function addProduct(req, res, next) {
 async function getProducts(req, res) {
     const products = await ProductModel.find({deleted: false});
     res.status(200).json(products);
-    console.log(products);
   }
+  
 async function adminGetProducts(req, res) {
     const products = await ProductModel.find();
     res.status(200).json(products);
-    console.log(products);
   }
 
 async function getSingleProduct(req, res) {
@@ -38,11 +35,8 @@ async function deleteProduct(req, res) {
   const product = await ProductModel.findByIdAndDelete(
     req.params.id
   );
-  
-  console.log(product);
+  res.status(204).json(product)
   res.status(200).json("Produkt med ID: " + req.params.id + " är nu raderad");
 }
 
 module.exports = { addProduct, getProducts, adminGetProducts, getSingleProduct, updateProduct, deleteProduct };
-
-

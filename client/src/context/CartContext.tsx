@@ -21,7 +21,6 @@ interface CartContextProps {
     responseSnippet: string;
     setResponseSnippet: Dispatch<SetStateAction<string>>
     setProductsInCart: Dispatch<SetStateAction<ICartItem[]>>;
-    
 }
 
 export const CartContext = createContext<CartContextProps>({} as CartContextProps);
@@ -31,13 +30,11 @@ const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   const { loggedInUser } = useContext(UserContext);
 
   //States
-
   const [numberInCart, setNumberInCart] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [productsInCart, setProductsInCart] = useState<ICartItem[]>([]) //cartFromLocalStorage
   const [responseSnippet, setResponseSnippet] = useState("")
 
-  
   //Functions
   useEffect(()=> {
     setProductsInCart(cartFromLocalStorage)
@@ -47,7 +44,6 @@ const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
     updateLS(productsInCart) 
     countProductsInCart()
   }, [productsInCart])
-
 
   const addProduct = (product: IProduct) => {
     const item: ICartItem = {
@@ -91,15 +87,12 @@ const updateLS = (productsInCart: ICartItem[]) => {
             countProductsInCart()
             updateLS(productsInCart) 
           } else {
-            console.log("Ta bort produkten");
             removeProduct(item)
-            // countProductsInCart()
           }
         }      
       })
     } 
   }
-  
 
   const increaseProductCount = (item: ICartItem) => {
     addItem(item)
@@ -111,7 +104,6 @@ const updateLS = (productsInCart: ICartItem[]) => {
     })
     setProductsInCart(result);  
     countProductsInCart()
-    
   }
 
   const countProductsInCart = () => {
@@ -132,7 +124,6 @@ const updateLS = (productsInCart: ICartItem[]) => {
 }
 
 const proceedToCheckout = async (uniqueProducts: ICartItem[]) => {
-console.log("Detta loopas väl inte?");
 
 interface IPostArray  {
   name: string;
@@ -191,35 +182,18 @@ const response = await fetch("/api/orders", {
   }), 
 })
 const res =  await response.json();
-console.log(res.snippet);
 localStorage.setItem("FBS-checkout", res.id)
-console.log(res.id);
-
-// setResponseSnippet(res.snippet)
 
 redirectToPaysonCheckout(res.snippet)
-
-
 }
 
-
-
 const redirectToPaysonCheckout = (adjustedSnippet:string) => {
-
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = adjustedSnippet
   const paysonContainer = tempDiv.querySelector<HTMLDivElement>('#paysonContainer');
   const url: string = paysonContainer?.getAttribute('url') ?? 'default-url'; 
   setResponseSnippet(url)
-  // window.location.href = url;
 }
-
-// const redirectToPaysonCheckout = () => {
-  
-//     console.log(paysonCheckoutURL);
-    
-//     window.location.href = paysonCheckoutURL;
-//   };
 
 return (
     <CartContext.Provider
@@ -238,7 +212,6 @@ return (
         responseSnippet, 
         setResponseSnippet,
         setProductsInCart
-        
       }}
     >
       {children}
