@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import { PropsWithChildren, createContext, useContext, useEffect, useState } from "react";
 import { IOrder } from "../assets/interfaces/IOrderObject";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
@@ -9,6 +9,10 @@ interface OrderContextProps {
   getCurrentOrder: () => Promise<void>;
   currentOrder: IOrder | null;
   setCurrentOrder: React.Dispatch<React.SetStateAction<IOrder | null>>;
+  getAdminOrders: () => Promise<void>;
+  adminOrdersRaw: IOrder[];
+  setAdminOrdersRaw: React.Dispatch<React.SetStateAction<IOrder[]>>
+  updateOrder: (id: string, status: string) => Promise<void>;
 }
 
 export const OrderContext = createContext<OrderContextProps>({} as OrderContextProps);
@@ -20,10 +24,10 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   // States
   const [currentOrderId, setCurrentOrderId] = useState("");
   const [currentOrder, setCurrentOrder] = useState<IOrder | null>(null); 
+  const [adminOrdersRaw, setAdminOrdersRaw] = useState<IOrder[]>([]); 
 
   // Functions
   const getCurrentOrder = async () => {
-    
     const orderId = localStorage.getItem("FBS-checkout") || "[]";
     setCurrentOrderId(orderId);
     const response = await fetch(`api/orders/${orderId}`);
@@ -99,6 +103,28 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   getProducts()
   }
 
+  const updateOrder = async (id:string, status:string) => {
+    await fetch(`/api/orders/${id}`, {
+      method: "PUT", 
+      headers: {
+        "Content-Type": "application/json"
+      }, 
+      body: JSON.stringify({status: status})
+    })  
+    getAdminOrders()  
+  }
+  
+  
+  const getAdminOrders = async () => {
+    const response = await fetch(`api/orders/`);
+    const adminOrdersRaw: IOrder[] = await response.json();
+    setAdminOrdersRaw(adminOrdersRaw)
+  };
+  useEffect(() => {
+    getAdminOrders()
+}, [])
+
+
   return (
     <OrderContext.Provider
       value={{
@@ -107,6 +133,10 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         getCurrentOrder,
         currentOrder,
         setCurrentOrder,
+        getAdminOrders, 
+        adminOrdersRaw, 
+        setAdminOrdersRaw, 
+        updateOrder
         
       }}
     >

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import BackBtn from "../Buttons/backBtn";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
+import AdminViewOrders from "./AdminViewOrders/AdminViewOrders";
 
 
 
@@ -24,12 +25,16 @@ const Admin = () => {
   
   const [toggleCreate, setToggleCreate] = useState(false);
   const [toggleUpdate, setToggleUpdate] = useState(false);
+  const [toggleOrders, setToggleOrders] = useState(false);
 
   function toggleCreatePanel() {
     setToggleCreate(prevState => !prevState);
   }
   function toggleUpdatePanel() {
     setToggleUpdate(prevState => !prevState);
+  }
+  function toggleAdminOrders() {
+    setToggleOrders(prevState => !prevState);
   }
 
   return (
@@ -38,12 +43,12 @@ const Admin = () => {
       <h1>Admin dashboard</h1>
       <button className="toggleCreatePanel" onClick={toggleCreatePanel}>Lägg till produkt</button>
       <button className="toggleUpdatePanel" onClick={toggleUpdatePanel}>Uppdatera produkt</button>
+      <button className="toggleUpdatePanel" onClick={toggleAdminOrders}>Visa ordrar</button>
       
       {toggleCreate && <CreateProduct />}
       {toggleUpdate && <UpdateProduct />}
-      {/* <Routes>
-        <Route path="/Admin/:id" element={loggedInUser.isAdmin === true ? <AdminSingleProduct /> : <Login />} />
-      </Routes> */}
+      {toggleOrders && <AdminViewOrders />}
+
     </div>
   );
 };
