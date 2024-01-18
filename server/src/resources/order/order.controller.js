@@ -114,7 +114,22 @@ async function saveToMongo(req, res) {
     } catch (err) {
     console.log(err);
     }
-    
+}
+// ================== UPDATE ORDER IN MONGODB ==================
+async function updateMongoOrder(req, res) {
+
+    try {
+        await OrderModel.findOneAndUpdate(
+            req.params, 
+            req.body, 
+            {new: true },
+          );
+        // const result = await response.json()
+        res.status(201).json("Uppdaterad")
+    } catch(error) {
+        console.log('error', error);
+        res.status(500).json({ success: false, error: error.message })
+    }
 }
 // ================== GET USER ORDERS ==================
 async function getUserOrders(req, res) {   
@@ -123,10 +138,25 @@ async function getUserOrders(req, res) {
     });
     res.status(200).json(orders);
 }
+// ================== ADMIN GET ALL ORDERS ==================
+async function getAdminOrders(req, res) {   
+    const orders = await OrderModel.find();
+    res.status(200).json(orders);
+}
 
 
 
 
 
 // ================== EXPORTS ==================
-module.exports = { getMerchant, postOrder, getOrder, updateOrder, getPaidOrders, saveToMongo, getUserOrders };
+module.exports = { 
+    getMerchant, 
+    postOrder, 
+    getOrder, 
+    updateOrder, 
+    getPaidOrders, 
+    saveToMongo, 
+    getUserOrders, 
+    getAdminOrders, 
+    updateMongoOrder
+ };
