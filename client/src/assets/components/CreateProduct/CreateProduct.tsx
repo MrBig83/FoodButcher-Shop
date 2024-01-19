@@ -55,7 +55,6 @@ import { ProductContext } from '../../../context/ProductContext';
           {/* <BackBtn /> */}
       <div className="CreateProductPage"> 
         <div className="CreateProductForm">
-          <h1>Lägg till produkt</h1>
       
         <input
           onChange={handleInputChange}

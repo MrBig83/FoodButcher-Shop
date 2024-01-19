@@ -1,3 +1,5 @@
+
+@media (min-width: 1001px) {
 .main {
     min-height: max(100vh - 210px);
     padding-top: 150px;
@@ -6,4 +8,21 @@
     display: flex;
     justify-content: center;    
     
+}
+}
+
+
+@media (max-width: 1000px) {
+    .main {
+        min-height: max(100vh - 210px);
+        display: flex;
+        justify-content: center;    
+        padding-top: 150px;
+        width: 100%;
+
+    }
+
+
+
+
 }

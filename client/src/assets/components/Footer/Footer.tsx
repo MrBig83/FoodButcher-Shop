@@ -5,20 +5,25 @@ const Footer = () => {
     return (
       <div className="footer">
           <div className="footerDivs">
-            <h1>Footer1</h1>
-            <p>Text Footer1</p>
+            <h1>Kundservice</h1>
+            <p>Mail</p>
+            <p>Telefon</p>
           </div>
           <div className="footerDivs">
-            <h1>Footer2</h1>
-            <p>Text Footer2</p>
+            <h1>Information</h1>
+            <p>Försäljningsvillkor</p>
+            <p>Returpolicy</p>
+            <p>Cookies</p>
           </div>
-          <div className="footerDivs">
+          {/* <div className="footerDivs">
             <h1>Footer3</h1>
             <p>Text Footer3</p>
-          </div>
+          </div> */}
           <div className="footerDivs">
-            <h1>Footer4</h1>
-            <p>Text Footer4</p>
+            <h1>Om FoodButcher</h1>
+            <p>Bla bla</p>
+            <p>Bla bla</p>
+            <p>Bla bla</p>
           </div>
           <div className="spacerLine"></div>
       </div>

@@ -87,7 +87,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   const updateUserCreds = async (userObject:IUserData): Promise<void> => {
     // TODO : Popup som bekräftar uppdaterad information
     
-    await fetch(`/api/users/update/${loggedInUser._id}`, {
+    const response = await fetch(`/api/users/update/${loggedInUser._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -100,6 +100,8 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         city: userObject.city,
        }), 
     })
+    const res = await response.json()
+    setLoggedInUser(res)
   }
 
   const handleLogout = async (): Promise<void> => {
@@ -149,8 +151,6 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
 const auth = async (): Promise<void> => {     
   const response = await fetch("/api/users/authorize");
   const loggedInUser = await response.json();  
-  console.log(loggedInUser);
-  
   setLoggedInUser(loggedInUser);
   getUserOrders(loggedInUser._id)
 };

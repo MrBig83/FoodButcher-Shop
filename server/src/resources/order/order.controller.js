@@ -142,6 +142,7 @@ async function getUserOrders(req, res) {
 async function getAdminOrders(req, res) {   
     const orders = await OrderModel.find();
     res.status(200).json(orders);
+    
 }
 
 

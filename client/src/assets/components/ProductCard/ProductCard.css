@@ -45,6 +45,7 @@
     background-color:rgb(113, 113, 247);
 }
 .cardImage {
+    /* width: 67%; */
     width: 200px;
 }
 .cardPrice {
@@ -53,8 +54,16 @@
 a:link {
     text-decoration: none;
     color: black;
-  }
-  a:visited {
-    text-decoration: none;
-    color: black;
-  }
+}
+a:visited {
+text-decoration: none;
+color: black;
+}
+
+@media (max-width: 1000px) { 
+
+
+
+
+    
+}

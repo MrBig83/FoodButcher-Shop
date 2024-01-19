@@ -27,7 +27,7 @@ const Cart = () => {
     <div className="Products">
       <BackBtn />
       <div className="cartTop">
-      {numberInCart ? <h1>Din kundvagn:</h1> : <h1>Din kundvagn är tom</h1> }
+      
       <div className="cartSum">
         {numberInCart ? <><button onClick={() => proceedToCheckout(uniqueProducts)}>Fortsätt</button>
         <p>Antal varor: {numberInCart}</p>

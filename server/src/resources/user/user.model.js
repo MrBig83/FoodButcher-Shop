@@ -6,7 +6,7 @@ const UserSchema = new Schema({
     lastName: { type: String, required: false },
     email: { type: String, required: true },
     street: { type: String, required: false }, 
-    postCode: { type: String, required: false },
+    postCode: { type: Number, required: false },
     city: { type: String, required: false }, 
     password: { type: String, required: true }, 
     isAdmin: { type: Boolean, required: true, default: false }

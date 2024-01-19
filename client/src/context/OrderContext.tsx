@@ -116,7 +116,7 @@ const OrderContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   
   
   const getAdminOrders = async () => {
-    const response = await fetch(`api/orders/`);
+    const response = await fetch(`api/orders`);
     const adminOrdersRaw: IOrder[] = await response.json();
     setAdminOrdersRaw(adminOrdersRaw)
   };

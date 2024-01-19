@@ -2,13 +2,15 @@ import "./Confirmation.css"
 import { useContext, useEffect } from 'react'
 import { OrderContext } from "../../../context/OrderContext";
 import BackBtn from "../Buttons/backBtn";
+import { UserContext } from "../../../context/UserContext";
 
 function Confirmation() {  
     const { getCurrentOrder, currentOrder } = useContext(OrderContext);
+    const { getUserOrders, loggedInUser } = useContext(UserContext);  
     
     useEffect(()=> {        
         getCurrentOrder()
-        
+        getUserOrders(loggedInUser._id)
         return () => {
         };
     }, [])
