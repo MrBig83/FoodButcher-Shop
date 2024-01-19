@@ -13,7 +13,7 @@ const News = () => {
   return (
     <div className="news">
         <BackBtn />
-        <h1>Nyheter</h1>
+        
         
 
         

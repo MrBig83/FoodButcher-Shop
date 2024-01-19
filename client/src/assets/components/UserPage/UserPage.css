@@ -12,9 +12,13 @@
 #updateCredForm button {
     margin: 20px 0px;
 }
-
+.topButtons {
+    display: flex;
+    justify-content: center;
+    
+}
 .orderTable {
-    width: 50vw;
+    width: 800px;
     border: 1px solid rgb(150, 150, 150);
 }
 th {
@@ -31,6 +35,11 @@ tbody {
 }
 table {border-collapse: collapse;}
 
+.userOrderHistory {
+    border: 1px solid black;
+    margin-left: 25px;
+    margin-top: 20px;
+}
 
 .content {
     display: none;
@@ -38,9 +47,8 @@ table {border-collapse: collapse;}
     transition: visibility 0.5s, opacity 0.5s ease;
   }
   
-  .content.active {
-    display: block;
-    opacity: 1;
-  }
-  
+.content.active {
+display: block;
+opacity: 1;
+}
   

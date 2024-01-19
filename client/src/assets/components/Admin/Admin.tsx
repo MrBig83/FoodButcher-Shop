@@ -10,6 +10,7 @@ import AdminViewOrders from "./AdminViewOrders/AdminViewOrders";
 
 import "./Admin.css"
 import { ProductContext } from "../../../context/ProductContext";
+import { OrderContext } from "../../../context/OrderContext";
 
 // import { Link } from "react-router-dom";
 // import { useContext } from "react";
@@ -18,9 +19,11 @@ import { ProductContext } from "../../../context/ProductContext";
 const Admin = () => {
   // const { loggedInUser } = useContext(UserContext)
   const { adminGetProducts } = useContext(ProductContext)
+  const { getAdminOrders } = useContext(OrderContext)
 
   useEffect(()=>{
     adminGetProducts()
+    getAdminOrders()
   }, [])
   
   const [toggleCreate, setToggleCreate] = useState(false);
@@ -40,7 +43,7 @@ const Admin = () => {
   return (
     <div className="admin">
       <BackBtn />
-      <h1>Admin dashboard</h1>
+      
       <button className="toggleCreatePanel" onClick={toggleCreatePanel}>Lägg till produkt</button>
       <button className="toggleUpdatePanel" onClick={toggleUpdatePanel}>Uppdatera produkt</button>
       <button className="toggleUpdatePanel" onClick={toggleAdminOrders}>Visa ordrar</button>

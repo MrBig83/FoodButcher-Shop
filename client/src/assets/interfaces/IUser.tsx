@@ -4,7 +4,7 @@ export default interface IUser {
     lastName: string,
     email: string,
     street: string,
-    postCode: string,
+    postCode: number,
     city: string,
     // userName: string,
     password: string, 

@@ -3,6 +3,21 @@
     align-items: center;
     
 } */
-.productList {
-    display: flex;
+@media (min-width: 1001px) {
+    .productList {
+        display: flex;
+    }
+    
+}
+
+
+@media (max-width: 1000px) {
+    .productList {
+        /* display: flex; */
+    }
+    .Products {
+        width: 100%;
+        
+    }
+
 }

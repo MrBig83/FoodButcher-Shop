@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.use(
   cookieSession({
-    name: "TFBSession",
+    name: "FBS-Session",
     keys: ["aVeryS3cr3tK3y"],
     maxAge: 1000 * 60 * 60 * 24, // 24 Hours
     // sameSite: "strict",

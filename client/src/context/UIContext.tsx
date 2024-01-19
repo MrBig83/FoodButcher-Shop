@@ -6,16 +6,18 @@ import { PropsWithChildren, createContext, useEffect, useState } from "react";
 // import IUser from "../assets/interfaces/IUser";
 
 
-interface ErrorContextProps {
+interface UIContextProps {
   errorMsg: string;
   setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
-  showError: (errorMsg: string) => void
-
+  showError: (errorMsg: string) => void;
+  isMenuVisible: boolean;
+  setIsMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleMenuVisibility: () => void;
 }
 
-export const ErrorContext = createContext<ErrorContextProps>({} as ErrorContextProps);
+export const UIContext = createContext<UIContextProps>({} as UIContextProps);
 
-const ErrorContextProvider = ({ children }: PropsWithChildren<unknown>) => {
+const UIContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   //Import from other contexts
   // const { setNumberInCart, setProductsInCart } = useContext(CartContext);
   // const { getProducts } = useContext(ProductContext);
@@ -24,9 +26,15 @@ const ErrorContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   
   // States
   const [errorMsg, setErrorMsg] = useState("");
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
   
-
+  
   // Functions
+
+  const toggleMenuVisibility = () => {
+    setIsMenuVisible(!isMenuVisible);
+  };
+
   const showError = (errorMsg: string) => {
     setTimeout(() => {
       setErrorMsg("")
@@ -46,18 +54,21 @@ useEffect(()=> {
 
   
   return (
-    <ErrorContext.Provider
+    <UIContext.Provider
       value={{
         errorMsg, 
         setErrorMsg, 
-        showError
+        showError, 
+        toggleMenuVisibility, 
+        isMenuVisible, 
+        setIsMenuVisible
 
         
       }}
     >
       {children}
-    </ErrorContext.Provider>
+    </UIContext.Provider>
   );
 };
 
-export default ErrorContextProvider;
+export default UIContextProvider;

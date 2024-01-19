@@ -34,7 +34,7 @@ function AdminViewOrders() {
             style={{ cursor: 'pointer', fontWeight: 'bold' }}
             onClick={() => toggleOrder(order.id)}
           >
-            {order.purchaseId}
+            {order.purchaseId + " - " + new Date(order.history.created).toLocaleString()}
           </p>
           {expandedOrders.includes(order.id) && (
             <div className="renderSingleOrder">
@@ -66,7 +66,7 @@ function AdminViewOrders() {
   
     return (
       <div>
-        <h1>All Orders</h1>
+        
         {renderAllOrders(orders)}
       </div>
     );
