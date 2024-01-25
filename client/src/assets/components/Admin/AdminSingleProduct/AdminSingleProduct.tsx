@@ -17,6 +17,9 @@ const AdminSingleProduct = () => {
         setUpdateObject(updateObject)
         await updateProduct(updateObject)
         setErrorMsg("Produkt uppdaterad")
+        setTimeout(() => {
+          window.location.href = "/Admin";
+        }, 5000);
       };
     const handleDeleteProduct = async (updateObject: IProduct) => {
         
@@ -55,8 +58,6 @@ const AdminSingleProduct = () => {
         <NakedBackBtn />
     </Link>
       <div className="AdminSingleProduct">
-        <p>{updateObject._id}</p>
-        <p>{updateObject.id}</p>
         <p>Titel:</p>
       <input
           onChange={handleInputChange}

@@ -6,19 +6,15 @@ const Footer = () => {
       <div className="footer">
           <div className="footerDivs">
             <h1>Kundservice</h1>
-            <p>Mail</p>
-            <p>Telefon</p>
+            <p><p><a href="mailto:hello@foodbutcher.com">hello@foodbutcher.com</a></p></p>
+            <p>0707 - 111 111</p>
           </div>
           <div className="footerDivs">
             <h1>Information</h1>
             <p>Försäljningsvillkor</p>
             <p>Returpolicy</p>
-            <p>Cookies</p>
+            <p>Cookiepolicy</p>
           </div>
-          {/* <div className="footerDivs">
-            <h1>Footer3</h1>
-            <p>Text Footer3</p>
-          </div> */}
           <div className="footerDivs">
             <h1>Om FoodButcher</h1>
             <p>Bla bla</p>

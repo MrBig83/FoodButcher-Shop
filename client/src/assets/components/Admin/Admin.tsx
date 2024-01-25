@@ -32,12 +32,18 @@ const Admin = () => {
 
   function toggleCreatePanel() {
     setToggleCreate(prevState => !prevState);
+    setToggleUpdate(false)
+    setToggleOrders(false)
   }
   function toggleUpdatePanel() {
     setToggleUpdate(prevState => !prevState);
+    setToggleCreate(false)
+    setToggleOrders(false)
   }
   function toggleAdminOrders() {
     setToggleOrders(prevState => !prevState);
+    setToggleCreate(false)
+    setToggleUpdate(false)
   }
 
   return (

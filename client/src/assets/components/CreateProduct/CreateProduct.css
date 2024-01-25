@@ -2,6 +2,7 @@
     width: 80vw;
 }
 .CreateProductForm {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +10,7 @@
     width: 100%;
 }
 .CreateProductForm input {
-    width: 60%;
+    width: 40%;
     margin-top: 10px;
 }
 .CreateProductForm button {

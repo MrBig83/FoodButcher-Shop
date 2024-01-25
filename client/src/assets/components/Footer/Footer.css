@@ -9,6 +9,10 @@
         justify-content: space-around;
         color: rgb(220, 220, 220);
         bottom: 0px;
+        
+    }
+    .footer a {
+        color: rgb(220, 220, 220);
     }
     .footerDivs {
         margin: 20px 0px;

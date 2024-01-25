@@ -114,6 +114,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     })
     const res = await response.json()
     setLoggedInUser(res)
+    setErrorMsg("Uppgifter uppdaterade")
   }
 
   const handleLogout = async (): Promise<void> => {
@@ -204,14 +205,14 @@ const getUserOrders = async (userId:string) => {
 //       return false;
 //     };
 
-//     const isCookieSaved = checkCookie('TFBSettings');
+//     const isCookieSaved = checkCookie('FBS-Session');
 
 //     if (!isCookieSaved) {
 //       console.log('Cookie does not exist.');
-//       setShowCookie(true)
+//       // setShowCookie(true)
 //     } else {
 //       console.log('Cookie exist.');
-//       setShowCookie(false)
+//       // setShowCookie(false)
 //     }
 //   };
 

@@ -13,29 +13,15 @@ import News from "../News/News";
 import Admin from "../Admin/Admin";
 import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
-// import { UIContext } from "../../../context/UIContext";
 import AdminSingleProduct from "../Admin/AdminSingleProduct/AdminSingleProduct";
 import Confirmation from "../Confirmation/Confirmation";
-// import PopupMsg from "../PopupMsg/PopupMsg"
 
-
-const Main = () => {
-  
+const Main = () => { 
   const { loggedInUser } = useContext(UserContext)
-  // const { errorMsg, setErrorMsg } = useContext(UIContext)
-    // setErrorMsg("")
-  // useEffect(()=> {
-  //   setErrorMsg(errorMsg)
-  // },[errorMsg])
 
-    
   return (
     <div className="main">
       <div className="routes">
-        {/* {errorMsg != "" ? 
-        <div className="errorDialog">
-          <PopupMsg />
-        </div> : "" } */}
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/product/:id" element={<SingleProduct />} />
@@ -51,8 +37,6 @@ const Main = () => {
           <Route path="/createproduct" element={loggedInUser.isAdmin === true ? <CreateProduct /> : <Login />} />
           <Route path="/updateproduct" element={<UpdateProduct />} />
         </Routes>
-        
-
       </div>
     </div>
   );
