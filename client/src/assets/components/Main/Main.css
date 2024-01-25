@@ -6,11 +6,8 @@
         margin: 0px 50px;
         margin-bottom: 10px;
         display: flex;
-        justify-content: center;    
-        
+        justify-content: center;       
     }
-
-
 }
 
 
@@ -23,8 +20,4 @@
         width: 100%;
 
     }
-
-
-
-
 }

@@ -24,17 +24,19 @@ const Cart = () => {
   }
   
   return (  
-    <div className="Products">
-      <BackBtn />
+    <div className="products">
       <div className="cartTop">
+        <BackBtn />
+        <div className="cartSum">
+          {numberInCart ? <>
+          <p>Antal varor: {numberInCart}</p>
+          <p>Frakt (PostNord): 100:-</p>
+          <p>Summa: {totalPrice + 100}:-</p>
+          <button onClick={() => proceedToCheckout(uniqueProducts)}>Till betalning</button>
+          </> : "" }
+        </div>
+      </div>
       
-      <div className="cartSum">
-        {numberInCart ? <><button onClick={() => proceedToCheckout(uniqueProducts)}>Fortsätt</button>
-        <p>Antal varor: {numberInCart}</p>
-        <p>Summa: {totalPrice}:-</p>
-        </> : "" }
-      </div>
-      </div>
       <div className="productCardsList">
         {uniqueProducts?.map((product: ICartItem) => (
           <div className="ProductCardRender" key={product.product.id} >
@@ -53,6 +55,7 @@ const Cart = () => {
           </div>
         ))}
       </div>  
+      
 
         {responseSnippet ? 
           <div className="iFrameContainer">

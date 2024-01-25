@@ -67,7 +67,7 @@ const Header = () => {
                 <Link to={"/Admin"}>
                     <FontAwesomeIcon icon={faPen} />
                 </Link>
-                    <p>Admin panel</p>
+                    <p>Adminpanel</p>
                 </>
                 : ""}
                 </div>

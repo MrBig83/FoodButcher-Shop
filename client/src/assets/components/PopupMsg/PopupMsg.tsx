@@ -1,6 +1,6 @@
 import "./PopupMsg.css"
 import { UIContext } from "../../../context/UIContext";
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 function PopupMsg() {
 
@@ -19,9 +19,9 @@ function PopupMsg() {
   return (
       <div className="popupContent">
         <div className="popupText">
-            <p>
-                {errorMsg}
-            </p>
+          <p>
+            {errorMsg}
+          </p>
         </div>
 
         <div className="popupBtn">

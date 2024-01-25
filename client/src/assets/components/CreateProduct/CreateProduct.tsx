@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import IProduct from '../../interfaces/IProduct';
 import { ProductContext } from '../../../context/ProductContext';
 import { UIContext } from '../../../context/UIContext';
+import "./CreateProduct.css"
 
 
   const CreateProduct = () => {
@@ -137,7 +138,7 @@ import { UIContext } from '../../../context/UIContext';
           placeholder="Antal i lager"
         />
         <button onClick={() => handleSaveNewProduct(productObject)}>Skapa produkt</button>
-        <button onClick={handleClearForm}>Clear Form</button>
+        <button onClick={handleClearForm}>Rensa formulär</button>
       </div>
       </div>
       </>
