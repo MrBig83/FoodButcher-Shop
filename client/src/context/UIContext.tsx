@@ -1,5 +1,5 @@
 // Import the necessary dependencies
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import { PropsWithChildren, createContext, useState } from "react";
 
 
 // import { UserContext } from "../context/UserContext";
@@ -9,7 +9,7 @@ import { PropsWithChildren, createContext, useEffect, useState } from "react";
 interface UIContextProps {
   errorMsg: string;
   setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
-  showError: (errorMsg: string) => void;
+  // showError: (errorMsg: string) => void;
   isMenuVisible: boolean;
   setIsMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   toggleMenuVisibility: () => void;
@@ -35,18 +35,14 @@ const UIContextProvider = ({ children }: PropsWithChildren<unknown>) => {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  const showError = (errorMsg: string) => {
-    setTimeout(() => {
-      setErrorMsg("")
-    }, 5000);
-    setErrorMsg(errorMsg)
+  // const showError = (errorMsg: string) => {
+    
+  // }
+// const msg = "Detta är msg"
 
-  }
-const msg = ""
-
-useEffect(()=> {
-  showError(msg)
-}, [])
+// useEffect(()=> {
+//   showError(msg)
+// }, [])
   // const getCurrentOrder = async () => {
     
 
@@ -58,7 +54,7 @@ useEffect(()=> {
       value={{
         errorMsg, 
         setErrorMsg, 
-        showError, 
+        // showError, 
         toggleMenuVisibility, 
         isMenuVisible, 
         setIsMenuVisible

@@ -105,6 +105,7 @@ async function saveToMongo(req, res) {
             await product.save();
             }
         }
+        console.log(req.body);
         const order = new OrderModel({
           ...req.body,
         });

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 // import BackBtn from '../Buttons/backBtn';
 import IProduct from '../../interfaces/IProduct';
 import { ProductContext } from '../../../context/ProductContext';
+import { UIContext } from '../../../context/UIContext';
 
 
   const CreateProduct = () => {
@@ -21,7 +22,13 @@ import { ProductContext } from '../../../context/ProductContext';
     //   quantity: ""
     // };
 
-      const { productObject, setProductObject, createProduct, productList, initialFormState, getProducts  } = useContext(ProductContext);
+      const { productObject, setProductObject, createProduct, productList, initialFormState, getProducts, adminGetProducts  } = useContext(ProductContext);
+
+      const { setErrorMsg } = useContext(UIContext)
+      // setErrorMsg("")
+      // useEffect(()=> {
+      //   setErrorMsg(errorMsg)
+      // },[errorMsg])
 
   const handleSaveNewProduct = async (productObject: IProduct) => {
     const newProductId = productList ? productList.length + 1 : 1;
@@ -29,11 +36,12 @@ import { ProductContext } from '../../../context/ProductContext';
     setProductObject(productObject)
     createProduct(productObject) 
     handleClearForm()  
+    adminGetProducts()
     getProducts(); 
+    setErrorMsg("Produkt tillagd")
   };
 
   // const history = useHistory();
-
 
   
     // const [productObject, setProductObject] = useState(initialFormState);

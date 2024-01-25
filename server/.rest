@@ -276,3 +276,6 @@ GET http://localhost:3000/api/orders/user/659580dc1f4686860f31a26b
 ###
 GET http://localhost:3000/api/orders/
 ###
+
+DELETE  http://localhost:3000/api/products/6582af28c8984086b08466d6
+###

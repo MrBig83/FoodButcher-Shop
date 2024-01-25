@@ -4,15 +4,19 @@ import { Link, useParams } from 'react-router-dom';
 import NakedBackBtn from '../../Buttons/nakedBackBtn';
 import { ProductContext } from '../../../../context/ProductContext';
 import "./AdminSingleProduct.css"
+import { UIContext } from '../../../../context/UIContext';
 
 const AdminSingleProduct = () => {
     const { id } = useParams();
 
     const { updateObject, setUpdateObject, updateProduct, deleteProduct } = useContext(ProductContext);
+    
+    const { setErrorMsg } = useContext(UIContext)
 
     const handleUpdateProduct = async (updateObject: IProduct) => {
         setUpdateObject(updateObject)
         await updateProduct(updateObject)
+        setErrorMsg("Produkt uppdaterad")
       };
     const handleDeleteProduct = async (updateObject: IProduct) => {
         

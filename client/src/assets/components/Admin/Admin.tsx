@@ -42,12 +42,13 @@ const Admin = () => {
 
   return (
     <div className="admin">
+      <div className="adminButtons">
       <BackBtn />
       
       <button className="toggleCreatePanel" onClick={toggleCreatePanel}>Lägg till produkt</button>
       <button className="toggleUpdatePanel" onClick={toggleUpdatePanel}>Uppdatera produkt</button>
       <button className="toggleUpdatePanel" onClick={toggleAdminOrders}>Visa ordrar</button>
-      
+      </div>
       {toggleCreate && <CreateProduct />}
       {toggleUpdate && <UpdateProduct />}
       {toggleOrders && <AdminViewOrders />}
