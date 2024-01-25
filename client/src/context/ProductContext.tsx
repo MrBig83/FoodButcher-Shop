@@ -73,7 +73,7 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const createProduct = async (productObject: IProduct) => {    
-    const response = await fetch("/api/products", {
+    await fetch("/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -92,9 +92,8 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         deleted: false
       }), 
     })
-    const res =  await response.json();
-    console.log(res);
-    // TODO : Popup som visar att produkten är skapad
+    
+    
     getProducts();
   };
 

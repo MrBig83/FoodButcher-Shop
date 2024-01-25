@@ -32,6 +32,7 @@ async function updateProduct(req, res) {
   res.status(200).json(product);
 }
 async function deleteProduct(req, res) {
+
   const product = await ProductModel.findByIdAndDelete(
     req.params.id
   );

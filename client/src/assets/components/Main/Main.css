@@ -1,14 +1,16 @@
 
 @media (min-width: 1001px) {
-.main {
-    min-height: max(100vh - 210px);
-    padding-top: 150px;
-    margin: 0px 50px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;    
-    
-}
+    .main {
+        min-height: max(100vh - 210px);
+        padding-top: 150px;
+        margin: 0px 50px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;    
+        
+    }
+
+
 }
 
 

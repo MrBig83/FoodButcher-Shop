@@ -2,6 +2,7 @@ import React, {
   PropsWithChildren,
   SetStateAction,
   createContext,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -10,6 +11,9 @@ import IUser from "../assets/interfaces/IUser";
 import IUserData from "../assets/interfaces/IUserData";
 import { IOrder } from "../assets/interfaces/IOrderObject";
 import { useNavigate  } from "react-router-dom";
+import { UIContext } from "./UIContext";
+
+
 
 interface UserContextProps {
   email: string;
@@ -47,7 +51,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     lastName: "",
     email: "",
     street: "",
-    postCode: "",
+    postCode: 0,
     city: "",
     // userName: "",
     password: "", 
@@ -55,6 +59,12 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   });
 
   const navigate = useNavigate();
+
+  const { setErrorMsg } = useContext(UIContext)
+  // setErrorMsg("")
+  // useEffect(()=> {
+  //   setErrorMsg(errorMsg)
+  // },[errorMsg])
 
   const handleLogin = async (): Promise<void> => {
     try {
@@ -67,6 +77,10 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       });
 
       const loggedInUser = await res.json();     
+
+      if(loggedInUser == "Wrong username or password") {
+        setErrorMsg("Fel användarnamn eller lösenord")
+      }
       
       setLoggedInUser(loggedInUser);
       auth();
@@ -75,8 +89,6 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       }
     } catch (err) {
       console.log(err);
-      // TODO : Ersätt med en popup som visar felmeddelandet istället
-
     }
   };
 
@@ -115,7 +127,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       lastName: "",
       email: "",
       street: "",
-      postCode: "",
+      postCode: 0,
       city: "",
       // userName: "",
       password: "", 

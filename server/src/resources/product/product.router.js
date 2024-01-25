@@ -18,6 +18,7 @@ const productRouter = Router()
 .get("/products/:id", getSingleProduct)
 .post("/products", auth, adminOnly, validate(ProductCreateValidationSchema), addProduct)
 .put("/products/:id", updateProduct)
-.delete("/products/:id", auth, adminOnly, deleteProduct)
+.delete("/products/:id", deleteProduct)
+// .delete("/products/:id", auth, adminOnly, deleteProduct)
 
 module.exports = { productRouter }

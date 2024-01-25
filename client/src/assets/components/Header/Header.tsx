@@ -9,12 +9,16 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../../context/UserContext";
 import { UIContext } from "../../../context/UIContext";
 import MobileMenu from '../MobileMenu/MobileMenu';
+import PopupMsg from '../PopupMsg/PopupMsg';
 
 const Header = () => {
     
     const { loggedInUser } = useContext(UserContext)
     const { toggleMenuVisibility, isMenuVisible } = useContext(UIContext)
-    const { numberInCart } = useContext(CartContext);    
+    const { numberInCart } = useContext(CartContext);   
+    const { errorMsg } = useContext(UIContext) 
+
+
 
 
 
@@ -46,7 +50,10 @@ const Header = () => {
             {isMenuVisible && <MobileMenu />} 
             </div>
 
-
+            {errorMsg != "" ? 
+            <div className="errorDialog">
+                <PopupMsg />
+            </div> : "" }
 
             <Link to={`/`}>
                 <img src={logo} alt="Logo" className='imgLogo'/>

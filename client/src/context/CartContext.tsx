@@ -2,6 +2,7 @@ import { createContext, useState, PropsWithChildren, Dispatch, SetStateAction, u
 import IProduct from "../assets/interfaces/IProduct";
 import ICartItem from "../assets/interfaces/ICartItem";
 import { UserContext } from "../context/UserContext";
+import { UIContext } from "./UIContext";
 
 
 
@@ -28,6 +29,7 @@ const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("FBS-cart") || "[]");
   const { loggedInUser } = useContext(UserContext);
+  const { setErrorMsg } = useContext(UIContext)
 
   //States
   const [numberInCart, setNumberInCart] = useState(0);
@@ -44,6 +46,7 @@ const CartContextProvider = ({ children }: PropsWithChildren<unknown>) => {
     updateLS(productsInCart) 
     countProductsInCart()
   }, [productsInCart])
+
 
   const addProduct = (product: IProduct) => {
     const item: ICartItem = {
@@ -104,6 +107,7 @@ const updateLS = (productsInCart: ICartItem[]) => {
     })
     setProductsInCart(result);  
     countProductsInCart()
+    setErrorMsg("Produkt borttagen")
   }
 
   const countProductsInCart = () => {
