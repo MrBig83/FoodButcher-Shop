@@ -33,10 +33,9 @@ async function updateProduct(req, res) {
 }
 async function deleteProduct(req, res) {
 
-  const product = await ProductModel.findByIdAndDelete(
+  await ProductModel.findByIdAndDelete(
     req.params.id
   );
-  res.status(204).json(product)
   res.status(200).json("Produkt med ID: " + req.params.id + " är nu raderad");
 }
 

@@ -33,6 +33,7 @@
     border: 1px solid red;
     background-color: rgba(240, 128, 128, 0.9);
     backdrop-filter: blur(5px);
+
 }
 
 .imgLogo {

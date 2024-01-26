@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer">
           <div className="footerDivs">
             <h1>Kundservice</h1>
-            <p><p><a href="mailto:hello@foodbutcher.com">hello@foodbutcher.com</a></p></p>
+            <p><a href="mailto:hello@foodbutcher.com">hello@foodbutcher.com</a></p>
             <p>0707 - 111 111</p>
           </div>
           <div className="footerDivs">

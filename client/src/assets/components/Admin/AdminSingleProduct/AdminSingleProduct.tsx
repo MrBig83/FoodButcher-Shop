@@ -9,21 +9,24 @@ import { UIContext } from '../../../../context/UIContext';
 const AdminSingleProduct = () => {
     const { id } = useParams();
 
-    const { updateObject, setUpdateObject, updateProduct, deleteProduct } = useContext(ProductContext);
-    
+    const { updateObject, setUpdateObject, updateProduct, deleteProduct, adminGetProducts } = useContext(ProductContext);
     const { setErrorMsg } = useContext(UIContext)
-
+    
     const handleUpdateProduct = async (updateObject: IProduct) => {
         setUpdateObject(updateObject)
         await updateProduct(updateObject)
         setErrorMsg("Produkt uppdaterad")
+        adminGetProducts()
         setTimeout(() => {
           window.location.href = "/Admin";
         }, 5000);
       };
     const handleDeleteProduct = async (updateObject: IProduct) => {
-        
         await deleteProduct(updateObject)
+        setErrorMsg("Produkt borttagen")
+        setTimeout(() => {
+          window.location.href = "/Admin";
+        }, 2500)
       };
 
       const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
