@@ -14,9 +14,9 @@ import PopupMsg from '../PopupMsg/PopupMsg';
 const Header = () => {
     
     const { loggedInUser } = useContext(UserContext)
-    const { toggleMenuVisibility, isMenuVisible } = useContext(UIContext)
+    const { toggleMenuVisibility, isMenuVisible, errorMsg } = useContext(UIContext)
     const { numberInCart } = useContext(CartContext);   
-    const { errorMsg } = useContext(UIContext) 
+    
 
 
 

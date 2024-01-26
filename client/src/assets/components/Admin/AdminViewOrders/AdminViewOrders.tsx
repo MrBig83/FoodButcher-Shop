@@ -65,7 +65,7 @@ function AdminViewOrders() {
     const orders: IOrder[] = adminOrdersRaw; // Replace with your actual orders array
   
     return (
-      <div>
+      <div className="renderAllOrders">
         
         {renderAllOrders(orders)}
       </div>

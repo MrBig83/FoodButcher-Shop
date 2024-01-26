@@ -37,9 +37,12 @@ import "./CreateProduct.css"
     setProductObject(productObject)
     createProduct(productObject) 
     handleClearForm()  
-    adminGetProducts()
+    adminGetProducts
     getProducts(); 
     setErrorMsg("Produkt tillagd")
+    setTimeout(() => {
+      window.location.href = "/Admin";
+    }, 2500);
   };
 
   // const history = useHistory();

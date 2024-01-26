@@ -13,6 +13,7 @@ interface UIContextProps {
   isMenuVisible: boolean;
   setIsMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   toggleMenuVisibility: () => void;
+  clearErrorMsg: () => void;
 }
 
 export const UIContext = createContext<UIContextProps>({} as UIContextProps);
@@ -28,8 +29,15 @@ const UIContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   
-  
   // Functions
+  setTimeout(() => {
+    setErrorMsg("")
+  }, 5000);
+  // setErrorMsg(errorMsg)
+
+const clearErrorMsg = () => {
+    setErrorMsg("")
+}
 
   const toggleMenuVisibility = () => {
     setIsMenuVisible(!isMenuVisible);
@@ -57,7 +65,8 @@ const UIContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         // showError, 
         toggleMenuVisibility, 
         isMenuVisible, 
-        setIsMenuVisible
+        setIsMenuVisible, 
+        clearErrorMsg
 
         
       }}

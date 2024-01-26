@@ -4,16 +4,9 @@ import { useContext } from 'react'
 
 function PopupMsg() {
 
-    const { errorMsg, setErrorMsg } = useContext(UIContext)
+    const { errorMsg, clearErrorMsg } = useContext(UIContext)
 
-    setTimeout(() => {
-        setErrorMsg("")
-      }, 5000);
-      setErrorMsg(errorMsg)
 
-    const clearErrorMsg = () => {
-        setErrorMsg("")
-    }
 
 
   return (

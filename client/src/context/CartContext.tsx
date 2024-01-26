@@ -146,12 +146,22 @@ function addObject(itemInCart: ICartItem) {
       taxRate: 0.25, 
       reference: itemInCart.product._id
   };
+
   postArray.push(newObj);
 }
 
 uniqueProducts.map((itemInCart) => {
   addObject(itemInCart);
 })
+//En ful-lösning för att lägga till frakt på ordrar. (Finns bara ett fraktalternativ i dagsläget)
+const shipping: IPostArray = {
+  name: "Frakt",
+  unitPrice: 100, 
+  quantity: 1, 
+  taxRate: 0.25, 
+  reference: "65b397ed154d8aad88c9ae47"
+};
+postArray.push(shipping);
 
 const response = await fetch("/api/orders", {
   method: "POST",
