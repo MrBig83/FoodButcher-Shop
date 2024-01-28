@@ -1,0 +1,28 @@
+.cookiePolicy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.cookiePolicy p {
+    width: 60%;
+}
+.cookiePolicy h3 {
+    margin: 10px 0px;
+}
+.linkList a{
+    color: blue;
+    text-decoration: underline;
+}
+table {
+    border: 1px solid black;
+}
+table td {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-size: small;
+}
+.hidden {
+    display: none;
+}

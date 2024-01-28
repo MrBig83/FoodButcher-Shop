@@ -38,6 +38,12 @@ const Header = () => {
             break;
         case "/Admin": path = "Adminpanel"
             break;
+        case "/sellingterms": path = "Försäljningsvillkor"
+            break;
+        case "/dataskyddsPolicy": path = "Dataskyddspolicy"
+            break;
+        case "/cookiepolicy": path = "Cookiepolicy"
+            break;
         default: path = ""
     }
     
@@ -61,46 +67,56 @@ const Header = () => {
             <h1 className='headerPath'>{path}</h1>
             <div className="rightNav">
 
-                <div className='navlinks'>
                 {loggedInUser.isAdmin ? 
-                <>
                 <Link to={"/Admin"}>
-                    <FontAwesomeIcon icon={faPen} />
-                </Link>
-                    <p>Adminpanel</p>
-                </>
-                : ""}
-                </div>
-
+                    
                 <div className='navlinks'>
+                    <FontAwesomeIcon icon={faPen} />
+                    <p>Adminpanel</p>
+                </div>
+                </Link>
+                
+                : ""}
+
+
+
                     <Link to={'/News'}>
-                        <FontAwesomeIcon icon={faNewspaper} />
-                    </Link>
+                <div className='navlinks'>
+                        <FontAwesomeIcon className="emilia" icon={faNewspaper} />
                     <p>Nyheter</p>
                 </div>
-                <div className='navlinks'>
+                    </Link>
+
+
+
+
                 {loggedInUser._id ? 
                     <Link to={"/UserPage"}>
+                <div className='navlinks'>
                         <FontAwesomeIcon icon={faUser} />
+                        <p className='greetUser'>{"Välkommen "+loggedInUser.firstName + "!"}</p>
+                    </div>
                     </Link>
                      : 
                      <Link to={"/Login"}>
+                <div className='navlinks'>
                         <FontAwesomeIcon icon={faUser} />
+                        <p className='greetUser'>{"Konto"}</p>
+                </div>
                     </Link>
                     }
-                    <p className='greetUser'>{loggedInUser._id ? "Välkommen "+loggedInUser.firstName + "!" : "Konto"}</p>
-                </div>
+                    
+
                 <div className='navlinks'>
                 {numberInCart > 0 ? 
                     <Link to={"/cart"}>
-                    <FontAwesomeIcon icon={faCartShopping} />
-                        
+                        <FontAwesomeIcon icon={faCartShopping} />
                         <p className="cartNumber">{numberInCart}</p>
                     </Link>
-                        :  
-                        <FontAwesomeIcon icon={faCartShopping} />
-                        }
-                    <p className='outLier'>Kungvagn</p>
+                :  
+                    <FontAwesomeIcon icon={faCartShopping} />
+                }
+                <p >Kungvagn</p>
                 </div>
 
             </div>

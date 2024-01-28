@@ -3,7 +3,7 @@ import { UserContext } from '../../../../context/UserContext';
 
 function UserOrders() {
 
-    const { userOrders } = useContext(UserContext);  
+    const { userOrders } = useContext(UserContext);    
 
   return (
     <div className='userOrderHistory'>
@@ -25,7 +25,8 @@ function UserOrders() {
                   <tr>
                     <td>{new Date(userOrder.history.created).toLocaleString()}</td>
                     <td>{userOrder.purchaseId}</td>
-                    <td>{userOrder.status} </td>
+                    {userOrder.status =="readyToShip" ? <td>Ej hanterad</td> : <td>Levererad</td>}
+                    {/* <td>{userOrder.status} </td> */}
                   </tr>
                   {userOrder.order.items?.map((userOrderItem) => (
                     <tr key={userOrderItem.itemId}>
@@ -33,8 +34,11 @@ function UserOrders() {
                       <td></td>
                       <td></td>
                       <td>{userOrderItem.name}</td>
+                      {userOrderItem.name != "Frakt" ? 
+                      <>
                       <td>{userOrderItem.quantity}</td>
                       <td>{userOrderItem.unitPrice}:-</td>
+                      </> : <><td></td><td></td> </>}
                       <td>{userOrderItem.totalPriceIncludingTax}:-</td>
                   </tr>
                   ))}

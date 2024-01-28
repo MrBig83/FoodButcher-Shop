@@ -14,8 +14,10 @@
     padding: 5px 0px;
     text-align: center;
     border-bottom: 1px solid black;
+    color: rgb(30,30,30) ;
 }
 .cardDescription {
+    color: rgb(30,30,30) ;
     height: 100px;
     margin: 0px 10px;
 }
@@ -29,20 +31,21 @@
     text-align: center;
     width: 80px;
     height: 24px;
-    border: 1px solid rgb(61, 61, 233);
-    box-shadow: 0px 0px 5px rgb(61, 61, 233);;
+    color: lightgray;
+    /* border: 1px solid rgb(61, 61, 233); */
+    /* box-shadow: 0px 0px 5px rgb(61, 61, 233);; */
     border-radius: 5px;
-    background-color:rgb(154, 154, 247);
+    background-color:rgb(30,30,30);
     
 }
 .btnBuyNow:hover {
     text-align: center;
     transition: 100ms;
     scale: 1.06;
-    border: 1px solid rgb(61, 61, 233);
-    box-shadow: 0px 0px 5px rgb(61, 61, 233);
+    /* border: 1px solid rgb(61, 61, 233); */
+    /* box-shadow: 0px 0px 5px rgb(61, 61, 233); */
     border-radius: 5px;
-    background-color:rgb(113, 113, 247);
+    background-color:rgb(30,30,30);
 }
 .cardImage {
     /* width: 67%; */
@@ -50,6 +53,9 @@
 }
 .cardPrice {
     font-weight: 700;
+}
+p {
+    
 }
 a:link {
     text-decoration: none;

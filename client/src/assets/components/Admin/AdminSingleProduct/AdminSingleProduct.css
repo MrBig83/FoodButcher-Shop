@@ -43,6 +43,7 @@ label {
     margin-left: 10px;
 }
 .btnWarning {
+    color: black;
     margin: 20px;
     padding: 10px;
     background-color: lightcoral;
