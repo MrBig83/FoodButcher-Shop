@@ -15,6 +15,9 @@ import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 import AdminSingleProduct from "../Admin/AdminSingleProduct/AdminSingleProduct";
 import Confirmation from "../Confirmation/Confirmation";
+import CookiePolicy from "../Legal/CookiePolicy/CookiePolicy";
+import SellingTerms from "../Legal/SellingTerms/SellingTerms";
+import DataskyddsPolicy from "../Legal/DataskyddsPolicy/DataskyddsPolicy";
 
 const Main = () => { 
   const { loggedInUser } = useContext(UserContext)
@@ -36,6 +39,9 @@ const Main = () => {
           <Route path="/createaccount" element={<CreateAccount />} />
           <Route path="/createproduct" element={loggedInUser.isAdmin === true ? <CreateProduct /> : <Login />} />
           <Route path="/updateproduct" element={<UpdateProduct />} />
+          <Route path="/cookiepolicy" element={<CookiePolicy />} />
+          <Route path="/sellingterms" element={<SellingTerms />} />
+          <Route path="/dataskyddspolicy" element={<DataskyddsPolicy />} />
         </Routes>
       </div>
     </div>

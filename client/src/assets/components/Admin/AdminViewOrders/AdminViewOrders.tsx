@@ -55,7 +55,7 @@ function AdminViewOrders() {
               {order.order.items.map((product) => (
                   <p key={product.itemId}><strong>{product.quantity}x</strong> {product.name}</p>
               ))}
-              
+              <button>Skriv ut adresslapp och fraktsedel</button>
             </div>
           )}
         </div>
