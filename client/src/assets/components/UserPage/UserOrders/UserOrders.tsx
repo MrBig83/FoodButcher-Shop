@@ -10,13 +10,13 @@ function UserOrders() {
             <table className="orderTable">
               <thead>
                   <tr>
-                  <th>Datum: </th>
-                  <th>Ordernummer: </th>
-                  <th>Status: </th>
-                  <th>Produkt: </th>
-                  <th>Antal: </th>
-                  <th>Pris per st.:</th>
-                  <th>Totalt: </th>
+                    <th>Datum: </th>
+                    <th>Ordernummer: </th>
+                    <th>Status: </th>
+                    <th>Produkt: </th>
+                    <th>Antal: </th>
+                    <th>Pris per st.:</th>
+                    <th>Totalt: </th>
                   </tr>
               </thead>
 

@@ -30,7 +30,7 @@ function CookiePolicy() {
             <li className='linkList'><a target='_blank' href="https://support.microsoft.com/sv-se/help/17442/windows-internet-explorer-delete-manage-cookies">Inställningar för cookies i Internet Explorer</a></li>
         </ul>
         <h3>Cookies på FoodButcherShop</h3>
-        <table>
+        <table className='cookieTable'>
             <tr>
                 <th>Namn</th>
                 <th>Beskrivning</th>

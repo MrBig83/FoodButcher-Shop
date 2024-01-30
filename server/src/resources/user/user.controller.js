@@ -21,7 +21,7 @@ async function addUser(req, res) {
    });
    
   if(existingUser) {
-    return res.status(409).json("Email already registered")
+    return res.status(409).json("Email finns redan registrerad")
   }
   const user = new UserModel(req.body)
   user.password = await bcrypt.hash(user.password, 10)

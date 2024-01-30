@@ -2,15 +2,19 @@ import "../Login/Login.css"
 import BackBtn from "../Buttons/backBtn";
 import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
+import { UIContext } from "../../../context/UIContext";
 
 const CreateAccount = () => {
 const { email, setEmail, password, setPassword, handleCreateAccount, setVerPassword, verPassword } = useContext(UserContext);
+const { setErrorMsg } = useContext(UIContext)
 
 function processInput() {  
  if(password === verPassword) {  
     handleCreateAccount()
  } else {
-  // TODO : Popup som varnar om att lösenorden inte stämmer
+  setErrorMsg("Lösenorden måste stämma överens.");
+  return;
+  
  }
 }
   return (

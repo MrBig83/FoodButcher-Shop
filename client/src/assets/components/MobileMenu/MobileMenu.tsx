@@ -28,7 +28,7 @@ const MobileMenu = () => {
             Shop
           </NavLink>
         </li>
-        {loggedInUser.email !== "" ? 
+        {loggedInUser._id ? 
         <li>
           <NavLink onClick={toggleMenuVisibility} to="/UserPage">
             Konto

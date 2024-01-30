@@ -21,19 +21,22 @@
     width: 800px;
     border: 1px solid rgb(150, 150, 150);
 }
-th {
+.orderTable, .orderTable th {
     border-bottom: 1px solid rgb(150, 150, 150);
 
 }
 
-td, th {
-    padding: 5px;
+.orderTable th {
+    padding: 5px;    
+}
+.orderTable td {
+    border: none;
 }
 
 tbody {
     border-bottom: 1px solid rgb(150, 150, 150);
 }
-table {border-collapse: collapse;}
+.orderTable {border-collapse: collapse;}
 
 .userOrderHistory {
     border: 1px solid black;
