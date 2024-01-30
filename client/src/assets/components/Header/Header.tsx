@@ -44,6 +44,8 @@ const Header = () => {
             break;
         case "/cookiepolicy": path = "Cookiepolicy"
             break;
+        case "/Login": path = "Logga in"
+            break;
         default: path = ""
     }
     
@@ -92,34 +94,38 @@ const Header = () => {
 
                 {loggedInUser._id ? 
                     <Link to={"/UserPage"}>
-                <div className='navlinks'>
-                        <FontAwesomeIcon icon={faUser} />
-                        <p className='greetUser'>{"Välkommen "+loggedInUser.firstName + "!"}</p>
-                    </div>
+                        <div className='navlinks'>
+                            <FontAwesomeIcon icon={faUser} />
+                            <p className='greetUser'>{"Välkommen "+loggedInUser.firstName + "!"}</p>
+                        </div>
                     </Link>
                      : 
                      <Link to={"/Login"}>
-                <div className='navlinks'>
-                        <FontAwesomeIcon icon={faUser} />
-                        <p className='greetUser'>{"Konto"}</p>
-                </div>
+                        <div className='navlinks'>
+                            <FontAwesomeIcon icon={faUser} />
+                            <p className='greetUser'>{"Konto"}</p>
+                        </div>
                     </Link>
                     }
                     
 
-                <div className='navlinks'>
                 {numberInCart > 0 ? 
                     <Link to={"/cart"}>
-                        <FontAwesomeIcon icon={faCartShopping} />
-                        <p className="cartNumber">{numberInCart}</p>
+                        <div className='navlinks'>
+                            <FontAwesomeIcon icon={faCartShopping} />
+                            <p className="cartNumber">{numberInCart}</p>
+                            <p >Kungvagn</p>
+                        </div>
                     </Link>
                 :  
+                    
+                <div className='navlinks'>
                     <FontAwesomeIcon icon={faCartShopping} />
-                }
-                <p >Kungvagn</p>
+                    <p >Kungvagn</p>
                 </div>
-
+                }
             </div>
+            
             <div className='mobileCart'>
                 {numberInCart > 0 ? 
                     <Link to={"/cart"}>

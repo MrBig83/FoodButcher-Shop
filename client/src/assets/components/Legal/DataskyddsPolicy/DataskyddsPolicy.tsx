@@ -24,7 +24,7 @@ function DataskyddsPolicy() {
 <p>För att vi ska kunna leverera varor till dig, eller för att sedan följa upp ett kundserviceärende, så innebär det att vi behöver behandla ett antal uppgifter om dig. 
     Här nedan beskriver vi de övergripande syftena, vilken grund vi behandlar uppgifterna och hur länge vi sparar informationen.</p>
 
-<table>
+<table className='dataTable'>
     <tr>
         <th>Syftet med behandlingen</th>
         <th>Personuppgifter som behandlas</th>

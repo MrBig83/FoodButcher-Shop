@@ -31,8 +31,6 @@ interface UserContextProps {
   loggedInUser: IUser;
   userOrders: IOrder[] | null;
   getUserOrders: (userId:string) => Promise<void>;
-
-
 }
 
 export const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -43,8 +41,6 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   const [password, setPassword] = useState("");
   const [verPassword, setVerPassword] = useState("");
   const [userOrders, setUserOrders] = useState<IOrder[] | null>(null);
-  
-
   const [loggedInUser, setLoggedInUser] = useState<IUser>({
     _id: "",
     firstName: "",
@@ -53,7 +49,6 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     street: "",
     postCode: 0,
     city: "",
-    // userName: "",
     password: "", 
     isAdmin: false
   });
@@ -61,10 +56,6 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
 
   const { setErrorMsg } = useContext(UIContext)
-  // setErrorMsg("")
-  // useEffect(()=> {
-  //   setErrorMsg(errorMsg)
-  // },[errorMsg])
 
   const handleLogin = async (): Promise<void> => {
     try {
@@ -140,7 +131,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const handleCreateAccount = async ():Promise<void> => {
-    await fetch("/api/users", {
+    const response = await fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -153,10 +144,16 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
         street: "",
         postCode: "",
         city: "",
-        // userName: "",
         isAdmin:false
        }), 
   })
+  const res = await response.json()
+  if(res == "Email finns redan registrerad"){
+    setErrorMsg(res);
+  } else {
+    setErrorMsg(`Konto ned mailadress ${res.email} skapat!`)
+  }
+  
   setEmail("")
   setPassword("")
   setVerPassword("")

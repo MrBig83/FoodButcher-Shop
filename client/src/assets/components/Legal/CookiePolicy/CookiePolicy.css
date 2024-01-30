@@ -16,10 +16,13 @@
     color: blue;
     text-decoration: underline;
 }
-table {
+.cookieTable {
     border: 1px solid black;
 }
-table td {
+.cookieTable {
+    border-collapse: collapse;
+}
+.cookieTable td {
     border: 1px solid rgba(0, 0, 0, 0.5);
     font-size: small;
 }

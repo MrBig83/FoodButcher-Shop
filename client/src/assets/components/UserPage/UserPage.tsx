@@ -7,6 +7,8 @@ import UpdateUser from "./UpdateUser/UpdateUser";
 
 const UserPage = () => {
   const { handleLogout, loggedInUser, getUserOrders } = useContext(UserContext);  
+  const [isOrdersVisible, setIsOrdersVisible] = useState(false);
+  const [isUserVisible, setIsUserVisible] = useState(false);
 
   useEffect(()=> {            
     getUserOrders(loggedInUser._id)
@@ -14,14 +16,15 @@ const UserPage = () => {
     };
 }, [])
     
-  const [isOrdersVisible, setIsOrdersVisible] = useState(false);
+  function toggleUserVisibility() {
+    setIsUserVisible(!isUserVisible);
+    setIsOrdersVisible(false)
+  }
   const toggleOrderVisibility = () => {
     setIsOrdersVisible(!isOrdersVisible);
+    setIsUserVisible(false)
   };
-  const [isUserVisible, setIsUserVisible] = useState(false);
-  const toggleUserVisibility = () => {
-    setIsUserVisible(!isUserVisible);
-  };
+
 
   return (
     <div className="UserPage">
