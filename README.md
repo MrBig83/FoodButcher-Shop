@@ -15,8 +15,8 @@
 ## Navigera på sidan: 
 Sidan fungerar som vilken E-handel som helst. Du kan skapa en egen användare och prova att genomföra ett köp eller varför inte genomföra ett köp som gäst? 
 För att komma åt admin-rättigheterna på sidan behöver man logga in med ett admin-konto. Detta görs med 
-Användarnamn: robban@mail.com
-Lösenord: robban
+***Användarnamn:*** `robban@mail.com`
+***Lösenord:*** `robban`
 
 Nu kommer det att visas en ikon för "Adminpanel" i headern. I adminpanelen kan du administrera produkter (uppdatera, ta bort och lägga till), du kan även se alla ordrar som lagts och uppdatera orderstatus till "Levererad". 
 
