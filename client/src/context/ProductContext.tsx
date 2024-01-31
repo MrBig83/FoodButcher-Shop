@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState, PropsWithChildren, Dispatch, SetStateAction } from "react";
+import { createContext, useEffect, useState, PropsWithChildren, Dispatch, SetStateAction, useContext } from "react";
 import IProduct from "../assets/interfaces/IProduct";
+import { UIContext } from "./UIContext";
 
 interface ProductContextProps {
     productList: IProduct[] | null;
@@ -49,6 +50,8 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   const [productObject, setProductObject] = useState(initialFormState)
   const [updateObject, setUpdateObject] = useState(initialFormState)
 
+  const { setErrorMsg } = useContext(UIContext)
+
   
   //Functions
 
@@ -72,8 +75,9 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
       setSingleProduct(product)
   };
 
-  const createProduct = async (productObject: IProduct) => {    
-    await fetch("/api/products", {
+  const createProduct = async (productObject: IProduct) => {   
+
+    const res = await fetch("/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -92,8 +96,13 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         deleted: false
       }), 
     })
-    
-    
+
+    const response = await res.json()
+    if(typeof response === 'string' ) {
+      setErrorMsg(response)
+    } else {
+      setErrorMsg("Produkt tillagd")
+    }
     getProducts();
   };
 

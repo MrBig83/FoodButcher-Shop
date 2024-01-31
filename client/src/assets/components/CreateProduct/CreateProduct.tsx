@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import IProduct from '../../interfaces/IProduct';
 import { ProductContext } from '../../../context/ProductContext';
-import { UIContext } from '../../../context/UIContext';
+// import { UIContext } from '../../../context/UIContext';
 import "./CreateProduct.css"
 
 
   const CreateProduct = () => {
     
       const { productObject, setProductObject, createProduct, productList, initialFormState, getProducts, adminGetProducts  } = useContext(ProductContext);
-      const { setErrorMsg } = useContext(UIContext)
+      // const { setErrorMsg } = useContext(UIContext)
       const handleSaveNewProduct = async (productObject: IProduct) => {
         const newProductId = productList ? productList.length + 1 : 1;
         productObject.id = newProductId;
@@ -16,8 +16,7 @@ import "./CreateProduct.css"
         createProduct(productObject) 
         handleClearForm()  
         adminGetProducts
-        getProducts(); 
-        setErrorMsg("Produkt tillagd")
+        getProducts();         
         setTimeout(() => {
           window.location.href = "/Admin";
         }, 2500);
