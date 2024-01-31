@@ -22,7 +22,7 @@ Nu kommer det att visas en ikon för "Adminpanel" i headern. I adminpanelen kan 
 
 - Mycket nöje!
 
-## Beroenden (Samtliga installeras automatiskt vid `npm install`
+## Beroenden (Samtliga installeras automatiskt vid `npm install`)
 ### Backend: 
 ```
     bcrypt v.5.1.1
