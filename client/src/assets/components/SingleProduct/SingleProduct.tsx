@@ -1,12 +1,9 @@
-// import { Route, Routes } from "react-router";
-import "./SingleProduct.css"
-
-import BuyNowBtn from "../Buttons/buyNowBtn";
-import BackBtn from "../Buttons/backBtn";
 import { useParams } from "react-router-dom";
-// import { ProductContext } from "../../../context/ProductContext"
 import { useEffect, useState} from "react";
 import IProduct from "../../interfaces/IProduct";
+import BuyNowBtn from "../Buttons/buyNowBtn";
+import BackBtn from "../Buttons/backBtn";
+import "./SingleProduct.css"
 
 const defaultProduct: IProduct = {
   _id: "",

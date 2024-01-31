@@ -1,6 +1,5 @@
 const express = require("express");
 const { UserCreateValidationSchema, UserUpdateValidationSchema } = require("./user.model");
-// const { Router } = require("express")
 
 const {
     addUser,
@@ -11,9 +10,8 @@ const {
     updateUser,
     authorize
 } = require("./user.controller");
-// const { UserCreateValidationSchema } = require("./user.model");
-const { validate } = require("../middlewares");
 
+const { validate } = require("../middlewares");
 const userRouter = express
 .Router()
 .get("/users", getUsers)

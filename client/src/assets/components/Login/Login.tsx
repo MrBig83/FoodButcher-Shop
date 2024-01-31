@@ -1,26 +1,21 @@
-import { useContext, useEffect } from "react"
-import "./Login.css"
 import { UserContext } from "../../../context/UserContext"
-// import { UIContext } from "../../../context/UIContext"
+import { UIContext } from "../../../context/UIContext";
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom";
 import BackBtn from "../Buttons/backBtn";
-import { UIContext } from "../../../context/UIContext";
-
+import "./Login.css"
 
 function Login() {
   
   const { email, setEmail, password, setPassword, handleLogin, handleLogout, loggedInUser, auth } = useContext(UserContext)
-  // const [error, setError] = useState("");
-  // const { showError } = useContext(UIContext)
-
+  
   const { errorMsg, setErrorMsg } = useContext(UIContext)
-  // setErrorMsg("")
+  
   useEffect(()=> {
     setErrorMsg(errorMsg)
   },[errorMsg])
 
  const handleCheckAuth = async () => {
-
 
   if (!email && !password) {
     setErrorMsg("Vänligen fyll i användarnamn och lösenord.");

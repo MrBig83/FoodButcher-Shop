@@ -1,10 +1,7 @@
 const express = require("express");
-// const { UserCreateValidationSchema, UserUpdateValidationSchema } = require("./user.model");
 const { Router } = require("express")
 
 const {
-    
-    // getUsers, 
     getMerchant, 
     getOrder,
     getPaidOrders,
@@ -15,7 +12,7 @@ const {
     getAdminOrders
 
 } = require("./order.controller");
-// const { UserCreateValidationSchema } = require("./user.model");
+
 const { adminOnly, auth } = require('../middlewares');
 
 const orderRouter = express
@@ -26,10 +23,7 @@ const orderRouter = express
 .get("/orders/paid", getPaidOrders)
 .get("/orders/:id", getOrder)
 .get("/orders/user/:id", getUserOrders)
-// .get("/orders/", auth, adminOnly, getAdminOrders)
-.get("/orders/", getAdminOrders)
+.get("/orders/", auth, adminOnly, getAdminOrders)
 .put("/orders/:id", updateMongoOrder)
-
-
 
 module.exports = { orderRouter }

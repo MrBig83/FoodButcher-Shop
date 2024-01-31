@@ -13,8 +13,6 @@ import { IOrder } from "../assets/interfaces/IOrderObject";
 import { useNavigate  } from "react-router-dom";
 import { UIContext } from "./UIContext";
 
-
-
 interface UserContextProps {
   email: string;
   password: string;
@@ -26,7 +24,6 @@ interface UserContextProps {
   handleLogout: () => Promise<void>;
   handleCreateAccount: () => Promise<void>;
   updateUserCreds: (userObject: IUserData) => Promise<void>;
-  getUser: () => Promise<void>;
   auth: () => Promise<void>;
   loggedInUser: IUser;
   userOrders: IOrder[] | null;
@@ -83,13 +80,7 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const getUser = async (): Promise<void> => {
-    // TODO : Använd eller ta bort. 
-  }
-
   const updateUserCreds = async (userObject:IUserData): Promise<void> => {
-    // TODO : Popup som bekräftar uppdaterad information
-    
     const response = await fetch(`/api/users/update/${loggedInUser._id}`, {
       method: "PUT",
       headers: {
@@ -121,7 +112,6 @@ const UserContextProvider = ({ children }: PropsWithChildren) => {
       street: "",
       postCode: 0,
       city: "",
-      // userName: "",
       password: "", 
       isAdmin: false
     };
@@ -164,15 +154,13 @@ const auth = async (): Promise<void> => {
   setLoggedInUser(loggedInUser);
   getUserOrders(loggedInUser._id)
 };
-// TODO : Ta bort denna och kontrollera cookies istället. 
+
 useEffect(() => {
-  // cookieConsent()
   auth();
 }, []);
 
 useEffect(() => {
-  // cookieConsent()
-  // auth();
+
 }, [loggedInUser]);
 
 const getUserOrders = async (userId:string) => { 
@@ -182,37 +170,6 @@ const getUserOrders = async (userId:string) => {
     setUserOrders(userOrders)
   }
 };
-
-
-
-// const cookieConsent = () => {
-//     const checkCookie = (cookieName: string): boolean => {
-//       const cookies = document.cookie.split(';');
-//       for (const cookie of cookies) {
-//         const [name, value] = cookie.trim().split('=');
-//         // if (name === cookieName && value === "true") {
-//         if (name === cookieName ) {
-//           console.log(value);
-          
-//           // Cookie found
-//           return true;
-//         }
-//       }
-//       // Cookie not found 
-//       return false;
-//     };
-
-//     const isCookieSaved = checkCookie('FBS-Session');
-
-//     if (!isCookieSaved) {
-//       console.log('Cookie does not exist.');
-//       // setShowCookie(true)
-//     } else {
-//       console.log('Cookie exist.');
-//       // setShowCookie(false)
-//     }
-//   };
-
 
   return (
     <UserContext.Provider
@@ -228,7 +185,6 @@ const getUserOrders = async (userId:string) => {
         auth,
         loggedInUser,
         handleCreateAccount,
-        getUser,
         updateUserCreds,
         getUserOrders, 
         userOrders, 

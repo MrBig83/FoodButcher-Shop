@@ -1,10 +1,5 @@
 const { OrderModel } = require("./order.model");
 const { ProductModel } = require("../product/product.model");
-// const bcrypt = require("bcrypt");
-
-// const {
-//     getTest
-// } = require("./payson.controller");
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -105,7 +100,6 @@ async function saveToMongo(req, res) {
             await product.save();
             }
         }
-        console.log(req.body);
         const order = new OrderModel({
           ...req.body,
         });

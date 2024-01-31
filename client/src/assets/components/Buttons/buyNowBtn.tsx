@@ -7,11 +7,6 @@ const BuyNowBtn = ({ product }: { product: IProduct }) => {
 
     const buyNow = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();  
-        
-        //Kontrollera om produkten redan finns i kundkorgen
-        //Om ja: 
-        //Addera 1 
-        //Om nej: 
         addProduct(product);
     }
 

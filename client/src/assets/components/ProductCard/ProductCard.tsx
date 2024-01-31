@@ -1,8 +1,6 @@
-// import { Route, Routes } from "react-router";
-import "./ProductCard.css"
-
 import BuyNowBtn from "../Buttons/buyNowBtn";
 import IProduct from "../../interfaces/IProduct";
+import "./ProductCard.css"
 
 const ProductCard = ({ product }: { product: IProduct }) => {
 let lager = ""
@@ -24,7 +22,6 @@ let lager = ""
         <div className="cardBottom">
           <p className="cardPrice">{product.price}:-</p>
           <p className="cardInstock">{lager}</p>
-          {/* <p className="cardInstock">{product.instock}</p> */}
           <BuyNowBtn product={product}/>
         </div>
       </div>

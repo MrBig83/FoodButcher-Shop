@@ -98,7 +98,7 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const updateProduct = async (updateProduct: IProduct) => {    
-    const response = await fetch(`/api/products/${updateProduct._id}`, {
+    await fetch(`/api/products/${updateProduct._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -118,19 +118,13 @@ const ProductContextProvider = ({ children }: PropsWithChildren<unknown>) => {
         deleted: updateProduct.deleted
       }), 
     })
-    const res =  await response.json();
-    console.log(res);
-    // TODO : Popup som visar att produkten är uppdaterad
     getProducts();
   }
   const deleteProduct = async (updateProduct: IProduct) => {
-    const response = await fetch(`/api/products/${updateProduct._id}`, 
+    await fetch(`/api/products/${updateProduct._id}`, 
     {
       method: "DELETE"
     })
-    const res = await response.json()
-    console.log(res);
-    // TODO : Popup som visar att produkten är raderad
     getProducts();
   }
   

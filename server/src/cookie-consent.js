@@ -1,4 +1,3 @@
-// cookie-consent.js
 document.addEventListener('DOMContentLoaded', function () {
     // Check if the user has already accepted cookies
     const showConsent = document.cookie.indexOf('cookieConsent=true') === -1;

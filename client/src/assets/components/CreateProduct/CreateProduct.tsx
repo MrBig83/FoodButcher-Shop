@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-// import { Link } from 'react-router-dom';
-// import BackBtn from '../Buttons/backBtn';
 import IProduct from '../../interfaces/IProduct';
 import { ProductContext } from '../../../context/ProductContext';
 import { UIContext } from '../../../context/UIContext';
@@ -9,65 +7,39 @@ import "./CreateProduct.css"
 
   const CreateProduct = () => {
     
-    // const initialFormState = {
-    //   id: 0, 
-    //   title: "",
-    //   description: "",
-    //   usage: "", 
-    //   suits: "", 
-    //   ingredients: "", 
-    //   nutritions: "", 
-    //   price: 0,
-    //   image: "",
-    //   instock: 0,
-    //   quantity: ""
-    // };
-
       const { productObject, setProductObject, createProduct, productList, initialFormState, getProducts, adminGetProducts  } = useContext(ProductContext);
-
       const { setErrorMsg } = useContext(UIContext)
-      // setErrorMsg("")
-      // useEffect(()=> {
-      //   setErrorMsg(errorMsg)
-      // },[errorMsg])
-
-  const handleSaveNewProduct = async (productObject: IProduct) => {
-    const newProductId = productList ? productList.length + 1 : 1;
-    productObject.id = newProductId;
-    setProductObject(productObject)
-    createProduct(productObject) 
-    handleClearForm()  
-    adminGetProducts
-    getProducts(); 
-    setErrorMsg("Produkt tillagd")
-    setTimeout(() => {
-      window.location.href = "/Admin";
-    }, 2500);
-  };
-
-  // const history = useHistory();
-
-  
-    // const [productObject, setProductObject] = useState(initialFormState);
+      const handleSaveNewProduct = async (productObject: IProduct) => {
+        const newProductId = productList ? productList.length + 1 : 1;
+        productObject.id = newProductId;
+        setProductObject(productObject)
+        createProduct(productObject) 
+        handleClearForm()  
+        adminGetProducts
+        getProducts(); 
+        setErrorMsg("Produkt tillagd")
+        setTimeout(() => {
+          window.location.href = "/Admin";
+        }, 2500);
+      };
   
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value, type } = e.target;
-      setProductObject({
-        ...productObject,
-        [name]: type === 'number' ? parseFloat(value) : value,
-      });
+    
+      setProductObject((prevProductObject) => ({
+        ...prevProductObject,
+        [name]: type === 'number' ? (value === '' ? undefined : parseFloat(value)) : value,
+      }));
     };
   
     const handleClearForm = () => {
       setProductObject(initialFormState);
     };
   
-    return (
-      <>
-          {/* <BackBtn /> */}
+    return (          
       <div className="CreateProductPage"> 
         <div className="CreateProductForm">
-      
+        
         <input
           onChange={handleInputChange}
           value={productObject?.title}
@@ -75,7 +47,8 @@ import "./CreateProduct.css"
           className="title"
           type="text"
           placeholder="Titel"
-        />
+          />
+          
         <input
           onChange={handleInputChange}
           value={productObject?.description}
@@ -118,7 +91,7 @@ import "./CreateProduct.css"
         />
         <input
           onChange={handleInputChange}
-          value={productObject?.price}
+          value={productObject?.price !== 0 ? productObject?.price : ''}
           name="price"
           className="price"
           type="number"
@@ -134,7 +107,7 @@ import "./CreateProduct.css"
         />
         <input
           onChange={handleInputChange}
-          value={productObject?.instock}
+          value={productObject?.instock !== 0 ? productObject?.instock : ''}
           name="instock"
           className="instock"
           type="number"
@@ -144,7 +117,7 @@ import "./CreateProduct.css"
         <button onClick={handleClearForm}>Rensa formulär</button>
       </div>
       </div>
-      </>
+      
     );
   };
   
