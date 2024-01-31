@@ -33,9 +33,32 @@ Nu kommer det att visas en ikon för "Adminpanel" i headern. I adminpanelen kan 
     mongodb v.6.3.0
     mongoose v.8.0.3
   
-  devDependencies: 
+  Beroenden för utvecklarmiljön: 
     cookie-session v.2.0.0
     joi v.17.11.0
     nodemon v.3.0.2
+```
+### Frontend: 
+```
+    @fortawesome/fontawesome-svg-core v.6.5.1
+    @fortawesome/free-brands-svg-icons v.6.5.1
+    @fortawesome/free-regular-svg-icons v.6.5.1
+    @fortawesome/free-solid-svg-icons v.6.5.1
+    @fortawesome/react-fontawesome v.0.2.0
+    react v.18.2.0
+    react-dom v.18.2.0
+    react-router-dom v.6.21.0
+  
+  Beroenden för utvecklarmiljön: 
+    @types/react v.18.2.43
+    @types/react-dom v.18.2.17
+    @typescript-eslint/eslint-plugin v.6.14.0
+    @typescript-eslint/parser v.6.14.0
+    @vitejs/plugin-react v.4.2.1
+    eslint v.8.55.0
+    eslint-plugin-react-hooks v.4.6.0
+    eslint-plugin-react-refresh v.0.4.5
+    typescript v.5.2.2
+    vite v.5.0.8
 ```
   
