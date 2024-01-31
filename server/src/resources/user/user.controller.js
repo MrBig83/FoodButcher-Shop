@@ -49,17 +49,12 @@ async function loginUser(req, res) {
   user._id = existingUser._id;
   delete user.password;
 
-    // Check if user already is logged in
     if (req.session._id) {
       return res.status(200).json(user);
     }
-  // reeq.session.settings = "Hejsan"
+
   req.session = user;  
-  // req.session.user = user;  
-  console.log("Första");
-  console.log(req.session);
-  
-  // console.log(reeq.session.settings);
+
   
   res.status(200).json(user);
 }
@@ -73,7 +68,6 @@ async function logout(req, res) {
   }
   
   async function authorize(req, res) {
-    console.log(req.session);
     if (!req.session._id) {
       return res.status(200).json("Guest present");
     }

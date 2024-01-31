@@ -1,8 +1,5 @@
-// import { Route, Routes } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser, faNewspaper, faPen, faBars } from '@fortawesome/free-solid-svg-icons'
-import "./Header.css";
-import logo from '../../food_logga.png';
 import { CartContext } from "../../../context/CartContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -10,6 +7,8 @@ import { UserContext } from "../../../context/UserContext";
 import { UIContext } from "../../../context/UIContext";
 import MobileMenu from '../MobileMenu/MobileMenu';
 import PopupMsg from '../PopupMsg/PopupMsg';
+import logo from '../../food_logga.png';
+import "./Header.css";
 
 const Header = () => {
     
@@ -17,11 +16,6 @@ const Header = () => {
     const { toggleMenuVisibility, isMenuVisible, errorMsg } = useContext(UIContext)
     const { numberInCart } = useContext(CartContext);   
     
-
-
-
-
-
     const currentPath = window.location.pathname
     let path:string;
     switch (currentPath) {
@@ -49,7 +43,6 @@ const Header = () => {
         default: path = ""
     }
     
-    // Ditt konto {userObject.firstName ? userObject.firstName : loggedInUser.email }
     return (
         <div className="header">
 
@@ -67,8 +60,8 @@ const Header = () => {
                 <img src={logo} alt="Logo" className='imgLogo'/>
             </Link>
             <h1 className='headerPath'>{path}</h1>
-            <div className="rightNav">
 
+            <div className="rightNav">
                 {loggedInUser.isAdmin ? 
                 <Link to={"/Admin"}>
                     
@@ -76,11 +69,8 @@ const Header = () => {
                     <FontAwesomeIcon icon={faPen} />
                     <p>Adminpanel</p>
                 </div>
-                </Link>
-                
+                </Link>                
                 : ""}
-
-
 
                     <Link to={'/News'}>
                 <div className='navlinks'>
@@ -88,10 +78,7 @@ const Header = () => {
                     <p>Nyheter</p>
                 </div>
                     </Link>
-
-
-
-
+                    
                 {loggedInUser._id ? 
                     <Link to={"/UserPage"}>
                         <div className='navlinks'>

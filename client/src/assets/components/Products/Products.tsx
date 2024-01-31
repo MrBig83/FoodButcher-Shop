@@ -1,19 +1,13 @@
-// import { Route, Routes } from "react-router";
-import "./Products.css"
-
+import { ProductContext } from "../../../context/ProductContext"
+import { Link } from "react-router-dom";
+import { useContext } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import IProduct from "../../interfaces/IProduct";
-import { Link } from "react-router-dom";
-import { ProductContext } from "../../../context/ProductContext"
-import { useContext } from "react";
-
-
-
+import "./Products.css"
 
 const Products = () => {
   const { productList } = useContext(ProductContext);
   
-
   return (
     <div className="Products">
         
@@ -24,15 +18,10 @@ const Products = () => {
             <ProductCard product={product} />
           </Link>
         </div>
-          
-
-
 
       ))}
       </div>
-        
-
-      </div>
+    </div>
     
   );
 };

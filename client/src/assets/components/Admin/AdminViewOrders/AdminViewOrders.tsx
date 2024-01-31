@@ -1,21 +1,14 @@
-// import React, { useEffect } from 'react'
 import { useContext, useState } from "react";
-
-import "./AdminViewOrders.css"
-
 import { OrderContext } from "../../../../context/OrderContext";
 import { IOrder } from "../../../interfaces/IOrderObject";
+import "./AdminViewOrders.css"
 
 function AdminViewOrders() {
     const { adminOrdersRaw, updateOrder } = useContext(OrderContext)
-
     const [expandedOrders, setExpandedOrders] = useState<string[]>([]);
 
     const toggleOrder = (orderId: string) => {
-      // Check if orderId is already in the expandedOrders array
       const isExpanded = expandedOrders.includes(orderId);
-  
-      // Toggle the state based on whether the orderId is already expanded or not
       if (isExpanded) {
         setExpandedOrders(expandedOrders.filter((id) => id !== orderId));
       } else {
@@ -23,8 +16,6 @@ function AdminViewOrders() {
       }
     };
     
-
-
     const renderAllOrders = (orders: IOrder[]) => {
         
       return orders.map((order) => (
@@ -62,7 +53,7 @@ function AdminViewOrders() {
       ));
     };
   
-    const orders: IOrder[] = adminOrdersRaw; // Replace with your actual orders array
+    const orders: IOrder[] = adminOrdersRaw; 
   
     return (
       <div className="renderAllOrders">

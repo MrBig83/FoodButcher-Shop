@@ -18,6 +18,8 @@ import Confirmation from "../Confirmation/Confirmation";
 import CookiePolicy from "../Legal/CookiePolicy/CookiePolicy";
 import SellingTerms from "../Legal/SellingTerms/SellingTerms";
 import DataskyddsPolicy from "../Legal/DataskyddsPolicy/DataskyddsPolicy";
+import CookieConsent from '../CookieConsent/CookieConsent';
+import "../CookieConsent/CookieConsent.css"
 
 const Main = () => { 
   const { loggedInUser } = useContext(UserContext)
@@ -25,6 +27,9 @@ const Main = () => {
   return (
     <div className="main">
       <div className="routes">
+        <div className="cookiePopup">
+          <CookieConsent />
+        </div>
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/product/:id" element={<SingleProduct />} />

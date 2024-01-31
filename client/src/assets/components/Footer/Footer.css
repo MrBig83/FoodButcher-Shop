@@ -31,8 +31,12 @@
     }
     .footerDivs a:hover {
         color : rgb(228,79,95);
-        /* scale: 1.1; TODO : KOLLA PÅ DENNA ===================================== */
+        scale: 1.1;
     }
+    .socialLink:hover {
+        scale: 1.1;
+    }
+
     .spacerLine {
         height: 70px;
         position: absolute;

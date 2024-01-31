@@ -1,0 +1,28 @@
+
+.cookie-consent {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .cookie-consent button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .cookieBtn {
+    width: 200px;
+  }
+  
