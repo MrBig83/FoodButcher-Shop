@@ -24,6 +24,7 @@ Nu kommer det att visas en ikon för "Adminpanel" i headern. I adminpanelen kan 
 
 ## Beroenden
 ### Backend: 
+```
     bcrypt v.5.1.1
     cors v.2.8.5
     dotenv v.16.3.1
@@ -36,4 +37,5 @@ Nu kommer det att visas en ikon för "Adminpanel" i headern. I adminpanelen kan 
     cookie-session v.2.0.0
     joi v.17.11.0
     nodemon v.3.0.2
+```
   
