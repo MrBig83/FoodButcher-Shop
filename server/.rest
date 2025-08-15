@@ -47,17 +47,16 @@ Content-Type: application/json
     "lastName": "Efternamn",
     "email": "a@e.com",
     "street": "Gatan",
-    "postCode": "442 12",
+    "postCode": 44212,
     "city": "Stad",
     "password": "p", 
-    "isAdmin":false
+    "isAdmin":true
 
 }
 
 ###
 POST http://localhost:3000/api/users/login
 Content-Type: application/json
-
 {
     "email": "a@e.com", 
     "password": "p"

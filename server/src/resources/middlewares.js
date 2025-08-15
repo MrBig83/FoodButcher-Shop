@@ -9,7 +9,7 @@ function auth(req, res, next) {
 /* Prevent access to users without admin privilege */
 function adminOnly(req, res, next) {
   if (req.session?.isAdmin) return next();
-  res.status(403).json("You don not have permissions to perform this request");
+  res.status(403).json("You do not have permissions to perform this request");
 };
   
 /* Validate request body based on a joi schema */
